@@ -1,25 +1,32 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "ABReactUI Samples",
+  "name": "ABReactUI Samples",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "any",
+      "src": "/images/react.svg",
+      "type": "image/svg+xml"
     }
   ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "id": "/?source=pwa",
+  "start_url": "/?source=pwa",
+  "background_color": "#ffffff",
+  "description": "ABReactUI Samples",
+  "display": "fullscreen",
+  "scope": "/",
+  "screenshots": [
+    {
+      "form_factor": "narrow",
+      "sizes": "800x800",
+      "src": "/images/react.svg",
+      "type": "image/svg+xml"
+    },
+    {
+      "form_factor": "wide",
+      "sizes": "800x800",
+      "src": "/images/react.svg",
+      "type": "image/svg+xml"
+    }
+  ],
+  "theme_color": "#000000"
 }
