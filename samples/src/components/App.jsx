@@ -14,5 +14,6 @@ const App = React.forwardRef((props, ref) => {
 
   return <RouterProvider router={Router} />
 })
+App.displayName = "ABReactUI samples application"
 
 export { App }

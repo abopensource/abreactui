@@ -10,21 +10,13 @@ import "./styles/Home.page.css"
  */
 const HomePage = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={Images.React} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="Pages HomePage">
+      <section className="Title">
+        <img src={Images.React} className="ReactLogo" alt="React logo" />
+        <h1>
+          <em>ABReactUI</em> Samples
+        </h1>
+      </section>
     </div>
   )
 }
