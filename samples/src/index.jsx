@@ -11,11 +11,11 @@ log.debug(`${"=".repeat(_env.length)}\n${_env}\n${"-".repeat(_env.length)}`)
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
 if (isProd) {
-  root.render(<App />)
+  root.render(<App ref={(ref) => (window.app = ref)} />)
 } else {
   root.render(
     <React.StrictMode>
-      <App />
+      <App ref={(ref) => (window.app = ref)} />
     </React.StrictMode>,
   )
 
