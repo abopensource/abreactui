@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom"
 
-import { HomePage } from "../pages"
+import { BoxPage, ContainersPage, HomePage } from "../pages"
 
 /**
  * List of `RouteObject` to use in the browser router.
@@ -12,7 +12,25 @@ import { HomePage } from "../pages"
 const routes = [
   {
     path: "/",
-    element: <HomePage />,
+    children: [
+      {
+        path: "",
+        element: <HomePage />,
+      },
+      {
+        path: "containers",
+        children: [
+          {
+            path: "",
+            element: <ContainersPage />,
+          },
+          {
+            path: "box",
+            element: <BoxPage />,
+          },
+        ],
+      },
+    ],
   },
 ]
 
@@ -22,13 +40,6 @@ const routes = [
  * @module routes/Router
  * @type {import("@remix-run/router").Router}
  */
-const Router = createBrowserRouter(
-  routes.map(({ children, element, errorElement, path }) => ({
-    children,
-    element,
-    errorElement,
-    path,
-  })),
-)
+const Router = createBrowserRouter(routes)
 
 export { Router }

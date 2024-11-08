@@ -1,6 +1,5 @@
 import { Images } from "../assets"
-
-import "./styles/Home.page.css"
+import "./styles"
 
 /**
  * Home index page.
