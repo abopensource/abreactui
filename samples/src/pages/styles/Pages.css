@@ -1,5 +1,56 @@
+:root {
+  --bgcolor: rgb(40, 45, 50);
+  --bgcolor-code: rgb(50, 50, 50);
+  --color: rgb(240, 240, 240);
+  --color-code: rgb(240, 240, 240);
+  --bdcolor: rgb(200, 200, 200);
+}
+
+:root.theme-light {
+  --bgcolor: rgb(255, 255, 255);
+  --color: rgb(0, 0, 0);
+}
+
+:root.theme-dark {
+  --bgcolor: rgb(0, 0, 0);
+  --color: rgb(255, 255, 255);
+}
+
 .Pages {
   min-height: 100vh;
-  background-color: rgb(40, 45, 50);
-  color: rgb(255, 255, 255);
+  background-color: var(--bgcolor);
+  color: var(--color);
+
+  section {
+    padding: 1rem;
+  }
+
+  h1,
+  h2,
+  h3 {
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
+  }
+
+  a:link,
+  a:visited {
+    color: var(--color);
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline dotted;
+  }
 }

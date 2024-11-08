@@ -16,6 +16,13 @@ const HomePage = () => {
           <em>ABReactUI</em> Samples
         </h1>
       </section>
+      <section className="Links">
+        <ul>
+          <li>
+            <a href="/containers">Container elements</a>
+          </li>
+        </ul>
+      </section>
     </div>
   )
 }

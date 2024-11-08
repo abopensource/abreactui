@@ -1,0 +1,56 @@
+.SamplePage {
+  .Title {
+    h1 {
+      font-weight: 100;
+
+      code {
+        font-style: normal;
+        font-weight: 700;
+        letter-spacing: -0.05rem;
+      }
+    }
+  }
+
+  .Links {
+    ul,
+    ol {
+      margin: 0;
+      padding: 1rem;
+    }
+  }
+
+  .Samples {
+    padding-bottom: 3rem;
+
+    .Sample {
+      h2 {
+        font-weight: 100;
+        letter-spacing: -0.05rem;
+
+        code {
+          font-weight: 500;
+        }
+      }
+
+      pre {
+        margin: 1rem 0;
+        padding: 1rem;
+        border: 1px solid var(--bdcolor);
+        background-color: var(--bgcolor-code);
+        color: var(--color-code);
+
+        code {
+          font-size: 0.75rem;
+        }
+      }
+
+      .Result {
+        margin: 1rem 0;
+        padding: 2rem;
+        border: 1px solid var(--bdcolor);
+        background-color: var(--bgcolor);
+        color: var(--color);
+      }
+    }
+  }
+}
