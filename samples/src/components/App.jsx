@@ -1,25 +1,19 @@
-import "./styles/App.css"
-import { Images } from "../assets"
+import React from "react"
+import { RouterProvider } from "react-router-dom"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={Images.React} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  )
-}
+import { Router } from "../routes"
+
+/**
+ * Application component.
+ *
+ * @module components/App
+ * @type {import("react").ForwardRefExoticComponent}
+ */
+const App = React.forwardRef((props, ref) => {
+  React.useImperativeHandle(ref, () => {})
+
+  return <RouterProvider router={Router} />
+})
+App.displayName = "ABReactUI samples application"
 
 export { App }

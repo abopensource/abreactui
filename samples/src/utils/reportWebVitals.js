@@ -2,7 +2,7 @@
  * Reporting on application performance analysis(measuring web vitals).
  *
  * @module utils/reportWebVitals
- * @function
+ * @type {Function}
  * @param {Function} [onPerfEntry=undefined] A function to record the results when the measurement is ready to be reported.
  */
 const reportWebVitals = (onPerfEntry) => {

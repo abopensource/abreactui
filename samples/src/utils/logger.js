@@ -6,6 +6,7 @@
  * and debug log(`log.debug()`) are only output in the `development` environment.
  *
  * @module utils/log
+ * @type {Object<String, Function>}
  */
 const log = {
   /**
