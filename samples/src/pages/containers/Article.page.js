@@ -1,32 +1,32 @@
-import { Box } from "abreactui"
+import { Article } from "abreactui"
 import { useRef } from "react"
 
 import "../styles"
 
 /**
- * `Box` component sample page.
+ * `Article` component sample page.
  *
- * @module pages/containers/BoxPage
+ * @module pages/containers/ArticlePage
  * @type {import("react").ReactElement}
  */
-const BoxPage = () => {
-  const myBox = useRef(null)
+const ArticlePage = () => {
+  const myArticle = useRef(null)
 
   return (
-    <div className="Pages SamplePage BoxPage">
+    <div className="Pages SamplePage ArticlePage">
       <section className="Title">
         <h1>
-          <code>Box</code> samples
+          <code>Article</code> samples
         </h1>
       </section>
       <section className="Samples">
         <article className="Sample">
           <h2>Basic</h2>
           <pre>
-            <code>&lt;Box&gt;Box element&lt;/Box&gt;</code>
+            <code>&lt;Article&gt;Article element&lt;/Article&gt;</code>
           </pre>
           <div className="Result">
-            <Box>Box element</Box>
+            <Article>Article element</Article>
           </div>
         </article>
         <article className="Sample">
@@ -35,11 +35,12 @@ const BoxPage = () => {
           </h2>
           <pre>
             <code>
-              &lt;Box className=&ldquo;myBox&rdquo;&gt;Box element&lt;/Box&gt;
+              &lt;Article className=&ldquo;myArticle&rdquo;&gt;Article
+              element&lt;/Article&gt;
             </code>
           </pre>
           <div className="Result">
-            <Box className="myBox">Box element</Box>
+            <Article className="myArticle">Article element</Article>
           </div>
         </article>
         <article className="Sample">
@@ -48,14 +49,15 @@ const BoxPage = () => {
           </h2>
           <pre>
             <code>
-              &lt;Box style={`{{ padding: "1rem", backgroundColor: "aqua" }}`}
-              &gt;Box element&lt;/Box&gt;
+              &lt;Article style=
+              {`{{ padding: "1rem", backgroundColor: "aqua" }}`}
+              &gt;Article element&lt;/Article&gt;
             </code>
           </pre>
           <div className="Result">
-            <Box style={{ padding: "1rem", backgroundColor: "aqua" }}>
-              Box element
-            </Box>
+            <Article style={{ padding: "1rem", backgroundColor: "aqua" }}>
+              Article element
+            </Article>
           </div>
         </article>
         <article className="Sample">
@@ -64,11 +66,12 @@ const BoxPage = () => {
           </h2>
           <pre>
             <code>
-              &lt;Box tag=&ldquo;span&rdquo;&gt;Box element&lt;/Box&gt;
+              &lt;Article tag=&ldquo;span&rdquo;&gt;Article
+              element&lt;/Article&gt;
             </code>
           </pre>
           <div className="Result">
-            <Box tag="span">Box element</Box>
+            <Article tag="span">Article element</Article>
           </div>
         </article>
         <article className="Sample">
@@ -76,10 +79,12 @@ const BoxPage = () => {
             <code>ref</code> props
           </h2>
           <pre>
-            <code>&lt;Box ref={`{myBox}`}&gt;Box element&lt;/Box&gt;</code>
+            <code>
+              &lt;Article ref={`{myArticle}`}&gt;Article element&lt;/Article&gt;
+            </code>
           </pre>
           <div className="Result">
-            <Box ref={myBox}>Box element</Box>
+            <Article ref={myArticle}>Article element</Article>
           </div>
         </article>
       </section>
@@ -87,4 +92,4 @@ const BoxPage = () => {
   )
 }
 
-export { BoxPage }
+export { ArticlePage }

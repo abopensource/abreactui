@@ -17,8 +17,23 @@ const ContainersPage = () => {
       <section className="Links">
         <ul>
           <li>
+            <a href="/containers/article">
+              <code>Article</code>
+            </a>
+          </li>
+          <li>
             <a href="/containers/box">
               <code>Box</code>
+            </a>
+          </li>
+          <li>
+            <a href="/containers/container">
+              <code>Container</code>
+            </a>
+          </li>
+          <li>
+            <a href="/containers/section">
+              <code>Section</code>
             </a>
           </li>
         </ul>
