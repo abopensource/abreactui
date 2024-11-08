@@ -1,7 +1,10 @@
+import React from "react"
+
 /**
  * Returns after creating a `React.ReactElement`(JSX element).
  *
  * @module createElement
+ * @type {Function}
  * @param {React.ComponentProps} [props] `React.ComponentProps` passed to React component.
  * @param {React.ReactNode} [props.children] `React.ReactNode` to include at the `React.ReactElement` that will be created.
  * @param {React.ComponentProps} [props.props] `React.ComponentProps` to apply to the `React.ReactElement` that will be created.
@@ -11,7 +14,7 @@
 const createElement = ({ children, props, tag }) => {
   const Tag = tag ? tag : "div"
 
-  return <Tag {...props}>{children}</Tag>
+  return React.createElement && <Tag {...props}>{children}</Tag>
 }
 
 export { createElement }
