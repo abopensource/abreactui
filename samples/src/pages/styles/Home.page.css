@@ -1,0 +1,38 @@
+.HomePage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .Title {
+    text-align: center;
+
+    .ReactLogo {
+      width: 58px;
+      height: 58px;
+      animation: ReactLogoSpin infinite 20s linear;
+      pointer-events: none;
+    }
+
+    h1 {
+      margin: 0;
+      font-weight: 100;
+      font-size: 2rem;
+
+      em {
+        font-style: normal;
+        font-weight: 700;
+        letter-spacing: -0.05rem;
+      }
+    }
+  }
+}
+
+@keyframes ReactLogoSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
