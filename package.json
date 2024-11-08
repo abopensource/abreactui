@@ -61,6 +61,7 @@
   "scripts": {
     "format:check": "prettier --check .",
     "format": "prettier --write .",
-    "lint": "eslint ./src"
+    "lint": "eslint .",
+    "samples": "cd samples && npm start"
   }
 }
