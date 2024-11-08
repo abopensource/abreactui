@@ -1,6 +1,13 @@
 import { createBrowserRouter } from "react-router-dom"
 
-import { BoxPage, ContainersPage, HomePage } from "../pages"
+import {
+  ArticlePage,
+  BoxPage,
+  ContainerPage,
+  ContainersPage,
+  HomePage,
+  SectionPage,
+} from "../pages"
 
 /**
  * List of `RouteObject` to use in the browser router.
@@ -25,8 +32,20 @@ const routes = [
             element: <ContainersPage />,
           },
           {
+            path: "article",
+            element: <ArticlePage />,
+          },
+          {
             path: "box",
             element: <BoxPage />,
+          },
+          {
+            path: "container",
+            element: <ContainerPage />,
+          },
+          {
+            path: "section",
+            element: <SectionPage />,
           },
         ],
       },
