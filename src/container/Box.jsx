@@ -15,19 +15,17 @@ import { createElement, styleBox } from "../"
  * @param {import("react").ForwardedRef} [ref] Object or function for use by referencing a component that will be created from a parent component.
  * @returns {import("react").ReactElement} Returns the created box element(JSX element).
  */
-const Box = React.forwardRef(function Box(
-  { children, className, tag = "div" },
-  ref,
-) {
+const Box = React.forwardRef(function Box(props, ref) {
+  const { children, className, tag, ...otherProps } = props
+
   const styles = []
   styleBox.Box && styles.push(styleBox.Box)
   className && styles.push(className)
+  otherProps.className = styles.join(" ")
 
-  return createElement({
-    children,
-    props: { className: styles.join(" "), ref },
-    tag,
-  })
+  ref && (otherProps.ref = ref)
+
+  return createElement({ children, props: otherProps, tag })
 })
 Box.propTypes = {
   children: PropTypes.node,
