@@ -7,6 +7,8 @@ import {
   ContainersPage,
   HomePage,
   SectionPage,
+  TextPage,
+  TextsPage,
 } from "../pages"
 
 /**
@@ -46,6 +48,19 @@ const routes = [
           {
             path: "section",
             element: <SectionPage />,
+          },
+        ],
+      },
+      {
+        path: "texts",
+        children: [
+          {
+            path: "",
+            element: <TextsPage />,
+          },
+          {
+            path: "text",
+            element: <TextPage />,
           },
         ],
       },
