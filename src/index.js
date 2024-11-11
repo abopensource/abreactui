@@ -1,4 +1,5 @@
 export * from "./core"
 export * from "./styles"
 
-export * from "./container"
+export * from "./containers"
+export * from "./texts"
