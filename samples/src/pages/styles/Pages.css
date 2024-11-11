@@ -21,7 +21,7 @@
   background-color: var(--bgcolor);
   color: var(--color);
 
-  section {
+  & > section {
     padding: 1rem;
   }
 

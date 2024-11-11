@@ -3,7 +3,7 @@ import "../styles"
 /**
  * ABReactUI container elements sample page.
  *
- * @module pages/containers
+ * @module pages/containers/ContainersPage
  * @type {import("react").ReactElement}
  */
 const ContainersPage = () => {
