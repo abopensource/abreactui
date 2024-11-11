@@ -11,7 +11,7 @@ import { createElement, styleArticle } from "../"
  * @param {import("react").ComponentProps} [props] `React.ComponentProps` passed to React component.
  * @param {import("react").ReactNode} [props.children] Child nodes to include in the article element to be created.
  * @param {String} [props.className] Stylesheet class name to apply to the article element to be created.
- * @param {String} [props.tag="div"] HTML tag to use for the article element to be created.
+ * @param {String} [props.tag="article"] HTML tag to use for the article element to be created.
  * @param {import("react").ForwardedRef} [ref] Object or function for use by referencing a component that will be created from a parent component.
  * @returns {import("react").ReactElement} Returns the created article element(JSX element).
  */
