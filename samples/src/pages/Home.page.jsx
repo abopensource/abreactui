@@ -21,6 +21,9 @@ const HomePage = () => {
           <li>
             <a href="/containers">Container elements</a>
           </li>
+          <li>
+            <a href="/texts">Text elements</a>
+          </li>
         </ul>
       </section>
     </div>
