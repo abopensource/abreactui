@@ -8,22 +8,22 @@
   border: 0 solid transparent;
   border-radius: 0.25rem;
   outline: none;
-  box-shadow: var(--button-box-shadow);
+  box-shadow: none;
   position: relative;
   overflow: hidden;
   vertical-align: middle;
-  background-color: var(--button-fill-bgcolor);
-  color: var(--button-fill-color);
+  background-color: transparent;
+  color: inherit;
   font-weight: 500;
   font-size: inherit;
-  line-height: 1.75;
+  line-height: inherit;
   font-family: inherit;
   letter-spacing: inherit;
   word-spacing: inherit;
   text-decoration: none;
   text-transform: uppercase;
   transition-duration: 250ms;
-  transition-property: border-color, box-shadow, background-color, color;
+  transition-property: none;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   user-select: none;
@@ -32,40 +32,42 @@
   -webkit-box-align: center;
   -webkit-box-pack: center;
 
-  --primary-color: rgb(25, 120, 210);
-  --primary-bgcolor-alpha: rgba(25, 210, 210, 0.04);
-  --primary-bdcolor: rgba(25, 120, 210, 0.5);
-  --white-color: rgb(255, 255, 255);
+  & {
+    /* Color */
+    --primary-color: rgb(25, 120, 210);
+    --primary-color-a5: rgb(25, 120, 210, 0.5);
+    --primary-color-a04: rgb(25, 120, 210, 0.04);
+    --primary-color-dark: rgb(20, 100, 190);
+    --white-color: rgb(255, 255, 255);
 
-  --button-fill-color: var(--white-color, rgb(255, 255, 255));
-  --button-fill-bgcolor: var(--primary-color, rgb(25, 120, 210));
-  --button-outline-color: var(--primary-color, rgb(25, 120, 210));
-  --button-outline-hover-bgcolor: var(--primary-color, rgb(25, 120, 210));
-  --button-outline-bdcolor: var(--primary-bdcolor, rgba(25, 120, 210, 0.5));
-  --button-outline-hover-bdcolor: var(
-    --primary-bgcolor-alpha,
-    rgba(25, 210, 210, 0.04)
-  );
-  --button-text-color: var(--primary-color, rgb(25, 120, 210));
+    /* Button Fill Style */
+    --btn-fill-color: var(--white-color);
+    --btn-fill-bgcolor: var(--primary-color);
+    --btn-fill-hover-bgcolor: var(--primary-color-dark);
 
-  --button-box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 1px -2px,
-    rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
-  --button-hover-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px -1px,
-    rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px;
-  --button-focus-box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px,
-    rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;
+    /* Button Outline Style */
+    --btn-outline-color: var(--primary-color);
+    --btn-outline-hover-bgcolor: var(--primary-color-a04);
+    --btn-outline-bdcolor: var(--primary-color-a5);
+    --btn-outline-hover-bdcolor: var(--primary-color);
 
-  * {
-    pointer-events: none;
-  }
+    /* Button Underline Style */
+    --btn-underline-color: var(--primary-color);
+    --btn-underline-hover-bgcolor: var(--primary-color-a04);
+    --btn-underline-bdcolor: var(--primary-color-a5);
+    --btn-underline-hover-bdcolor: var(--primary-color);
 
-  &:hover {
-    box-shadow: var(--button-hover-box-shadow);
-    text-decoration: none !important;
-  }
+    /* Button Text Style */
+    --btn-text-color: var(--primary-color);
+    --btn-text-hover-bgcolor: var(--primary-color-a04);
 
-  &:focus-visible {
-    box-shadow: var(--button-focus-box-shadow);
+    /* Button Shadow Style */
+    --btn-box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 1px -2px,
+      rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
+    --btn-hover-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px -1px,
+      rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px;
+    --btn-focus-box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px,
+      rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;
   }
 
   .Ripple {
@@ -75,14 +77,15 @@
     z-index: 0;
     overflow: hidden;
     background-color: transparent;
+    pointer-events: none;
 
     span {
-      width: 100%;
-      height: 100%;
       border-radius: 50%;
       position: absolute;
+      inset: 0;
       background-color: currentcolor;
       opacity: 0;
+      pointer-events: none;
       transform: scale(0);
 
       &.Click {
@@ -94,6 +97,84 @@
           RippleVisible 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms forwards,
           RipplePulse 2500ms infinite cubic-bezier(0.4, 0, 0.2, 1) 200ms;
       }
+    }
+  }
+
+  &.Fill {
+    box-shadow: var(--btn-box-shadow);
+    background-color: var(--btn-fill-bgcolor);
+    color: var(--btn-fill-color);
+    line-height: 1.75;
+    transition-property: box-shadow, background-color;
+
+    &:hover {
+      box-shadow: var(--btn-hover-box-shadow);
+      background-color: var(--btn-fill-hover-bgcolor);
+      text-decoration: none !important;
+    }
+
+    &:focus,
+    &:focus-visible {
+      box-shadow: var(--btn-focus-box-shadow);
+    }
+  }
+
+  &.Outline {
+    border: 1px solid var(--btn-outline-bdcolor);
+    color: var(--btn-outline-color);
+    line-height: 1.75;
+    transition-property: border-color, background-color;
+
+    &:hover {
+      border-color: var(--btn-outline-hover-bdcolor);
+      background-color: var(--btn-outline-hover-bgcolor);
+      text-decoration: none !important;
+    }
+  }
+
+  &.Underline {
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px dotted var(--btn-underline-bdcolor);
+    border-radius: 0;
+    vertical-align: inherit;
+    color: var(--btn-underline-color);
+    transition-property: background-color;
+    user-select: inherit;
+
+    .Ripple::before {
+      width: 100%;
+      height: 1px;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      background-color: var(--btn-underline-hover-bdcolor);
+      transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+      content: "";
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+
+    &:hover {
+      background-color: var(--btn-underline-hover-bgcolor);
+
+      .Ripple::before {
+        transform: scaleX(1);
+      }
+    }
+  }
+
+  &.Text {
+    margin: 0;
+    padding: 0;
+    vertical-align: inherit;
+    color: var(--btn-text-color);
+    transition-property: background-color;
+    user-select: inherit;
+
+    &:hover {
+      background-color: var(--btn-outline-hover-bgcolor);
+      text-decoration: none !important;
     }
   }
 }

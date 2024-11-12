@@ -18,8 +18,7 @@ import { createElement, styleContainer } from "../"
 const Container = React.forwardRef(function Container(props, ref) {
   const { children, className, tag, ...otherProps } = props
 
-  const styles = []
-  styleContainer.Container && styles.push(styleContainer.Container)
+  const styles = [styleContainer.Container]
   className && styles.push(className)
   otherProps.className = styles.join(" ")
 

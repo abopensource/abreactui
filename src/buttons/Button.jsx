@@ -30,24 +30,21 @@ const effectButtonRipple = (event) => {
   const size = Math.max(eleRipple.clientWidth, eleRipple.clientHeight)
   const type = event.type
 
-  const eleFocus = eleRipple.querySelector(`.${styleButton.Focus}`)
-  eleFocus &&
-    type !== "focus" &&
-    type !== "mouseover" &&
-    eleRipple.removeChild(eleFocus)
+  const eleFocus = eleRipple.querySelector(`.${styleButton["Focus"]}`)
+  eleFocus && type !== "focus" && eleRipple.removeChild(eleFocus)
 
   if (type === "click") {
-    const rectButton = eleRipple.parentNode.getBoundingClientRect()
+    const rectButton = eleRipple.getBoundingClientRect()
     const eleEffect = document.createElement("span")
-    eleEffect.className = styleButton[type[0].toUpperCase() + type.slice(1)]
-    eleEffect.style.left = event.pageX - rectButton.x - size / 2 + "px"
-    eleEffect.style.top = event.pageY - rectButton.y - size / 2 + "px"
+    eleEffect.className = styleButton["Click"]
+    eleEffect.style.left = event.clientX - rectButton.x - size / 2 + "px"
+    eleEffect.style.top = event.clientY - rectButton.y - size / 2 + "px"
     eleEffect.style.width = eleEffect.style.height = size + "px"
     eleRipple.appendChild(eleEffect)
     setTimeout(() => eleRipple.removeChild(eleEffect), 500)
   } else if (type === "focus" && !eleFocus) {
     const eleEffect = document.createElement("span")
-    eleEffect.className = styleButton[type[0].toUpperCase() + type.slice(1)]
+    eleEffect.className = styleButton["Focus"]
     eleEffect.style.left = 0 + "px"
     eleEffect.style.top = (eleRipple.clientHeight - size) / 2 + "px"
     eleEffect.style.width = eleEffect.style.height = size + "px"
@@ -92,13 +89,12 @@ const Button = React.forwardRef(function Button(props, ref) {
     type,
     ...otherProps
   } = props
-
   const eleRipple = createButtonRipple()
 
-  const styles = []
-  styleButton.Button && styles.push(styleButton.Button)
-  styles.push(styled ? styled[0].toUpperCase() + styled.slice(1) : "Fill")
-  disabled && styled.push("Disabled")
+  const styles = [styleButton.Button]
+  const style = styled ? styled[0].toUpperCase() + styled.slice(1) : "Fill"
+  styles.push(styleButton[style])
+  disabled && styled.push(styleButton["Disabled"])
   className && styles.push(className)
   otherProps.className = styles.join(" ")
 
@@ -125,7 +121,6 @@ const Button = React.forwardRef(function Button(props, ref) {
   }
 
   otherProps.onMouseOver = (event) => {
-    effectButtonRipple(event)
     onMouseOver && onMouseOver(event)
   }
 

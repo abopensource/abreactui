@@ -18,8 +18,7 @@ import { createElement, styleSection } from "../"
 const Section = React.forwardRef(function Section(props, ref) {
   const { children, className, tag, ...otherProps } = props
 
-  const styles = []
-  styleSection.Section && styles.push(styleSection.Section)
+  const styles = [styleSection.Section]
   className && styles.push(className)
   otherProps.className = styles.join(" ")
 
