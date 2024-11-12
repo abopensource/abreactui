@@ -4,7 +4,7 @@ import React from "react"
 import { createElement, styleContainer } from "../"
 
 /**
- * Returns after creating a container element(JSX element)
+ * Returns after created a container element(JSX element).
  *
  * @module Container
  * @type {import("react").ForwardRefExoticComponent}

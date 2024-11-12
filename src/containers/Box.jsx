@@ -4,7 +4,7 @@ import React from "react"
 import { createElement, styleBox } from "../"
 
 /**
- * Returns after creating a box element(JSX element)
+ * Returns after created a box element(JSX element).
  *
  * @module Box
  * @type {import("react").ForwardRefExoticComponent}

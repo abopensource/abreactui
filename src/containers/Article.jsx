@@ -4,7 +4,7 @@ import React from "react"
 import { createElement, styleArticle } from "../"
 
 /**
- * Returns after creating a article element(JSX element)
+ * Returns after created a article element(JSX element).
  *
  * @module Article
  * @type {import("react").ForwardRefExoticComponent}

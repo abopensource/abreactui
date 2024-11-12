@@ -1,0 +1,142 @@
+.Button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  margin: 0 0.25rem;
+  padding: 0.375rem 1rem;
+  border: 0 solid transparent;
+  border-radius: 0.25rem;
+  outline: none;
+  box-shadow: var(--button-box-shadow);
+  position: relative;
+  overflow: hidden;
+  vertical-align: middle;
+  background-color: var(--button-fill-bgcolor);
+  color: var(--button-fill-color);
+  font-weight: 500;
+  font-size: inherit;
+  line-height: 1.75;
+  font-family: inherit;
+  letter-spacing: inherit;
+  word-spacing: inherit;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition-duration: 250ms;
+  transition-property: border-color, box-shadow, background-color, color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  user-select: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+
+  --primary-color: rgb(25, 120, 210);
+  --primary-bgcolor-alpha: rgba(25, 210, 210, 0.04);
+  --primary-bdcolor: rgba(25, 120, 210, 0.5);
+  --white-color: rgb(255, 255, 255);
+
+  --button-fill-color: var(--white-color, rgb(255, 255, 255));
+  --button-fill-bgcolor: var(--primary-color, rgb(25, 120, 210));
+  --button-outline-color: var(--primary-color, rgb(25, 120, 210));
+  --button-outline-hover-bgcolor: var(--primary-color, rgb(25, 120, 210));
+  --button-outline-bdcolor: var(--primary-bdcolor, rgba(25, 120, 210, 0.5));
+  --button-outline-hover-bdcolor: var(
+    --primary-bgcolor-alpha,
+    rgba(25, 210, 210, 0.04)
+  );
+  --button-text-color: var(--primary-color, rgb(25, 120, 210));
+
+  --button-box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 1px -2px,
+    rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
+  --button-hover-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px -1px,
+    rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px;
+  --button-focus-box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px,
+    rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;
+
+  * {
+    pointer-events: none;
+  }
+
+  &:hover {
+    box-shadow: var(--button-hover-box-shadow);
+    text-decoration: none !important;
+  }
+
+  &:focus-visible {
+    box-shadow: var(--button-focus-box-shadow);
+  }
+
+  .Ripple {
+    border-radius: inherit;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    background-color: transparent;
+
+    span {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      position: absolute;
+      background-color: currentcolor;
+      opacity: 0;
+      transform: scale(0);
+
+      &.Click {
+        animation: RippleClick 350ms linear forwards;
+      }
+
+      &.Focus {
+        animation:
+          RippleVisible 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms forwards,
+          RipplePulse 2500ms infinite cubic-bezier(0.4, 0, 0.2, 1) 200ms;
+      }
+    }
+  }
+}
+
+@keyframes RippleClick {
+  0% {
+    opacity: 0.05;
+    transform: scale(0);
+  }
+
+  35% {
+    opacity: 0.25;
+    transform: scale(0.5);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+
+@keyframes RipplePulse {
+  0% {
+    transform: scale(0.8);
+  }
+
+  50% {
+    transform: scale(0.725);
+  }
+
+  100% {
+    transform: scale(0.8);
+  }
+}
+
+@keyframes RippleVisible {
+  from {
+    opacity: 0.1;
+    transform: scale(0);
+  }
+
+  to {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+}

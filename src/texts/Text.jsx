@@ -4,7 +4,7 @@ import React from "react"
 import { createElement, styleText } from "../"
 
 /**
- * Returns after creating a text element(JSX element)
+ * Returns after created a text element(JSX element).
  *
  * @module Text
  * @type {import("react").ForwardRefExoticComponent}

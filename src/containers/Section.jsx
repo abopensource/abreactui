@@ -4,7 +4,7 @@ import React from "react"
 import { createElement, styleSection } from "../"
 
 /**
- * Returns after creating a section element(JSX element)
+ * Returns after created a section element(JSX element).
  *
  * @module Section
  * @type {import("react").ForwardRefExoticComponent}
