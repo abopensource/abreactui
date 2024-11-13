@@ -23,7 +23,7 @@ const SectionPage = () => {
         <article className="Sample">
           <h2>Basic</h2>
           <pre>
-            <code>&lt;Section&gt;Section element&lt;/Section&gt;</code>
+            <code>{`<Section>Section element</Section>`}</code>
           </pre>
           <div className="Result">
             <Section>Section element</Section>
@@ -34,10 +34,7 @@ const SectionPage = () => {
             <code>className</code> props
           </h2>
           <pre>
-            <code>
-              &lt;Section className=&ldquo;mySection&rdquo;&gt;Section
-              element&lt;/Section&gt;
-            </code>
+            <code>{`<Section className="mySection">Section element</Section>`}</code>
           </pre>
           <div className="Result">
             <Section className="mySection">Section element</Section>
@@ -47,11 +44,14 @@ const SectionPage = () => {
           <h2>
             <code>style</code> props
           </h2>
+          {/* prettier-ignore */}
           <pre>
             <code>
-              &lt;Section style=
-              {`{{ padding: "1rem", backgroundColor: "aqua" }}`}
-              &gt;Section element&lt;/Section&gt;
+              {
+`<Section style={{ padding: "1rem", backgroundColor: "aqua" }}>
+  Section element
+</Section>`                
+              }
             </code>
           </pre>
           <div className="Result">
@@ -65,10 +65,7 @@ const SectionPage = () => {
             <code>tag</code> props
           </h2>
           <pre>
-            <code>
-              &lt;Section tag=&ldquo;span&rdquo;&gt;Section
-              element&lt;/Section&gt;
-            </code>
+            <code>{`<Section tag="span">Section element</Section>`}</code>
           </pre>
           <div className="Result">
             <Section tag="span">Section element</Section>
@@ -79,9 +76,7 @@ const SectionPage = () => {
             <code>ref</code> props
           </h2>
           <pre>
-            <code>
-              &lt;Section ref={`{mySection}`}&gt;Section element&lt;/Section&gt;
-            </code>
+            <code>{`<Section ref={mySection}>Section element</Section>`}</code>
           </pre>
           <div className="Result">
             <Section ref={mySection}>Section element</Section>

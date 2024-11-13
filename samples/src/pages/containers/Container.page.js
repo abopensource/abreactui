@@ -23,7 +23,7 @@ const ContainerPage = () => {
         <article className="Sample">
           <h2>Basic</h2>
           <pre>
-            <code>&lt;Container&gt;Container element&lt;/Container&gt;</code>
+            <code>{`<Container>Container element</Container>`}</code>
           </pre>
           <div className="Result">
             <Container>Container element</Container>
@@ -34,10 +34,7 @@ const ContainerPage = () => {
             <code>className</code> props
           </h2>
           <pre>
-            <code>
-              &lt;Container className=&ldquo;myContainer&rdquo;&gt;Container
-              element&lt;/Container&gt;
-            </code>
+            <code>{`<Container className="myContainer">Container element</Container>`}</code>
           </pre>
           <div className="Result">
             <Container className="myContainer">Container element</Container>
@@ -47,11 +44,14 @@ const ContainerPage = () => {
           <h2>
             <code>style</code> props
           </h2>
+          {/* prettier-ignore */}
           <pre>
             <code>
-              &lt;Container style=
-              {`{{ padding: "1rem", backgroundColor: "aqua" }}`}
-              &gt;Container element&lt;/Container&gt;
+              {
+`<Container style={{ padding: "1rem", backgroundColor: "aqua" }}>
+  Container element
+</Container>`
+              }
             </code>
           </pre>
           <div className="Result">
@@ -65,10 +65,7 @@ const ContainerPage = () => {
             <code>tag</code> props
           </h2>
           <pre>
-            <code>
-              &lt;Container tag=&ldquo;span&rdquo;&gt;Container
-              element&lt;/Container&gt;
-            </code>
+            <code>{`<Container tag="span">Container element</Container>`}</code>
           </pre>
           <div className="Result">
             <Container tag="span">Container element</Container>
@@ -79,10 +76,7 @@ const ContainerPage = () => {
             <code>ref</code> props
           </h2>
           <pre>
-            <code>
-              &lt;Container ref={`{myContainer}`}&gt;Container
-              element&lt;/Container&gt;
-            </code>
+            <code>{`<Container ref={myContainer}>Container element</Container>`}</code>
           </pre>
           <div className="Result">
             <Container ref={myContainer}>Container element</Container>
