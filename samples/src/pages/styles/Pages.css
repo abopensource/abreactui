@@ -46,8 +46,11 @@
 
   a:link,
   a:visited {
-    color: var(--color);
     text-decoration: none;
+
+    &:not([type]) {
+      color: var(--color);
+    }
   }
 
   a:hover {

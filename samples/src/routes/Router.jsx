@@ -3,6 +3,8 @@ import { createBrowserRouter } from "react-router-dom"
 import {
   ArticlePage,
   BoxPage,
+  ButtonPage,
+  ButtonsPage,
   ContainerPage,
   ContainersPage,
   HomePage,
@@ -25,6 +27,19 @@ const routes = [
       {
         path: "",
         element: <HomePage />,
+      },
+      {
+        path: "buttons",
+        children: [
+          {
+            path: "",
+            element: <ButtonsPage />,
+          },
+          {
+            path: "button",
+            element: <ButtonPage />,
+          },
+        ],
       },
       {
         path: "containers",
