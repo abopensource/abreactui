@@ -4,7 +4,7 @@ import React from "react"
 import { createElement, styleText } from "../"
 
 /**
- * Returns after creating a text element(JSX element)
+ * Returns after created a text element(JSX element).
  *
  * @module Text
  * @type {import("react").ForwardRefExoticComponent}
@@ -18,8 +18,7 @@ import { createElement, styleText } from "../"
 const Text = React.forwardRef(function Text(props, ref) {
   const { children, className, tag, ...otherProps } = props
 
-  const styles = []
-  styleText.Text && styles.push(styleText.Text)
+  const styles = [styleText.Text]
   className && styles.push(className)
   otherProps.className = styles.join(" ")
 

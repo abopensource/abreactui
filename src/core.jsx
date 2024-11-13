@@ -1,7 +1,7 @@
 import React from "react"
 
 /**
- * Returns after creating a `React.ReactElement`(JSX element).
+ * Returns after created a `React.ReactElement`(JSX element).
  *
  * @module createElement
  * @type {Function}

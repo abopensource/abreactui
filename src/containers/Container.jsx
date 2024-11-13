@@ -4,7 +4,7 @@ import React from "react"
 import { createElement, styleContainer } from "../"
 
 /**
- * Returns after creating a container element(JSX element)
+ * Returns after created a container element(JSX element).
  *
  * @module Container
  * @type {import("react").ForwardRefExoticComponent}
@@ -18,8 +18,7 @@ import { createElement, styleContainer } from "../"
 const Container = React.forwardRef(function Container(props, ref) {
   const { children, className, tag, ...otherProps } = props
 
-  const styles = []
-  styleContainer.Container && styles.push(styleContainer.Container)
+  const styles = [styleContainer.Container]
   className && styles.push(className)
   otherProps.className = styles.join(" ")
 
