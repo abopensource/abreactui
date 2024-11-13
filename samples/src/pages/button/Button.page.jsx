@@ -10,7 +10,6 @@ import "../styles"
  * @module pages/buttons/ButtonPage
  * @type {import("react").ReactElement}
  */
-
 const ButtonPage = () => {
   const myButton = useRef(null)
 

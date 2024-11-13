@@ -21,6 +21,11 @@ const ButtonsPage = () => {
               <code>Button</code>
             </a>
           </li>
+          <li>
+            <a href="/buttons/icon-button">
+              <code>IconButton</code>
+            </a>
+          </li>
         </ul>
       </section>
     </div>
