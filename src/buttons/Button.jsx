@@ -16,6 +16,21 @@ const createButtonRipple = () =>
   })
 
 /**
+ * Returns after created a container element(JSX element) for the icon node on the button element.
+ *
+ * @method createIcon
+ * @param {import("react").ReactNode} nodeIcon `ReactNode` to use as the icon for the button element.
+ * @param {String} key Unique `key`(`ComponentProps`) to use for the container element to be created.
+ * @returns {import("react").ReactElement} Returns a container element(JSX element) created for the icon node on the button element.
+ */
+const createIcon = (nodeIcon, key = "Icon") =>
+  createElement({
+    children: nodeIcon,
+    props: { className: `${styleButton.Icon} ${styleButton[key]}`, key },
+    tag: "span",
+  })
+
+/**
  * Apply an event dependent ripple effect to the button element.
  *
  * @method effectButtonRipple
@@ -61,6 +76,9 @@ const effectButtonRipple = (event) => {
  * @param {import("react").ReactNode} [props.children] Child nodes to include in the button element to be created.
  * @param {String} [props.className] Stylesheet class name to apply to the button element to be created.
  * @param {Boolean} [props.disabled=false] Whether the button element is disabled.
+ * @param {String} [props.href] URL to link to when the button is clicked. If defined, `a`(`HTMLLinkElement`) will be used as the root node.
+ * @param {import("react").ReactNode} [props.iconEnd] Icon element placed after the `children`.
+ * @param {import("react").ReactNode} [props.iconStart] Icon element placed before the `children`.
  * @param {EventListener} [props.onBlur] `EventListener` to execute when the button element has lost focus.
  * @param {EventListener} [props.onClick] `EventListener` to execute when the button element on click.
  * @param {EventListener} [props.onFocus] `EventListener` to execute when the button element has received focus.
@@ -79,6 +97,8 @@ const Button = React.forwardRef(function Button(props, ref) {
     children,
     className,
     disabled,
+    iconEnd,
+    iconStart,
     onBlur,
     onClick,
     onFocus,
@@ -89,7 +109,11 @@ const Button = React.forwardRef(function Button(props, ref) {
     type,
     ...otherProps
   } = props
-  const eleRipple = createButtonRipple()
+
+  const nodeChildren = [children]
+  iconEnd && nodeChildren.push(createIcon(iconEnd, "IconEnd"))
+  iconStart && nodeChildren.unshift(createIcon(iconStart, "IconStart"))
+  nodeChildren.push(createButtonRipple())
 
   const styles = [styleButton.Button]
   const style = styled ? styled[0].toUpperCase() + styled.slice(1) : "Fill"
@@ -129,7 +153,7 @@ const Button = React.forwardRef(function Button(props, ref) {
   otherProps.type = type ? type : "button"
 
   return createElement({
-    children: [children, eleRipple],
+    children: nodeChildren,
     props: otherProps,
     tag:
       tag ? tag
@@ -141,6 +165,14 @@ Button.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
   disabled: PropTypes.bool,
+  href: PropTypes.string,
+  iconEnd: PropTypes.node,
+  iconStart: PropTypes.node,
+  onBlur: PropTypes.func,
+  onClick: PropTypes.func,
+  onFocus: PropTypes.func,
+  onMouseOut: PropTypes.func,
+  onMouseOver: PropTypes.func,
   styled: PropTypes.string,
   tag: PropTypes.string,
   type: PropTypes.string,

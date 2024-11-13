@@ -40,6 +40,28 @@
   --btn-black-color-a25: rgba(var(--black-color, 0, 0, 0), 0.25);
   --btn-black-color-a125: rgba(var(--black-color, 0, 0, 0), 0.125);
 
+  .Icon {
+    display: inherit;
+    margin: 0 0.5rem;
+    color: inherit;
+    pointer-events: none;
+
+    svg {
+      width: 1em;
+      height: 1em;
+      stroke: currentcolor;
+      fill: currentcolor;
+    }
+  }
+
+  .IconEnd {
+    margin: 0 0 0 0.5rem;
+  }
+
+  .IconStart {
+    margin: 0 0.5rem 0 0;
+  }
+
   .Ripple {
     border-radius: inherit;
     position: absolute;
