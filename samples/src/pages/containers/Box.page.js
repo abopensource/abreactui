@@ -23,7 +23,7 @@ const BoxPage = () => {
         <article className="Sample">
           <h2>Basic</h2>
           <pre>
-            <code>&lt;Box&gt;Box element&lt;/Box&gt;</code>
+            <code>{`<Box>Box element</Box>`}</code>
           </pre>
           <div className="Result">
             <Box>Box element</Box>
@@ -34,9 +34,7 @@ const BoxPage = () => {
             <code>className</code> props
           </h2>
           <pre>
-            <code>
-              &lt;Box className=&ldquo;myBox&rdquo;&gt;Box element&lt;/Box&gt;
-            </code>
+            <code>{`<Box className="myBox">Box element</Box>`}</code>
           </pre>
           <div className="Result">
             <Box className="myBox">Box element</Box>
@@ -46,10 +44,14 @@ const BoxPage = () => {
           <h2>
             <code>style</code> props
           </h2>
+          {/* prettier-ignore */}
           <pre>
             <code>
-              &lt;Box style={`{{ padding: "1rem", backgroundColor: "aqua" }}`}
-              &gt;Box element&lt;/Box&gt;
+              {
+`<Box style={{ padding: "1rem", backgroundColor: "aqua" }}>
+  Box element
+</Box>`
+              }
             </code>
           </pre>
           <div className="Result">
@@ -63,9 +65,7 @@ const BoxPage = () => {
             <code>tag</code> props
           </h2>
           <pre>
-            <code>
-              &lt;Box tag=&ldquo;span&rdquo;&gt;Box element&lt;/Box&gt;
-            </code>
+            <code>{`<Box tag="span">Box element</Box>`}</code>
           </pre>
           <div className="Result">
             <Box tag="span">Box element</Box>
@@ -76,7 +76,7 @@ const BoxPage = () => {
             <code>ref</code> props
           </h2>
           <pre>
-            <code>&lt;Box ref={`{myBox}`}&gt;Box element&lt;/Box&gt;</code>
+            <code>{`<Box ref={myBox}>Box element</Box>`}</code>
           </pre>
           <div className="Result">
             <Box ref={myBox}>Box element</Box>
