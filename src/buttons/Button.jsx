@@ -131,7 +131,10 @@ const Button = React.forwardRef(function Button(props, ref) {
   return createElement({
     children: [children, eleRipple],
     props: otherProps,
-    tag: tag ? tag : "button",
+    tag:
+      tag ? tag
+      : props.href ? "a"
+      : "button",
   })
 })
 Button.propTypes = {
