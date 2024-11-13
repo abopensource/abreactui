@@ -32,43 +32,13 @@
   -webkit-box-align: center;
   -webkit-box-pack: center;
 
-  & {
-    /* Color */
-    --primary-color: rgb(25, 120, 210);
-    --primary-color-a5: rgb(25, 120, 210, 0.5);
-    --primary-color-a04: rgb(25, 120, 210, 0.04);
-    --primary-color-dark: rgb(20, 100, 190);
-    --white-color: rgb(255, 255, 255);
-
-    /* Button Fill Style */
-    --btn-fill-color: var(--white-color);
-    --btn-fill-bgcolor: var(--primary-color);
-    --btn-fill-hover-bgcolor: var(--primary-color-dark);
-
-    /* Button Outline Style */
-    --btn-outline-color: var(--primary-color);
-    --btn-outline-hover-bgcolor: var(--primary-color-a04);
-    --btn-outline-bdcolor: var(--primary-color-a5);
-    --btn-outline-hover-bdcolor: var(--primary-color);
-
-    /* Button Underline Style */
-    --btn-underline-color: var(--primary-color);
-    --btn-underline-hover-bgcolor: var(--primary-color-a04);
-    --btn-underline-bdcolor: var(--primary-color-a5);
-    --btn-underline-hover-bdcolor: var(--primary-color);
-
-    /* Button Text Style */
-    --btn-text-color: var(--primary-color);
-    --btn-text-hover-bgcolor: var(--primary-color-a04);
-
-    /* Button Shadow Style */
-    --btn-box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 1px -2px,
-      rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
-    --btn-hover-box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px -1px,
-      rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px;
-    --btn-focus-box-shadow: rgba(0, 0, 0, 0.2) 0px 3px 5px -1px,
-      rgba(0, 0, 0, 0.14) 0px 6px 10px 0px, rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;
-  }
+  --btn-primary-color: rgb(var(--primary-color, 25, 120, 210));
+  --btn-primary-color-a5: rgba(var(--primary-color, 25, 120, 210), 0.5);
+  --btn-primary-color-a04: rgba(var(--primary-color, 25, 120, 210), 0.04);
+  --btn-primary-color-dark: rgb(var(--primary-color-dark, 20, 100, 190));
+  --btn-white-color: rgb(var(--white-color, 255, 255, 255));
+  --btn-black-color-a25: rgba(var(--black-color, 0, 0, 0), 0.25);
+  --btn-black-color-a125: rgba(var(--black-color, 0, 0, 0), 0.125);
 
   .Ripple {
     border-radius: inherit;
@@ -101,65 +71,99 @@
   }
 
   &.Fill {
-    box-shadow: var(--btn-box-shadow);
-    background-color: var(--btn-fill-bgcolor);
-    color: var(--btn-fill-color);
+    box-shadow:
+      rgba(0, 0, 0, 0.2) 0px 3px 1px -2px,
+      rgba(0, 0, 0, 0.14) 0px 2px 2px 0px,
+      rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
+    background-color: var(--btn-primary-color);
+    color: var(--btn-white-color);
     line-height: 1.75;
     transition-property: box-shadow, background-color;
 
     &:hover {
-      box-shadow: var(--btn-hover-box-shadow);
-      background-color: var(--btn-fill-hover-bgcolor);
+      box-shadow:
+        rgba(0, 0, 0, 0.2) 0px 2px 4px -1px,
+        rgba(0, 0, 0, 0.14) 0px 4px 5px 0px,
+        rgba(0, 0, 0, 0.12) 0px 1px 10px 0px;
+      background-color: var(--btn-primary-color-dark);
       text-decoration: none !important;
     }
 
     &:focus,
     &:focus-visible {
-      box-shadow: var(--btn-focus-box-shadow);
+      box-shadow:
+        rgba(0, 0, 0, 0.2) 0px 3px 5px -1px,
+        rgba(0, 0, 0, 0.14) 0px 6px 10px 0px,
+        rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;
+    }
+
+    &.Disabled {
+      box-shadow: none;
+      background-color: var(--btn-black-color-a125);
+      color: var(--btn-black-color-a25);
     }
   }
 
   &.Outline {
-    border: 1px solid var(--btn-outline-bdcolor);
-    color: var(--btn-outline-color);
+    border: 1px solid var(--btn-primary-color-a5);
+    color: var(--btn-primary-color);
     line-height: 1.75;
-    transition-property: border-color, background-color;
+    transition-property: border-color, background-color, color;
 
     &:hover {
-      border-color: var(--btn-outline-hover-bdcolor);
-      background-color: var(--btn-outline-hover-bgcolor);
+      border-color: var(--btn-primary-color);
+      background-color: var(--btn-primary-color-a04);
+      color: var(--btn-primary-color-dark);
       text-decoration: none !important;
+    }
+
+    &.Disabled {
+      border: 1px solid var(--btn-black-color-a125);
+      color: var(--btn-black-color-a25);
     }
   }
 
   &.Underline {
     margin: 0;
     padding: 0;
-    border-bottom: 1px dotted var(--btn-underline-bdcolor);
     border-radius: 0;
     vertical-align: inherit;
-    color: var(--btn-underline-color);
-    transition-property: background-color;
+    color: var(--btn-primary-color);
+    transition-property: background-color, color;
     user-select: inherit;
 
-    .Ripple::before {
-      width: 100%;
-      height: 1px;
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      background-color: var(--btn-underline-hover-bdcolor);
-      transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
-      content: "";
-      transform: scaleX(0);
-      transform-origin: left;
+    .Ripple {
+      border-bottom: 1px dotted var(--btn-primary-color-a5);
+      overflow: visible;
+
+      &::before {
+        width: 100%;
+        height: 1px;
+        position: absolute;
+        right: 0;
+        bottom: -1px;
+        background-color: var(--btn-primary-color);
+        transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+        content: "";
+        transform: scaleX(0);
+        transform-origin: left;
+      }
     }
 
     &:hover {
-      background-color: var(--btn-underline-hover-bgcolor);
+      background-color: var(--btn-primary-color-a04);
+      color: var(--btn-primary-color-dark);
 
       .Ripple::before {
         transform: scaleX(1);
+      }
+    }
+
+    &.Disabled {
+      color: var(--btn-black-color-a25);
+
+      .Ripple {
+        border-bottom: 1px dotted var(--btn-black-color-a125);
       }
     }
   }
@@ -168,14 +172,24 @@
     margin: 0;
     padding: 0;
     vertical-align: inherit;
-    color: var(--btn-text-color);
+    color: var(--btn-primary-color);
     transition-property: background-color;
     user-select: inherit;
 
     &:hover {
-      background-color: var(--btn-outline-hover-bgcolor);
+      background-color: var(--btn-primary-color-a04);
+      color: var(--btn-primary-color-dark);
       text-decoration: none !important;
     }
+
+    &.Disabled {
+      color: var(--btn-black-color-a25);
+    }
+  }
+
+  &.Disabled {
+    cursor: default;
+    pointer-events: none;
   }
 }
 

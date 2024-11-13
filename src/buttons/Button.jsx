@@ -94,7 +94,7 @@ const Button = React.forwardRef(function Button(props, ref) {
   const styles = [styleButton.Button]
   const style = styled ? styled[0].toUpperCase() + styled.slice(1) : "Fill"
   styles.push(styleButton[style])
-  disabled && styled.push(styleButton["Disabled"])
+  disabled && styles.push(styleButton["Disabled"])
   className && styles.push(className)
   otherProps.className = styles.join(" ")
 
