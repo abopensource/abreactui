@@ -8,6 +8,7 @@ import {
   ContainerPage,
   ContainersPage,
   HomePage,
+  IconButtonPage,
   SectionPage,
   TextPage,
   TextsPage,
@@ -38,6 +39,10 @@ const routes = [
           {
             path: "button",
             element: <ButtonPage />,
+          },
+          {
+            path: "icon-button",
+            element: <IconButtonPage />,
           },
         ],
       },
