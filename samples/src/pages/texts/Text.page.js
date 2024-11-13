@@ -23,7 +23,7 @@ const TextPage = () => {
         <article className="Sample">
           <h2>Basic</h2>
           <pre>
-            <code>&lt;Text&gt;Text element&lt;/Text&gt;</code>
+            <code>{`<Text>Text element</Text>`}</code>
           </pre>
           <div className="Result">
             <Text>Text element</Text>
@@ -34,10 +34,7 @@ const TextPage = () => {
             <code>className</code> props
           </h2>
           <pre>
-            <code>
-              &lt;Text className=&ldquo;myText&rdquo;&gt;Text
-              element&lt;/Text&gt;
-            </code>
+            <code>{`<Text className="myText">Text element</Text>`}</code>
           </pre>
           <div className="Result">
             <Text className="myText">Text element</Text>
@@ -47,10 +44,14 @@ const TextPage = () => {
           <h2>
             <code>style</code> props
           </h2>
+          {/* prettier-ignore */}
           <pre>
             <code>
-              &lt;Text style={`{{ padding: "1rem", backgroundColor: "aqua" }}`}
-              &gt;Text element&lt;/Text&gt;
+              {
+`<Text style={{ padding: "1rem", backgroundColor: "aqua" }}>
+  Text element
+</Text>`
+              }
             </code>
           </pre>
           <div className="Result">
@@ -64,9 +65,7 @@ const TextPage = () => {
             <code>tag</code> props
           </h2>
           <pre>
-            <code>
-              &lt;Text tag=&ldquo;p&rdquo;&gt;Text element&lt;/Text&gt;
-            </code>
+            <code>{`<Text tag="p">Text element</Text>`}</code>
           </pre>
           <div className="Result">
             <Text tag="p">Text element</Text>
@@ -77,7 +76,7 @@ const TextPage = () => {
             <code>ref</code> props
           </h2>
           <pre>
-            <code>&lt;Text ref={`{myText}`}&gt;Text element&lt;/Text&gt;</code>
+            <code>{`<Text ref={myText}>Text element</Text>`}</code>
           </pre>
           <div className="Result">
             <Text ref={myText}>Text element</Text>

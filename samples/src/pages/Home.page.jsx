@@ -19,6 +19,9 @@ const HomePage = () => {
       <section className="Links">
         <ul>
           <li>
+            <a href="/buttons">Button elements</a>
+          </li>
+          <li>
             <a href="/containers">Container elements</a>
           </li>
           <li>
