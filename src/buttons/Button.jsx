@@ -178,4 +178,4 @@ Button.propTypes = {
   type: PropTypes.string,
 }
 
-export { Button, createButtonRipple, effectButtonRipple }
+export { Button }
