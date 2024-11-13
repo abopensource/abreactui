@@ -1,7 +1,15 @@
 import styleArticle from "./Article.module.css"
 import styleBox from "./Box.module.css"
+import styleButton from "./Button.module.css"
 import styleContainer from "./Container.module.css"
 import styleSection from "./Section.module.css"
 import styleText from "./Text.module.css"
 
-export { styleArticle, styleBox, styleContainer, styleSection, styleText }
+export {
+  styleArticle,
+  styleBox,
+  styleButton,
+  styleContainer,
+  styleSection,
+  styleText,
+}

@@ -4,7 +4,7 @@ import React from "react"
 import { createElement, styleArticle } from "../"
 
 /**
- * Returns after creating a article element(JSX element)
+ * Returns after created a article element(JSX element).
  *
  * @module Article
  * @type {import("react").ForwardRefExoticComponent}
@@ -18,8 +18,7 @@ import { createElement, styleArticle } from "../"
 const Article = React.forwardRef(function Article(props, ref) {
   const { children, className, tag, ...otherProps } = props
 
-  const styles = []
-  styleArticle.Article && styles.push(styleArticle.Article)
+  const styles = [styleArticle.Article]
   className && styles.push(className)
   otherProps.className = styles.join(" ")
 

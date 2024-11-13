@@ -4,7 +4,7 @@ import React from "react"
 import { createElement, styleBox } from "../"
 
 /**
- * Returns after creating a box element(JSX element)
+ * Returns after created a box element(JSX element).
  *
  * @module Box
  * @type {import("react").ForwardRefExoticComponent}
@@ -18,8 +18,7 @@ import { createElement, styleBox } from "../"
 const Box = React.forwardRef(function Box(props, ref) {
   const { children, className, tag, ...otherProps } = props
 
-  const styles = []
-  styleBox.Box && styles.push(styleBox.Box)
+  const styles = [styleBox.Box]
   className && styles.push(className)
   otherProps.className = styles.join(" ")
 
