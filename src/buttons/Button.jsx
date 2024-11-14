@@ -75,7 +75,7 @@ const effectButtonRipple = (event) => {
  * @param {import("react").ComponentProps} [props] `React.ComponentProps` passed to React component.
  * @param {import("react").ReactNode} [props.children] Child nodes to include in the button element to be created.
  * @param {String} [props.className] Stylesheet class name to apply to the button element to be created.
- * @param {Boolean} [props.disabled=false] Whether the button element is disabled.
+ * @param {Boolean} [props.disabled] Whether the button element is disabled.
  * @param {String} [props.href] URL to link to when the button is clicked. If defined, `a`(`HTMLLinkElement`) will be used as the root node.
  * @param {import("react").ReactNode} [props.iconEnd] Icon element placed after the `children`.
  * @param {import("react").ReactNode} [props.iconStart] Icon element placed before the `children`.
@@ -83,7 +83,7 @@ const effectButtonRipple = (event) => {
  * @param {EventListener} [props.onClick] `EventListener` to execute when the button element on click.
  * @param {EventListener} [props.onFocus] `EventListener` to execute when the button element has received focus.
  * @param {EventListener} [props.onMouseOut] `EventListener` to execute when the mouse(cursor) leaves at the button element.
- * @param {EventListener} [props.onMouseOver] `EventListener` to execute when the mouse(cursor) comes over a button element.
+ * @param {EventListener} [props.onMouseOver] `EventListener` to execute when the mouse(cursor) comes over the button element.
  * @param {String} [props.styled="fill"] Button style type.
  * "fill"(default) | "outline" | "underline" | "text"
  * @param {String} [props.tag="button"] HTML tag to use for the button element to be created.
@@ -173,9 +173,9 @@ Button.propTypes = {
   onFocus: PropTypes.func,
   onMouseOut: PropTypes.func,
   onMouseOver: PropTypes.func,
-  styled: PropTypes.string,
+  styled: PropTypes.oneOf(["fill" | "outline" | "underline" | "text"]),
   tag: PropTypes.string,
-  type: PropTypes.string,
+  type: PropTypes.oneOf(["button" | "reset" | "submit"]),
 }
 
 export { Button }
