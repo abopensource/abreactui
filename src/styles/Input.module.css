@@ -1,16 +1,39 @@
 .InputController {
+  display: inline-flex;
+  flex-direction: row;
+  padding: 0;
+  position: relative;
+  vertical-align: top;
+  line-height: inherit;
+
+  --fld-primary-color: rgb(var(--primary-color, 25, 120, 210));
+  --fld-black-color-a25: rgba(var(--black-color, 0, 0, 0), 0.25);
+  --fld-black-color-a85: rgba(var(--black-color, 0, 0, 0), 0.85);
+  --fld-timing-func: cubic-bezier(0, 0, 0.2, 1);
+
   .Label {
   }
 
   .Container {
-    .Input {
-    }
+    display: inline-flex;
+    align-items: center;
+    box-sizing: border-box;
+    border-radius: 0.25em;
+    position: relative;
 
-    .FieldSet {
-      .Legend {
-        .Span {
-        }
-      }
+    .Input {
+      display: block;
+      box-sizing: content-box;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 1em;
+      border: 0;
+      outline: none;
+      background: none;
+      color: currentcolor;
+      font: inherit;
+      letter-spacing: inherit;
     }
   }
 
@@ -18,6 +41,50 @@
   }
 
   &.Outline {
+    .FieldSet {
+      min-width: 0;
+      margin: 0;
+      padding: 0 0.5em;
+      border-width: 1px;
+      border-style: solid;
+      border-color: var(--fld-black-color-a25);
+      border-radius: inherit;
+      position: absolute;
+      /* top: -0.3125em; */
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      overflow: hidden;
+      text-align: left;
+      transition: border-color 200ms var(--fld-timing-func);
+      pointer-events: none;
+
+      .Legend {
+        width: auto;
+        padding: 0;
+        overflow: hidden;
+        float: unset;
+        line-height: inherit;
+        transition: width 150ms var(--fld-timing-func);
+
+        .Span {
+        }
+      }
+    }
+
+    &:hover {
+      .FieldSet {
+        border-color: var(--fld-black-color-a85);
+      }
+    }
+
+    &.Focus {
+      .FieldSet {
+        border-width: 2px;
+        border-color: var(--fld-primary-color);
+      }
+    }
   }
 
   &.Underline {

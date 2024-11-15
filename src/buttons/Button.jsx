@@ -110,8 +110,9 @@ const Button = React.forwardRef(function Button(props, ref) {
   const propsButton = { ...propsO3, className: styles.join(" ") }
   disabled && (propsButton.disabled = true)
   href && (propsButton.href = href)
-  ref && (propsButton.ref = ref)
   propsButton.type = type ? type : "button"
+
+  ref && (propsButton.ref = ref)
 
   propsButton.onBlur = (event) => {
     effectButtonRipple(event)

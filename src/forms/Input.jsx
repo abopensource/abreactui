@@ -13,7 +13,12 @@ import { createElement, styleInput } from "../"
  * @returns {import("react").ReactElement} Returns a container element(JSX element) created for the user input field element.
  */
 const createContainer = (props, ref) => {
-  const children = [createInput(props, ref), createFieldSet(props)]
+  const children = [createInput(props, ref)]
+
+  if (!props.styled || props.styled === "outline") {
+    children.push(createFieldSet(props))
+  }
+
   if (props.children) {
     if (props.children.props?.position === "end") {
       children.push(children)
@@ -74,40 +79,34 @@ const createFieldSet = (props) =>
  * @returns {import("react").ReactElement} Returns a input element(JSX element) created for the user input field element.
  */
 const createInput = (props, ref) => {
-  const propsInput = { className: styleInput.Input, key: "Input" }
+  const { disabled, id, readOnly, required, type, ...propsO1 } = props
+  const { defaultValue, placeholder, value, ...propsO2 } = propsO1
+  const { onBlur, onFocus, onMouseOut, onMouseOver, ...propsO3 } = propsO2
 
-  props.defaultValue && (propsInput.defaultValue = props.defaultValue)
-  props.disabled && (propsInput.disabled = props.disabled)
-  props.id && (propsInput.id = props.id)
-  props.placeholder && (propsInput.placeholder = props.placeholder)
-  props.readOnly && (propsInput.readOnly = props.readOnly)
-  props.required && (propsInput.required = props.required)
-  props.value && (propsInput.value = props.value)
+  const propsInput = { ...propsO3, className: styleInput.Input, key: "Input" }
+  disabled && (propsInput.disabled = disabled)
+  id && (propsInput.id = id)
+  readOnly && (propsInput.readOnly = readOnly)
+  required && (propsInput.required = required)
+  propsInput.type = type || "text"
+
+  defaultValue && (propsInput.defaultValue = defaultValue)
+  placeholder && (propsInput.placeholder = placeholder)
+  value && (propsInput.value = value)
 
   ref && (propsInput.ref = ref)
-  propsInput.type = props.type ? props.type : "text"
 
   propsInput.onBlur = (event) => {
     const eleContainer = event?.target?.parentNode?.parentNode
     eleContainer?.classList?.remove(styleInput.Focus)
-    props.onBlur && props.onBlur(event)
+    onBlur && onBlur(event)
   }
 
   propsInput.onFocus = (event) => {
     const eleContainer = event?.target?.parentNode?.parentNode
     eleContainer?.classList?.add(styleInput.Focus)
-    props.onFocus && props.onFocus(event)
+    onFocus && onFocus(event)
   }
-
-  props.onChange && (propsInput.onChange = (event) => props.onChange(event))
-
-  props.onClick && (propsInput.onClick = (event) => props.onClick(event))
-
-  props.onMouseOver &&
-    (propsInput.onMouseOver = (event) => props.onMouseOver(event))
-
-  props.onMouseOut &&
-    (propsInput.onMouseOut = (event) => props.onMouseOut(event))
 
   return createElement({ props: propsInput, tag: "input" })
 }
@@ -164,7 +163,7 @@ const createLabel = (props) =>
  * @returns {import("react").ReactElement} Returns the created user input field control element(JSX element).
  */
 const Input = React.forwardRef(function Input(props, ref) {
-  const { className, disabled, readOnly, styled } = props
+  const { className, disabled, label, readOnly, styled } = props
 
   const styles = [styleInput.InputController]
   const style = styled ? styled[0].toUpperCase() + styled.slice(1) : "Outline"
@@ -173,8 +172,11 @@ const Input = React.forwardRef(function Input(props, ref) {
   disabled && styles.push(styleInput.Disabled)
   className && styles.push(className)
 
+  const children = [createContainer(props, ref)]
+  label && children.unshife(createLabel(props))
+
   return createElement({
-    children: [createLabel(props), createContainer(props, ref)],
+    children: children,
     props: { className: styles.join(" ") },
   })
 })
