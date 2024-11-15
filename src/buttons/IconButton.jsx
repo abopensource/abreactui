@@ -123,9 +123,9 @@ IconButton.propTypes = {
   onFocus: PropTypes.func,
   onMouseOut: PropTypes.func,
   onMouseOver: PropTypes.func,
-  styled: PropTypes.oneOf(["fill" | "outline" | "normal"]),
+  styled: PropTypes.oneOf(["fill", "outline", "normal"]),
   tag: PropTypes.string,
-  type: PropTypes.oneOf(["button" | "reset" | "submit"]),
+  type: PropTypes.oneOf(["button", "reset", "submit"]),
 }
 
 export { IconButton }

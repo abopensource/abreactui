@@ -6,7 +6,11 @@
     .Input {
     }
 
-    .Error {
+    .FieldSet {
+      .Legend {
+        .Span {
+        }
+      }
     }
   }
 

@@ -144,9 +144,7 @@ const Button = React.forwardRef(function Button(props, ref) {
     onMouseOut && onMouseOut(event)
   }
 
-  otherProps.onMouseOver = (event) => {
-    onMouseOver && onMouseOver(event)
-  }
+  onMouseOver && (otherProps.onMouseOver = (event) => onMouseOver(event))
 
   ref && (otherProps.ref = ref)
 
@@ -173,9 +171,9 @@ Button.propTypes = {
   onFocus: PropTypes.func,
   onMouseOut: PropTypes.func,
   onMouseOver: PropTypes.func,
-  styled: PropTypes.oneOf(["fill" | "outline" | "underline" | "text"]),
+  styled: PropTypes.oneOf(["fill", "outline", "underline", "text"]),
   tag: PropTypes.string,
-  type: PropTypes.oneOf(["button" | "reset" | "submit"]),
+  type: PropTypes.oneOf(["button", "reset", "submit"]),
 }
 
 export { Button }
