@@ -16,15 +16,15 @@ import { createElement, styleContainer } from "../"
  * @returns {import("react").ReactElement} Returns the created container element(JSX element).
  */
 const Container = React.forwardRef(function Container(props, ref) {
-  const { children, className, tag, ...otherProps } = props
+  const { children, className, tag, ...propsOther } = props
 
   const styles = [styleContainer.Container]
   className && styles.push(className)
-  otherProps.className = styles.join(" ")
 
-  ref && (otherProps.ref = ref)
+  const propsContainer = { ...propsOther, className: styles.join(" ") }
+  ref && (propsContainer.ref = ref)
 
-  return createElement({ children, props: otherProps, tag })
+  return createElement({ children, props: propsContainer, tag })
 })
 Container.propTypes = {
   children: PropTypes.node,

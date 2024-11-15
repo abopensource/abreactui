@@ -16,15 +16,15 @@ import { createElement, styleBox } from "../"
  * @returns {import("react").ReactElement} Returns the created box element(JSX element).
  */
 const Box = React.forwardRef(function Box(props, ref) {
-  const { children, className, tag, ...otherProps } = props
+  const { children, className, tag, ...propsOther } = props
 
   const styles = [styleBox.Box]
   className && styles.push(className)
-  otherProps.className = styles.join(" ")
 
-  ref && (otherProps.ref = ref)
+  const propsBox = { ...propsOther, className: styles.join(" ") }
+  ref && (propsBox.ref = ref)
 
-  return createElement({ children, props: otherProps, tag })
+  return createElement({ children, props: propsBox, tag })
 })
 Box.propTypes = {
   children: PropTypes.node,

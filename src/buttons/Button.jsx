@@ -83,7 +83,6 @@ const effectButtonRipple = (event) => {
  * @param {EventListener} [props.onClick] `EventListener` to execute when the button element on click.
  * @param {EventListener} [props.onFocus] `EventListener` to execute when the button element has received focus.
  * @param {EventListener} [props.onMouseOut] `EventListener` to execute when the mouse(cursor) leaves at the button element.
- * @param {EventListener} [props.onMouseOver] `EventListener` to execute when the mouse(cursor) comes over the button element.
  * @param {String} [props.styled="fill"] Button style type.
  * "fill"(default) | "outline" | "underline" | "text"
  * @param {String} [props.tag="button"] HTML tag to use for the button element to be created.
@@ -93,22 +92,9 @@ const effectButtonRipple = (event) => {
  * @returns {import("react").ReactElement} Returns the created button element(JSX element).
  */
 const Button = React.forwardRef(function Button(props, ref) {
-  const {
-    children,
-    className,
-    disabled,
-    iconEnd,
-    iconStart,
-    onBlur,
-    onClick,
-    onFocus,
-    onMouseOut,
-    onMouseOver,
-    styled,
-    tag,
-    type,
-    ...otherProps
-  } = props
+  const { children, iconEnd, iconStart, ...propsO1 } = props
+  const { className, disabled, href, styled, tag, type, ...propsO2 } = propsO1
+  const { onBlur, onClick, onFocus, onMouseOut, ...propsO3 } = propsO2
 
   const nodeChildren = [children]
   iconEnd && nodeChildren.push(createIcon(iconEnd, "IconEnd"))
@@ -120,42 +106,39 @@ const Button = React.forwardRef(function Button(props, ref) {
   styles.push(styleButton[style])
   disabled && styles.push(styleButton["Disabled"])
   className && styles.push(className)
-  otherProps.className = styles.join(" ")
 
-  disabled && (otherProps.disabled = true)
+  const propsButton = { ...propsO3, className: styles.join(" ") }
+  disabled && (propsButton.disabled = true)
+  href && (propsButton.href = href)
+  ref && (propsButton.ref = ref)
+  propsButton.type = type ? type : "button"
 
-  otherProps.onBlur = (event) => {
+  propsButton.onBlur = (event) => {
     effectButtonRipple(event)
     onBlur && onBlur(event)
   }
 
-  otherProps.onClick = (event) => {
+  propsButton.onClick = (event) => {
     effectButtonRipple(event)
     onClick && onClick(event)
   }
 
-  otherProps.onFocus = (event) => {
+  propsButton.onFocus = (event) => {
     effectButtonRipple(event)
     onFocus && onFocus(event)
   }
 
-  otherProps.onMouseOut = (event) => {
+  propsButton.onMouseOut = (event) => {
     effectButtonRipple(event)
     onMouseOut && onMouseOut(event)
   }
 
-  onMouseOver && (otherProps.onMouseOver = (event) => onMouseOver(event))
-
-  ref && (otherProps.ref = ref)
-
-  otherProps.type = type ? type : "button"
-
   return createElement({
     children: nodeChildren,
-    props: otherProps,
+    props: propsButton,
     tag:
       tag ? tag
-      : props.href ? "a"
+      : href ? "a"
       : "button",
   })
 })
@@ -170,7 +153,6 @@ Button.propTypes = {
   onClick: PropTypes.func,
   onFocus: PropTypes.func,
   onMouseOut: PropTypes.func,
-  onMouseOver: PropTypes.func,
   styled: PropTypes.oneOf(["fill", "outline", "underline", "text"]),
   tag: PropTypes.string,
   type: PropTypes.oneOf(["button", "reset", "submit"]),

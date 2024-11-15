@@ -16,15 +16,15 @@ import { createElement, styleText } from "../"
  * @returns {import("react").ReactElement} Returns the created text element(JSX element).
  */
 const Text = React.forwardRef(function Text(props, ref) {
-  const { children, className, tag, ...otherProps } = props
+  const { children, className, tag, ...propsOther } = props
 
   const styles = [styleText.Text]
   className && styles.push(className)
-  otherProps.className = styles.join(" ")
 
-  ref && (otherProps.ref = ref)
+  const propsText = { ...propsOther, className: styles.join(" ") }
+  ref && (propsText.ref = ref)
 
-  return createElement({ children, props: otherProps, tag: tag ? tag : "span" })
+  return createElement({ children, props: propsText, tag: tag ? tag : "span" })
 })
 Text.propTypes = {
   children: PropTypes.node,
