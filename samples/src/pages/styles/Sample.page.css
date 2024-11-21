@@ -33,24 +33,30 @@
         }
       }
 
-      pre {
+      .Example {
         margin: 1rem 0;
-        padding: 1rem;
-        border: 1px solid var(--bdcolor);
-        background-color: var(--bgcolor-code);
-        color: var(--color-code);
 
-        code {
-          font-size: 0.75rem;
+        pre {
+          margin: 0;
+          padding: 1rem;
+          border: none;
+          border-radius: 0.5rem 0.5rem 0 0;
+          background-color: var(--bgcolor-code);
+          color: var(--color-code);
+
+          code {
+            display: block;
+            font-size: 0.75rem;
+          }
         }
-      }
 
-      .Result {
-        margin: 1rem 0;
-        padding: 2rem;
-        border: 1px solid var(--bdcolor);
-        background-color: var(--bgcolor);
-        color: var(--color);
+        .Result {
+          padding: 2rem;
+          border: 1px solid var(--bdcolor);
+          border-radius: 0 0 0.5rem 0.5rem;
+          background-color: var(--bgcolor);
+          color: var(--color);
+        }
       }
     }
   }
