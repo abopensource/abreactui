@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 import React from "react"
 
-import { createElement, styleBox } from "../"
+import { createElement, styles } from "../"
 
 /**
  * Returns after created a box element(JSX element).
@@ -15,17 +15,18 @@ import { createElement, styleBox } from "../"
  * @param {import("react").ForwardedRef} [ref] Object or function for use by referencing a component that will be created from a parent component.
  * @returns {import("react").ReactElement} Returns the created box element(JSX element).
  */
-const Box = React.forwardRef(function Box(props, ref) {
+const Box = React.forwardRef((props, forwardedRef) => {
   const { children, className, tag, ...propsOther } = props
 
-  const styles = [styleBox.Box]
-  className && styles.push(className)
+  const style = [styles.Box]
+  className && style.push(className)
 
-  const propsBox = { ...propsOther, className: styles.join(" ") }
-  ref && (propsBox.ref = ref)
+  const propsBox = { ...propsOther, className: style.join(" ") }
+  forwardedRef && (propsBox.ref = forwardedRef)
 
   return createElement({ children, props: propsBox, tag })
 })
+Box.displayName = "Box"
 Box.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
