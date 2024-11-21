@@ -1,5 +1,5 @@
 import { Box } from "abreactui"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 
 import "../styles"
 
@@ -10,7 +10,8 @@ import "../styles"
  * @type {import("react").ReactElement}
  */
 const BoxPage = () => {
-  const myBox = useRef(null)
+  const [active, setActive] = useState(false)
+  const refBox = useRef(null)
 
   return (
     <div className="Pages SamplePage BoxPage">
@@ -22,64 +23,127 @@ const BoxPage = () => {
       <section className="Samples">
         <article className="Sample">
           <h2>Basic</h2>
-          <pre>
-            <code>{`<Box>Box element</Box>`}</code>
-          </pre>
-          <div className="Result">
-            <Box>Box element</Box>
+          <div className="Example">
+            <pre>
+              <code>{`import { Box } from "abreactui"
+
+export const BoxSample = () => {
+  return <Box>Box element</Box>
+}`}</code>
+            </pre>
+            <div className="Result">
+              <Box>Box element</Box>
+            </div>
           </div>
         </article>
         <article className="Sample">
           <h2>
             <code>className</code> props
           </h2>
-          <pre>
-            <code>{`<Box className="myBox">Box element</Box>`}</code>
-          </pre>
-          <div className="Result">
-            <Box className="myBox">Box element</Box>
+          <div className="Example">
+            <pre>
+              <code>
+                {`import { Box } from "abreactui"
+
+export const BoxSample = () => {
+  return (
+    <>
+      <style>{".myBox { color: red; }"}</style>
+      <Box className="myBox">Box className props element</Box>
+    </>
+  )
+}`}
+              </code>
+            </pre>
+            <div className="Result">
+              <style>{".myBox { color: red; }"}</style>
+              <Box className="myBox">Box className props element</Box>
+            </div>
           </div>
         </article>
         <article className="Sample">
           <h2>
             <code>style</code> props
           </h2>
-          {/* prettier-ignore */}
-          <pre>
-            <code>
-              {
-`<Box style={{ padding: "1rem", backgroundColor: "aqua" }}>
-  Box element
-</Box>`
-              }
-            </code>
-          </pre>
-          <div className="Result">
-            <Box style={{ padding: "1rem", backgroundColor: "aqua" }}>
-              Box element
-            </Box>
+          <div className="Example">
+            <pre>
+              <code>
+                {`import { Box } from "abreactui"
+
+export const BoxSample = () => {
+  return (
+    <Box style={{ padding: "1rem", backgroundColor: "yellowgreen" }}>
+      Box style props sample
+    </Box>
+  )
+}`}
+              </code>
+            </pre>
+            <div className="Result">
+              <Box style={{ padding: "1rem", backgroundColor: "yellowgreen" }}>
+                Box style props sample
+              </Box>
+            </div>
           </div>
         </article>
         <article className="Sample">
           <h2>
             <code>tag</code> props
           </h2>
-          <pre>
-            <code>{`<Box tag="span">Box element</Box>`}</code>
-          </pre>
-          <div className="Result">
-            <Box tag="span">Box element</Box>
+          <div className="Example">
+            <pre>
+              <code>
+                {`import { Box } from "abreactui"
+
+export const BoxSample = () => {
+  return <Box tag="span">Box tag props sample</Box>
+}`}
+              </code>
+            </pre>
+            <div className="Result">
+              <Box tag="span">Box tag props sample</Box>
+            </div>
           </div>
         </article>
         <article className="Sample">
           <h2>
             <code>ref</code> props
           </h2>
-          <pre>
-            <code>{`<Box ref={myBox}>Box element</Box>`}</code>
-          </pre>
-          <div className="Result">
-            <Box ref={myBox}>Box element</Box>
+          <div className="Example">
+            <pre>
+              <code>
+                {`import { Box } from "abreactui"
+import { useRef, useState } from "react"
+
+export const BoxSample = () => {
+  const [active, setActive] = useState(false)
+  const refBox = useRef(null)
+
+  return (
+    <Box
+      ref={refBox}
+      onClick={() => {
+        refBox.current.style.color = active ? "" : "red"
+        setActive(!active)
+      }}
+    >
+      Box ref props sample
+    </Box>
+  )
+}`}
+              </code>
+            </pre>
+            <div className="Result">
+              <Box
+                ref={refBox}
+                onClick={() => {
+                  refBox.current.style.color = active ? "" : "red"
+                  setActive(!active)
+                }}
+              >
+                Box ref props sample
+              </Box>
+            </div>
           </div>
         </article>
       </section>

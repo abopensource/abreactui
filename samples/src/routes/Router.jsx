@@ -9,6 +9,7 @@ import {
   ContainersPage,
   HomePage,
   IconButtonPage,
+  SamplePage,
   SectionPage,
   TextPage,
   TextsPage,
@@ -28,6 +29,10 @@ const routes = [
       {
         path: "",
         element: <HomePage />,
+      },
+      {
+        path: "sample",
+        element: <SamplePage />,
       },
       {
         path: "buttons",
