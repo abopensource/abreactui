@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 import React from "react"
 
-import { createElement, styleContainer } from "../"
+import { createElement, style } from "../"
 
 /**
  * Returns after created a container element(JSX element).
@@ -12,20 +12,21 @@ import { createElement, styleContainer } from "../"
  * @param {import("react").ReactNode} [props.children] Child nodes to include in the container element to be created.
  * @param {String} [props.className] Stylesheet class name to apply to the container element to be created.
  * @param {String} [props.tag="div"] HTML tag to use for the container element to be created.
- * @param {import("react").ForwardedRef} [ref] Object or function for use by referencing a component that will be created from a parent component.
+ * @param {import("react").ForwardedRef} [forwardedRef] Object or function for use by referencing a component that will be created from a parent component.
  * @returns {import("react").ReactElement} Returns the created container element(JSX element).
  */
-const Container = React.forwardRef(function Container(props, ref) {
+const Container = React.forwardRef(function Container(props, forwardedRef) {
   const { children, className, tag, ...propsOther } = props
 
-  const styles = [styleContainer.Container]
+  const styles = [style.Container]
   className && styles.push(className)
 
   const propsContainer = { ...propsOther, className: styles.join(" ") }
-  ref && (propsContainer.ref = ref)
+  forwardedRef && (propsContainer.ref = forwardedRef)
 
   return createElement({ children, props: propsContainer, tag })
 })
+Container.displayName = "Container"
 Container.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
