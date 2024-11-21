@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 import React from "react"
 
-import { createElement, styleButton } from "../"
+import { createElement, style } from "../"
 
 /**
  * Returns after created a container element(JSX element) for the ripple effect on the button element.
@@ -11,7 +11,7 @@ import { createElement, styleButton } from "../"
  */
 const createButtonRipple = () =>
   createElement({
-    props: { className: styleButton.Ripple, key: "Ripple" },
+    props: { className: style.Ripple, key: "Ripple" },
     tag: "span",
   })
 
@@ -20,13 +20,13 @@ const createButtonRipple = () =>
  *
  * @method createIcon
  * @param {import("react").ReactNode} nodeIcon `ReactNode` to use as the icon for the button element.
- * @param {String} key Unique `key`(`ComponentProps`) to use for the container element to be created.
+ * @param {String} [key="Icon"] Unique `key`(`ComponentProps`) to use for the container element to be created.
  * @returns {import("react").ReactElement} Returns a container element(JSX element) created for the icon node on the button element.
  */
 const createIcon = (nodeIcon, key = "Icon") =>
   createElement({
     children: nodeIcon,
-    props: { className: `${styleButton.Icon} ${styleButton[key]}`, key },
+    props: { className: `${style.Icon} ${style[key]}`, key },
     tag: "span",
   })
 
@@ -39,19 +39,19 @@ const createIcon = (nodeIcon, key = "Icon") =>
 const effectButtonRipple = (event) => {
   if (!event?.target?.querySelector) return
 
-  const eleRipple = event.target.querySelector(`.${styleButton.Ripple}`)
+  const eleRipple = event.target.querySelector(`.${style.Ripple}`)
   if (!eleRipple) return
 
   const size = Math.max(eleRipple.clientWidth, eleRipple.clientHeight)
   const type = event.type
 
-  const eleFocus = eleRipple.querySelector(`.${styleButton["Focus"]}`)
+  const eleFocus = eleRipple.querySelector(`.${style["Focus"]}`)
   eleFocus && type !== "focus" && eleRipple.removeChild(eleFocus)
 
   if (type === "click") {
     const rectButton = eleRipple.getBoundingClientRect()
     const eleEffect = document.createElement("span")
-    eleEffect.className = styleButton["Click"]
+    eleEffect.className = style["Click"]
     eleEffect.style.left = event.clientX - rectButton.x - size / 2 + "px"
     eleEffect.style.top = event.clientY - rectButton.y - size / 2 + "px"
     eleEffect.style.width = eleEffect.style.height = size + "px"
@@ -59,7 +59,7 @@ const effectButtonRipple = (event) => {
     setTimeout(() => eleRipple.removeChild(eleEffect), 500)
   } else if (type === "focus" && !eleFocus) {
     const eleEffect = document.createElement("span")
-    eleEffect.className = styleButton["Focus"]
+    eleEffect.className = style["Focus"]
     eleEffect.style.left = 0 + "px"
     eleEffect.style.top = (eleRipple.clientHeight - size) / 2 + "px"
     eleEffect.style.width = eleEffect.style.height = size + "px"
@@ -86,33 +86,33 @@ const effectButtonRipple = (event) => {
  * @param {String} [props.styled="fill"] Button style type.
  * "fill"(default) | "outline" | "underline" | "text"
  * @param {String} [props.tag="button"] HTML tag to use for the button element to be created.
+ * "a" | "button"(default)
  * @param {String} [props.type="button"] Button element type.
- * "button" | "reset" | "submit"
- * @param {import("react").ForwardedRef} [ref] Object or function for use by referencing a component that will be created from a parent component.
+ * "button"(default) | "reset" | "submit"
+ * @param {import("react").ForwardedRef} [forwardedRef] Object or function for use by referencing a component that will be created from a parent component.
  * @returns {import("react").ReactElement} Returns the created button element(JSX element).
  */
-const Button = React.forwardRef(function Button(props, ref) {
-  const { children, iconEnd, iconStart, ...propsO1 } = props
-  const { className, disabled, href, styled, tag, type, ...propsO2 } = propsO1
-  const { onBlur, onClick, onFocus, onMouseOut, ...propsO3 } = propsO2
+const Button = React.forwardRef((props, forwardedRef) => {
+  const { children, iconEnd, iconStart, ...propsEC } = props
+  const { className, disabled, styled = "fill", ...propsES } = propsEC
+  const { href, tag = "button", type = "button", ...propsEO } = propsES
+  const { onBlur, onClick, onFocus, onMouseOut, ...propsOther } = propsEO
 
-  const nodeChildren = [children]
-  iconEnd && nodeChildren.push(createIcon(iconEnd, "IconEnd"))
-  iconStart && nodeChildren.unshift(createIcon(iconStart, "IconStart"))
-  nodeChildren.push(createButtonRipple())
+  const childrenButton = [children]
+  iconEnd && childrenButton.push(createIcon(iconEnd, "IconEnd"))
+  iconStart && childrenButton.unshift(createIcon(iconStart, "IconStart"))
+  childrenButton.push(createButtonRipple())
 
-  const styles = [styleButton.Button]
-  const style = styled ? styled[0].toUpperCase() + styled.slice(1) : "Fill"
-  styles.push(styleButton[style])
-  disabled && styles.push(styleButton["Disabled"])
+  const styles = [style.Button]
+  styles.push(style[styled[0].toUpperCase() + styled.slice(1)])
+  disabled && styles.push(style["Disabled"])
   className && styles.push(className)
 
-  const propsButton = { ...propsO3, className: styles.join(" ") }
+  const propsButton = { ...propsOther, className: styles.join(" ") }
   disabled && (propsButton.disabled = true)
   href && (propsButton.href = href)
-  propsButton.type = type ? type : "button"
-
-  ref && (propsButton.ref = ref)
+  forwardedRef && (propsButton.ref = forwardedRef)
+  propsButton.type = type
 
   propsButton.onBlur = (event) => {
     effectButtonRipple(event)
@@ -135,7 +135,7 @@ const Button = React.forwardRef(function Button(props, ref) {
   }
 
   return createElement({
-    children: nodeChildren,
+    children: childrenButton,
     props: propsButton,
     tag:
       tag ? tag
@@ -143,6 +143,7 @@ const Button = React.forwardRef(function Button(props, ref) {
       : "button",
   })
 })
+Button.displayName = "Button"
 Button.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
@@ -155,7 +156,7 @@ Button.propTypes = {
   onFocus: PropTypes.func,
   onMouseOut: PropTypes.func,
   styled: PropTypes.oneOf(["fill", "outline", "underline", "text"]),
-  tag: PropTypes.string,
+  tag: PropTypes.oneOf(["a", "button"]),
   type: PropTypes.oneOf(["button", "reset", "submit"]),
 }
 

@@ -15,7 +15,7 @@ import { createElement, style } from "../"
  * @param {import("react").ForwardedRef} [forwardedRef] Object or function for use by referencing a component that will be created from a parent component.
  * @returns {import("react").ReactElement} Returns the created container element(JSX element).
  */
-const Container = React.forwardRef(function Container(props, forwardedRef) {
+const Container = React.forwardRef((props, forwardedRef) => {
   const { children, className, tag, ...propsOther } = props
 
   const styles = [style.Container]
