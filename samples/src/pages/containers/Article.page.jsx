@@ -24,11 +24,13 @@ const ArticlePage = () => {
           <h2>Basic</h2>
           <div className="Example">
             <pre>
-              <code>{`import { Article } from "abreactui"
+              <code>
+                {`import { Article } from "abreactui"
 
 export const ArticleSample = () => {
   return <Article>Article basic sample</Article>
-}`}</code>
+}`}
+              </code>
             </pre>
             <div className="Result">
               <Article>Article basic sample</Article>
@@ -58,6 +60,51 @@ export const ArticleSample = () => {
               <style>{".myArticle { color: red; }"}</style>
               <Article className="myArticle">
                 Article className props sample
+              </Article>
+            </div>
+          </div>
+        </article>
+        <article className="Sample">
+          <h2>
+            <code>ref</code> props
+          </h2>
+          <div className="Example">
+            <pre>
+              <code>
+                {`import { Article } from "abreactui"
+import { useRef } from "react"
+
+export const ArticleSample = () => {
+  const refArticle = useRef(null)
+
+  return (
+    <Article
+      onMouseOut={() => {
+        refArticle.current.style.backgroundColor = ""
+      }}
+      onMouseOver={() => {
+        refArticle.current.style.backgroundColor = "rgba(0, 0, 0, 0.125)"
+      }}
+      ref={refArticle}
+    >
+      Article ref props sample
+    </Article>
+  )
+}`}
+              </code>
+            </pre>
+            <div className="Result">
+              <Article
+                onMouseOut={() => {
+                  refArticle.current.style.backgroundColor = ""
+                }}
+                onMouseOver={() => {
+                  refArticle.current.style.backgroundColor =
+                    "rgba(0, 0, 0, 0.125)"
+                }}
+                ref={refArticle}
+              >
+                Article ref props sample
               </Article>
             </div>
           </div>
@@ -105,51 +152,6 @@ export const ArticleSample = () => {
             </pre>
             <div className="Result">
               <Article tag="span">Article tag props sample</Article>
-            </div>
-          </div>
-        </article>
-        <article className="Sample">
-          <h2>
-            <code>ref</code> props
-          </h2>
-          <div className="Example">
-            <pre>
-              <code>
-                {`import { Article } from "abreactui"
-import { useRef } from "react"
-
-export const ArticleSample = () => {
-  const refArticle = useRef(null)
-
-  return (
-    <Article
-      onMouseOut={() => {
-        refArticle.current.style.backgroundColor = ""
-      }}
-      onMouseOver={() => {
-        refArticle.current.style.backgroundColor = "rgba(0, 0, 0, 0.125)"
-      }}
-      ref={refArticle}
-    >
-      Article ref props sample
-    </Article>
-  )
-}`}
-              </code>
-            </pre>
-            <div className="Result">
-              <Article
-                onMouseOut={() => {
-                  refArticle.current.style.backgroundColor = ""
-                }}
-                onMouseOver={() => {
-                  refArticle.current.style.backgroundColor =
-                    "rgba(0, 0, 0, 0.125)"
-                }}
-                ref={refArticle}
-              >
-                Article ref props sample
-              </Article>
             </div>
           </div>
         </article>
