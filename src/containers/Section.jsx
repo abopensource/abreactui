@@ -16,17 +16,17 @@ import { createElement, styleSection } from "../"
  * @returns {import("react").ReactElement} Returns the created section element(JSX element).
  */
 const Section = React.forwardRef(function Section(props, ref) {
-  const { children, className, tag, ...otherProps } = props
+  const { children, className, tag, ...propsOther } = props
 
   const styles = [styleSection.Section]
   className && styles.push(className)
-  otherProps.className = styles.join(" ")
 
-  ref && (otherProps.ref = ref)
+  const propsSection = { ...propsOther, className: styles.join(" ") }
+  ref && (propsSection.ref = ref)
 
   return createElement({
     children,
-    props: otherProps,
+    props: propsSection,
     tag: tag ? tag : "section",
   })
 })

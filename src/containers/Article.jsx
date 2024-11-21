@@ -16,17 +16,17 @@ import { createElement, styleArticle } from "../"
  * @returns {import("react").ReactElement} Returns the created article element(JSX element).
  */
 const Article = React.forwardRef(function Article(props, ref) {
-  const { children, className, tag, ...otherProps } = props
+  const { children, className, tag, ...propsOther } = props
 
   const styles = [styleArticle.Article]
   className && styles.push(className)
-  otherProps.className = styles.join(" ")
 
-  ref && (otherProps.ref = ref)
+  const propsArticle = { ...propsOther, className: styles.join(" ") }
+  ref && (propsArticle.ref = ref)
 
   return createElement({
     children,
-    props: otherProps,
+    props: propsArticle,
     tag: tag ? tag : "article",
   })
 })

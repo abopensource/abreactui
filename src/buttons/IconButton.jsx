@@ -54,7 +54,6 @@ const effectButtonRipple = (event) => {
  * @param {EventListener} [props.onClick] `EventListener` to execute when the icon button element on click.
  * @param {EventListener} [props.onFocus] `EventListener` to execute when the icon button element has received focus.
  * @param {EventListener} [props.onMouseOut] `EventListener` to execute when the mouse(cursor) leaves at the icon button element.
- * @param {EventListener} [props.onMouseOver] `EventListener` to execute when the mouse(cursor) comes over a icon button element.
  * @param {String} [props.styled="fill"] IconButton style type.
  * "fill" | "outline" | "normal"(default)
  * @param {String} [props.tag="button"] HTML tag to use for the icon button element to be created.
@@ -64,54 +63,42 @@ const effectButtonRipple = (event) => {
  * @returns {import("react").ReactElement} Returns the created icon button element(JSX element).
  */
 const IconButton = React.forwardRef(function IconButton(props, ref) {
-  const {
-    className,
-    onBlur,
-    onClick,
-    onFocus,
-    onMouseOut,
-    onMouseOver,
-    styled,
-    ...otherProps
-  } = props
+  const { className, styled, ...propsO1 } = props
+  const { onBlur, onClick, onFocus, onMouseOut, ...propsO2 } = propsO1
 
   const styles = [styleButton.IconButton]
   className && styles.push(className)
-  otherProps.className = styles.join(" ")
 
-  otherProps.onBlur = (event) => {
+  const propsButton = { ...propsO2, className: styles.join(" ") }
+  ref && (propsButton.ref = ref)
+
+  if (!styled || styled === "normal" || styled === "underline") {
+    propsButton.styled = "text"
+  } else {
+    propsButton.styled = styled
+  }
+
+  propsButton.onBlur = (event) => {
     effectButtonRipple(event)
     onBlur && onBlur(event)
   }
 
-  otherProps.onClick = (event) => {
+  propsButton.onClick = (event) => {
     effectButtonRipple(event)
     onClick && onClick(event)
   }
 
-  otherProps.onFocus = (event) => {
+  propsButton.onFocus = (event) => {
     effectButtonRipple(event)
     onFocus && onFocus(event)
   }
 
-  otherProps.onMouseOut = (event) => {
+  propsButton.onMouseOut = (event) => {
     effectButtonRipple(event)
     onMouseOut && onMouseOut(event)
   }
 
-  otherProps.onMouseOver = (event) => {
-    onMouseOver && onMouseOver(event)
-  }
-
-  if (!styled || styled === "normal" || styled === "underline") {
-    otherProps.styled = "text"
-  } else {
-    otherProps.styled = styled
-  }
-
-  ref && (otherProps.ref = ref)
-
-  return <Button {...otherProps} />
+  return <Button {...propsButton} />
 })
 IconButton.propTypes = {
   children: PropTypes.node,
@@ -122,10 +109,9 @@ IconButton.propTypes = {
   onClick: PropTypes.func,
   onFocus: PropTypes.func,
   onMouseOut: PropTypes.func,
-  onMouseOver: PropTypes.func,
-  styled: PropTypes.string,
+  styled: PropTypes.oneOf(["fill", "outline", "normal"]),
   tag: PropTypes.string,
-  type: PropTypes.string,
+  type: PropTypes.oneOf(["button", "reset", "submit"]),
 }
 
 export { IconButton }
