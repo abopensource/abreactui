@@ -8,6 +8,251 @@
   padding: 0;
 }
 
+.Button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  margin: 0 0.25rem;
+  padding: 0.375rem 1rem;
+  border: 0 solid transparent;
+  border-radius: 0.25rem;
+  outline: none;
+  box-shadow: none;
+  position: relative;
+  overflow: hidden;
+  vertical-align: middle;
+  background-color: transparent;
+  color: inherit;
+  font-weight: 500;
+  font-size: inherit;
+  line-height: inherit;
+  font-family: inherit;
+  letter-spacing: inherit;
+  word-spacing: inherit;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition-duration: 250ms;
+  transition-property: none;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  user-select: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+
+  --btn-color-black-a125: rgba(var(--color-black, 0, 0, 0), 0.125);
+  --btn-color-black-a25: rgba(var(--color-black, 0, 0, 0), 0.25);
+  --btn-color-white: rgb(var(--color-white, 255, 255, 255));
+  --btn-primary-color: rgb(var(--primary-color, 25, 120, 210));
+  --btn-primary-color-a04: rgba(var(--primary-color, 25, 120, 210), 0.04);
+  --btn-primary-color-a5: rgba(var(--primary-color, 25, 120, 210), 0.5);
+  --btn-primary-color-dark: rgb(var(--primary-color-dark, 20, 100, 190));
+
+  .Icon {
+    display: inherit;
+    margin: 0 0.5rem;
+    color: inherit;
+    pointer-events: none;
+
+    svg {
+      width: 1em;
+      height: 1em;
+      stroke: currentcolor;
+      fill: currentcolor;
+    }
+  }
+
+  .IconEnd {
+    margin: 0 0 0 0.5rem;
+  }
+
+  .IconStart {
+    margin: 0 0.5rem 0 0;
+  }
+
+  .Ripple {
+    border-radius: inherit;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    background-color: transparent;
+    pointer-events: none;
+
+    span {
+      border-radius: 50%;
+      position: absolute;
+      inset: 0;
+      background-color: currentcolor;
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0);
+
+      &.Click {
+        animation: RippleClick 350ms linear forwards;
+      }
+
+      &.Focus {
+        animation:
+          RippleVisible 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms forwards,
+          RipplePulse 2500ms infinite cubic-bezier(0.4, 0, 0.2, 1) 200ms;
+      }
+    }
+  }
+
+  &.Fill {
+    box-shadow:
+      rgba(0, 0, 0, 0.2) 0px 3px 1px -2px,
+      rgba(0, 0, 0, 0.14) 0px 2px 2px 0px,
+      rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
+    background-color: var(--btn-primary-color);
+    color: var(--btn-color-white);
+    line-height: 1.75;
+    transition-property: box-shadow, background-color;
+
+    &:hover {
+      box-shadow:
+        rgba(0, 0, 0, 0.2) 0px 2px 4px -1px,
+        rgba(0, 0, 0, 0.14) 0px 4px 5px 0px,
+        rgba(0, 0, 0, 0.12) 0px 1px 10px 0px;
+      background-color: var(--btn-primary-color-dark);
+      text-decoration: none !important;
+    }
+
+    &:focus,
+    &:focus-visible {
+      box-shadow:
+        rgba(0, 0, 0, 0.2) 0px 3px 5px -1px,
+        rgba(0, 0, 0, 0.14) 0px 6px 10px 0px,
+        rgba(0, 0, 0, 0.12) 0px 1px 18px 0px;
+    }
+
+    &.Disabled {
+      box-shadow: none;
+      background-color: var(--btn-color-black-a125);
+      color: var(--btn-color-black-a25);
+    }
+  }
+
+  &.Outline {
+    border: 1px solid var(--btn-primary-color-a5);
+    color: var(--btn-primary-color);
+    line-height: 1.75;
+    transition-property: border-color, background-color, color;
+
+    &:hover {
+      border-color: var(--btn-primary-color);
+      background-color: var(--btn-primary-color-a04);
+      color: var(--btn-primary-color-dark);
+      text-decoration: none !important;
+    }
+
+    &.Disabled {
+      border: 1px solid var(--btn-color-black-a125);
+      color: var(--btn-color-black-a25);
+    }
+  }
+
+  &.Underline {
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+    vertical-align: inherit;
+    color: var(--btn-primary-color);
+    transition-property: background-color, color;
+    user-select: inherit;
+
+    .Ripple {
+      border-bottom: 1px dotted var(--btn-primary-color-a5);
+      overflow: visible;
+
+      &::before {
+        width: 100%;
+        height: 1px;
+        position: absolute;
+        right: 0;
+        bottom: -1px;
+        background-color: var(--btn-primary-color);
+        transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+        content: "";
+        transform: scaleX(0);
+        transform-origin: left;
+      }
+    }
+
+    &:hover {
+      background-color: var(--btn-primary-color-a04);
+      color: var(--btn-primary-color-dark);
+
+      .Ripple::before {
+        transform: scaleX(1);
+      }
+    }
+
+    &.Disabled {
+      color: var(--btn-color-black-a25);
+
+      .Ripple {
+        border-bottom: 1px dotted var(--btn-color-black-a125);
+      }
+    }
+  }
+
+  &.Text {
+    margin: 0;
+    padding: 0;
+    vertical-align: inherit;
+    color: var(--btn-primary-color);
+    transition-property: background-color;
+    user-select: inherit;
+
+    &:hover {
+      background-color: var(--btn-primary-color-a04);
+      color: var(--btn-primary-color-dark);
+      text-decoration: none !important;
+    }
+
+    &.Disabled {
+      color: var(--btn-color-black-a25);
+    }
+  }
+
+  &.IconButton {
+    padding: 0.75rem;
+    border-radius: 50%;
+
+    svg {
+      width: 1em;
+      height: 1em;
+      pointer-events: none;
+      stroke: currentcolor;
+      fill: currentcolor;
+    }
+
+    .Ripple {
+      span.Focus {
+        animation:
+          IconRippleVisible 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms forwards,
+          IconRipplePulse 2500ms infinite cubic-bezier(0.4, 0, 0.2, 1) 200ms;
+      }
+    }
+
+    &.Text {
+      margin: -1rem -0.125rem -0.75rem;
+      position: relative;
+      top: 0.125rem;
+      vertical-align: baseline;
+    }
+  }
+
+  &.Disabled {
+    cursor: default;
+    pointer-events: none;
+  }
+}
+
 .Container {
   margin: 0;
   padding: 0;
@@ -19,5 +264,75 @@
 }
 
 .Text {
+  margin: 0;
   font-style: normal;
+}
+
+@keyframes IconRipplePulse {
+  0% {
+    transform: scale(0.9);
+  }
+
+  50% {
+    transform: scale(0.725);
+  }
+
+  100% {
+    transform: scale(0.9);
+  }
+}
+
+@keyframes IconRippleVisible {
+  from {
+    opacity: 0.1;
+    transform: scale(0);
+  }
+
+  to {
+    opacity: 0.3;
+    transform: scale(0.9);
+  }
+}
+
+@keyframes RippleClick {
+  0% {
+    opacity: 0.05;
+    transform: scale(0);
+  }
+
+  35% {
+    opacity: 0.25;
+    transform: scale(0.5);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(2);
+  }
+}
+
+@keyframes RipplePulse {
+  0% {
+    transform: scale(0.8);
+  }
+
+  50% {
+    transform: scale(0.725);
+  }
+
+  100% {
+    transform: scale(0.8);
+  }
+}
+
+@keyframes RippleVisible {
+  from {
+    opacity: 0.1;
+    transform: scale(0);
+  }
+
+  to {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
 }
