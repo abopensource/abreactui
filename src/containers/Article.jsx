@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 import React from "react"
 
-import { createElement, styleArticle } from "../"
+import { createElement, style } from "../"
 
 /**
  * Returns after created a article element(JSX element).
@@ -12,17 +12,17 @@ import { createElement, styleArticle } from "../"
  * @param {import("react").ReactNode} [props.children] Child nodes to include in the article element to be created.
  * @param {String} [props.className] Stylesheet class name to apply to the article element to be created.
  * @param {String} [props.tag="article"] HTML tag to use for the article element to be created.
- * @param {import("react").ForwardedRef} [ref] Object or function for use by referencing a component that will be created from a parent component.
+ * @param {import("react").ForwardedRef} [forwardedRef] Object or function for use by referencing a component that will be created from a parent component.
  * @returns {import("react").ReactElement} Returns the created article element(JSX element).
  */
-const Article = React.forwardRef(function Article(props, ref) {
+const Article = React.forwardRef((props, forwardedRef) => {
   const { children, className, tag, ...propsOther } = props
 
-  const styles = [styleArticle.Article]
+  const styles = [style.Article]
   className && styles.push(className)
 
   const propsArticle = { ...propsOther, className: styles.join(" ") }
-  ref && (propsArticle.ref = ref)
+  forwardedRef && (propsArticle.ref = forwardedRef)
 
   return createElement({
     children,
@@ -30,6 +30,7 @@ const Article = React.forwardRef(function Article(props, ref) {
     tag: tag ? tag : "article",
   })
 })
+Article.displayName = "Article"
 Article.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
