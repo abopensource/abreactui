@@ -28,11 +28,11 @@ const BoxPage = () => {
               <code>{`import { Box } from "abreactui"
 
 export const BoxSample = () => {
-  return <Box>Box element</Box>
+  return <Box>Box basic sample</Box>
 }`}</code>
             </pre>
             <div className="Result">
-              <Box>Box element</Box>
+              <Box>Box basic sample</Box>
             </div>
           </div>
         </article>
@@ -49,7 +49,7 @@ export const BoxSample = () => {
   return (
     <>
       <style>{".myBox { color: red; }"}</style>
-      <Box className="myBox">Box className props element</Box>
+      <Box className="myBox">Box className props sample</Box>
     </>
   )
 }`}
@@ -57,7 +57,7 @@ export const BoxSample = () => {
             </pre>
             <div className="Result">
               <style>{".myBox { color: red; }"}</style>
-              <Box className="myBox">Box className props element</Box>
+              <Box className="myBox">Box className props sample</Box>
             </div>
           </div>
         </article>
@@ -121,11 +121,11 @@ export const BoxSample = () => {
 
   return (
     <Box
-      ref={refBox}
       onClick={() => {
         refBox.current.style.color = active ? "" : "red"
         setActive(!active)
       }}
+      ref={refBox}
     >
       Box ref props sample
     </Box>
@@ -135,11 +135,11 @@ export const BoxSample = () => {
             </pre>
             <div className="Result">
               <Box
-                ref={refBox}
                 onClick={() => {
                   refBox.current.style.color = active ? "" : "red"
                   setActive(!active)
                 }}
+                ref={refBox}
               >
                 Box ref props sample
               </Box>
