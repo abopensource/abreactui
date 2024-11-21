@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 import React from "react"
 
-import { createElement, styleText } from "../"
+import { createElement, style } from "../"
 
 /**
  * Returns after created a text element(JSX element).
@@ -15,17 +15,18 @@ import { createElement, styleText } from "../"
  * @param {import("react").ForwardedRef} [ref] Object or function for use by referencing a component that will be created from a parent component.
  * @returns {import("react").ReactElement} Returns the created text element(JSX element).
  */
-const Text = React.forwardRef(function Text(props, ref) {
+const Text = React.forwardRef(function Text(props, forwardedRef) {
   const { children, className, tag, ...propsOther } = props
 
-  const styles = [styleText.Text]
+  const styles = [style.Text]
   className && styles.push(className)
 
   const propsText = { ...propsOther, className: styles.join(" ") }
-  ref && (propsText.ref = ref)
+  forwardedRef && (propsText.ref = forwardedRef)
 
   return createElement({ children, props: propsText, tag: tag ? tag : "span" })
 })
+Text.displayName = "Text"
 Text.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
