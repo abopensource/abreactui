@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 import React from "react"
 
-import { createElement, styleSection } from "../"
+import { createElement, style } from "../"
 
 /**
  * Returns after created a section element(JSX element).
@@ -12,17 +12,17 @@ import { createElement, styleSection } from "../"
  * @param {import("react").ReactNode} [props.children] Child nodes to include in the section element to be created.
  * @param {String} [props.className] Stylesheet class name to apply to the section element to be created.
  * @param {String} [props.tag="section"] HTML tag to use for the section element to be created.
- * @param {import("react").ForwardedRef} [ref] Object or function for use by referencing a component that will be created from a parent component.
+ * @param {import("react").ForwardedRef} [forwardedRef] Object or function for use by referencing a component that will be created from a parent component.
  * @returns {import("react").ReactElement} Returns the created section element(JSX element).
  */
-const Section = React.forwardRef(function Section(props, ref) {
+const Section = React.forwardRef(function Section(props, forwardedRef) {
   const { children, className, tag, ...propsOther } = props
 
-  const styles = [styleSection.Section]
+  const styles = [style.Section]
   className && styles.push(className)
 
   const propsSection = { ...propsOther, className: styles.join(" ") }
-  ref && (propsSection.ref = ref)
+  forwardedRef && (propsSection.ref = forwardedRef)
 
   return createElement({
     children,
@@ -30,6 +30,7 @@ const Section = React.forwardRef(function Section(props, ref) {
     tag: tag ? tag : "section",
   })
 })
+Section.displayName = "Section"
 Section.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
