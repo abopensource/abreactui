@@ -121,7 +121,7 @@ export const SectionSample = () => {
 export const SectionSample = () => {
   return (
     <Section style={{ padding: "1rem", backgroundColor: "yellowgreen" }}>
-      Section style prop sample
+      Section style props sample
     </Section>
   )
 }`}
@@ -131,7 +131,7 @@ export const SectionSample = () => {
               <Section
                 style={{ padding: "1rem", backgroundColor: "yellowgreen" }}
               >
-                Section style prop sample
+                Section style props sample
               </Section>
             </div>
           </div>
@@ -146,12 +146,12 @@ export const SectionSample = () => {
                 {`import { Section } from "abreactui"
 
 export const SectionSample = () => {
-  return <Section tag="span">Section tag prop sample</Section>
+  return <Section tag="span">Section tag props sample</Section>
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Section tag="span">Section tag prop sample</Section>
+              <Section tag="span">Section tag props sample</Section>
             </div>
           </div>
         </article>
