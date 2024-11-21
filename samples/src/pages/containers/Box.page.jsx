@@ -1,5 +1,5 @@
 import { Box } from "abreactui"
-import { useRef, useState } from "react"
+import { useRef } from "react"
 
 import "../styles"
 
@@ -10,7 +10,6 @@ import "../styles"
  * @type {import("react").ReactElement}
  */
 const BoxPage = () => {
-  const [active, setActive] = useState(false)
   const refBox = useRef(null)
 
   return (
@@ -25,11 +24,13 @@ const BoxPage = () => {
           <h2>Basic</h2>
           <div className="Example">
             <pre>
-              <code>{`import { Box } from "abreactui"
+              <code>
+                {`import { Box } from "abreactui"
 
 export const BoxSample = () => {
   return <Box>Box basic sample</Box>
-}`}</code>
+}`}
+              </code>
             </pre>
             <div className="Result">
               <Box>Box basic sample</Box>
@@ -58,6 +59,50 @@ export const BoxSample = () => {
             <div className="Result">
               <style>{".myBox { color: red; }"}</style>
               <Box className="myBox">Box className props sample</Box>
+            </div>
+          </div>
+        </article>
+        <article className="Sample">
+          <h2>
+            <code>ref</code> props
+          </h2>
+          <div className="Example">
+            <pre>
+              <code>
+                {`import { Box } from "abreactui"
+import { useRef } from "react"
+
+export const BoxSample = () => {
+  const refBox = useRef(null)
+
+  return (
+    <Box
+      onMouseOut={() => {
+        refBox.current.style.backgroundColor = ""
+      }}
+      onMouseOver={() => {
+        refBox.current.style.backgroundColor = "rgba(0, 0, 0, 0.125)"
+      }}
+      ref={refBox}
+    >
+      Box ref props sample
+    </Box>
+  )
+}`}
+              </code>
+            </pre>
+            <div className="Result">
+              <Box
+                onMouseOut={() => {
+                  refBox.current.style.backgroundColor = ""
+                }}
+                onMouseOver={() => {
+                  refBox.current.style.backgroundColor = "rgba(0, 0, 0, 0.125)"
+                }}
+                ref={refBox}
+              >
+                Box ref props sample
+              </Box>
             </div>
           </div>
         </article>
@@ -102,47 +147,6 @@ export const BoxSample = () => {
             </pre>
             <div className="Result">
               <Box tag="span">Box tag props sample</Box>
-            </div>
-          </div>
-        </article>
-        <article className="Sample">
-          <h2>
-            <code>ref</code> props
-          </h2>
-          <div className="Example">
-            <pre>
-              <code>
-                {`import { Box } from "abreactui"
-import { useRef, useState } from "react"
-
-export const BoxSample = () => {
-  const [active, setActive] = useState(false)
-  const refBox = useRef(null)
-
-  return (
-    <Box
-      onClick={() => {
-        refBox.current.style.color = active ? "" : "red"
-        setActive(!active)
-      }}
-      ref={refBox}
-    >
-      Box ref props sample
-    </Box>
-  )
-}`}
-              </code>
-            </pre>
-            <div className="Result">
-              <Box
-                onClick={() => {
-                  refBox.current.style.color = active ? "" : "red"
-                  setActive(!active)
-                }}
-                ref={refBox}
-              >
-                Box ref props sample
-              </Box>
             </div>
           </div>
         </article>
