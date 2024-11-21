@@ -11,10 +11,7 @@ import React from "react"
  * @param {String} [props.tag="div"] HTML element name to apply to the `React.ReactElement` that will be created.
  * @returns {React.ReactElement} Returns the created `React.ReactElement`(JSX element).
  */
-const createElement = ({ children, props, tag }) => {
-  const Tag = tag ? tag : "div"
-
-  return React.createElement && <Tag {...props}>{children}</Tag>
-}
+const createElement = ({ children, props, tag }) =>
+  React.createElement(tag ? tag : "div", props, children)
 
 export { createElement }
