@@ -44,17 +44,20 @@
 
   --btn-color-black-a125: rgba(var(--color-black, 0, 0, 0), 0.125);
   --btn-color-black-a25: rgba(var(--color-black, 0, 0, 0), 0.25);
+  --btn-color-mix-a50: color-mix(in srgb, currentcolor 50%, transparent);
+  --btn-color-mix-a05: color-mix(in srgb, currentcolor 5%, transparent);
   --btn-color-white: rgb(var(--color-white, 255, 255, 255));
   --btn-primary-color: rgb(var(--primary-color, 25, 120, 210));
-  --btn-primary-color-a04: rgba(var(--primary-color, 25, 120, 210), 0.04);
-  --btn-primary-color-a5: rgba(var(--primary-color, 25, 120, 210), 0.5);
   --btn-primary-color-dark: rgb(var(--primary-color-dark, 20, 100, 190));
+
+  * {
+    pointer-events: none;
+  }
 
   .Icon {
     display: inherit;
     margin: 0 0.5rem;
     color: inherit;
-    pointer-events: none;
 
     svg {
       width: 1em;
@@ -79,7 +82,6 @@
     z-index: 0;
     overflow: hidden;
     background-color: transparent;
-    pointer-events: none;
 
     span {
       border-radius: 50%;
@@ -87,7 +89,6 @@
       inset: 0;
       background-color: currentcolor;
       opacity: 0;
-      pointer-events: none;
       transform: scale(0);
 
       &.Click {
@@ -137,14 +138,14 @@
   }
 
   &.Outline {
-    border: 1px solid var(--btn-primary-color-a5);
+    border: 1px solid var(--btn-color-mix-a50);
     color: var(--btn-primary-color);
     line-height: 1.75;
     transition-property: border-color, background-color, color;
 
     &:hover {
       border-color: var(--btn-primary-color);
-      background-color: var(--btn-primary-color-a04);
+      background-color: var(--btn-color-mix-a05);
       color: var(--btn-primary-color-dark);
       text-decoration: none !important;
     }
@@ -165,7 +166,7 @@
     user-select: inherit;
 
     .Ripple {
-      border-bottom: 1px dotted var(--btn-primary-color-a5);
+      border-bottom: 1px dotted var(--btn-color-mix-a50);
       overflow: visible;
 
       &::before {
@@ -183,7 +184,7 @@
     }
 
     &:hover {
-      background-color: var(--btn-primary-color-a04);
+      background-color: var(--btn-color-mix-a05);
       color: var(--btn-primary-color-dark);
 
       .Ripple::before {
@@ -209,7 +210,7 @@
     user-select: inherit;
 
     &:hover {
-      background-color: var(--btn-primary-color-a04);
+      background-color: var(--btn-color-mix-a05);
       color: var(--btn-primary-color-dark);
       text-decoration: none !important;
     }
@@ -226,7 +227,6 @@
     svg {
       width: 1em;
       height: 1em;
-      pointer-events: none;
       stroke: currentcolor;
       fill: currentcolor;
     }
@@ -249,7 +249,6 @@
 
   &.Disabled {
     cursor: default;
-    pointer-events: none;
   }
 }
 
