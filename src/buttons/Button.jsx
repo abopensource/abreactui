@@ -138,8 +138,8 @@ const Button = React.forwardRef((props, forwardedRef) => {
     children: childrenButton,
     props: propsButton,
     tag:
-      tag ? tag
-      : href ? "a"
+      href ? "a"
+      : tag ? tag
       : "button",
   })
 })
