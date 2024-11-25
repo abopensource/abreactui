@@ -1,7 +1,8 @@
 import PropTypes from "prop-types"
 import React from "react"
+import { IoMdEye, IoMdEyeOff } from "react-icons/io"
 
-import { Box, createElement, style } from "../"
+import { Box, createElement, IconButton, style } from "../"
 
 /**
  * Returns after created the container element(JSX element) for user input field element.
@@ -100,48 +101,80 @@ const FieldSet = (props) => {
  */
 const Field = (props) => {
   const { onBlur, onChange, onFocus, ...propsOther } = props
+  const { defaultValue, type = "text", ...propsField } = propsOther
 
-  propsOther.className = style.Input
+  const [value, setValue] = React.useState(props.value || defaultValue || "")
+  const [showPassword, setShowPassword] = React.useState(false)
 
-  propsOther.onBlur = (event) => {
-    const eleField = event?.target
+  propsField.className = style.Input
+  propsField.value = value
 
-    if (eleField) {
-      const eleCtrl = eleField.parentNode?.parentNode
-      eleCtrl?.classList?.remove(style.Focus)
-    }
+  if (type === "password" && showPassword) {
+    propsField.type = "text"
+  } else {
+    propsField.type = type
+  }
+
+  propsField.onBlur = (event) => {
+    const eleField = event.target
+    const eleCtrl = eleField.parentNode?.parentNode
+    eleCtrl?.classList?.remove(style.Focus)
 
     onBlur && onBlur(event)
   }
 
-  propsOther.onChange = (event) => {
-    const eleField = event?.target
+  propsField.onChange = (event) => {
+    const eleField = event.target
+    const eleCtrl = eleField.parentNode?.parentNode
 
-    if (eleField) {
-      const eleCtrl = eleField.parentNode?.parentNode
+    setValue(eleField.value)
 
-      if (eleField.value?.length > 0) {
-        eleCtrl?.classList?.add(style.Filled)
-      } else {
-        eleCtrl?.classList?.remove(style.Filled)
-      }
+    if (eleField.value?.length > 0) {
+      eleCtrl?.classList?.add(style.Filled)
+    } else {
+      eleCtrl?.classList?.remove(style.Filled)
     }
 
     onChange && onChange(event)
   }
 
-  propsOther.onFocus = (event) => {
+  propsField.onFocus = (event) => {
     const eleField = event?.target
-
-    if (eleField) {
-      const eleCtrl = eleField.parentNode?.parentNode
-      eleCtrl?.classList?.add(style.Focus)
-    }
+    const eleCtrl = eleField.parentNode?.parentNode
+    eleCtrl?.classList?.add(style.Focus)
 
     onFocus && onFocus(event)
   }
 
-  return createElement({ props: propsOther, tag: "input" })
+  return (
+    <>
+      {createElement({ props: propsField, tag: "input" })}
+      {type === "password" && (
+        <IconButton
+          className={style.PasswordEye}
+          onClick={() => setShowPassword(!showPassword)}
+          tabIndex={-1}
+        >
+          {showPassword && <IoMdEyeOff />}
+          {!showPassword && <IoMdEye />}
+        </IconButton>
+      )}
+    </>
+  )
+}
+Field.propTypes = {
+  autoComplete: PropTypes.string,
+  defaultValue: PropTypes.string,
+  disabled: PropTypes.bool,
+  id: PropTypes.string,
+  onBlur: PropTypes.func,
+  onChange: PropTypes.func,
+  onFocus: PropTypes.func,
+  placeholder: PropTypes.string,
+  readOnly: PropTypes.bool,
+  required: PropTypes.bool,
+  type: PropTypes.oneOf(["password", "text"]),
+  value: PropTypes.string,
 }
 
 /**
@@ -216,7 +249,6 @@ const Input = React.forwardRef((props, forwardedRef) => {
     childrenCtrl.push(<Box key={"c"}>{children}</Box>)
   }
 
-  // Controller
   return <Controller {...props}>{childrenCtrl}</Controller>
 })
 Input.displayName = "Input"

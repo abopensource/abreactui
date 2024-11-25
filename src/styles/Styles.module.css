@@ -273,6 +273,7 @@
   --fld-color-black-a45: rgba(var(--color-black, 0, 0, 0), 0.45);
   --fld-color-black-a6: rgba(var(--color-black, 0, 0, 0), 0.6);
   --fld-color-black-a75: rgba(var(--color-black, 0, 0, 0), 0.75);
+  --fld-color-mix-a75: color-mix(in srgb, currentcolor 75%, transparent);
   --fld-primary-color: rgb(var(--primary-color, 25, 120, 210));
   --fld-timing-func: cubic-bezier(0, 0, 0.2, 1);
 
@@ -318,18 +319,33 @@
       font: inherit;
       letter-spacing: inherit;
     }
+
+    .PasswordEye {
+      display: inline-flex;
+      margin: -0.5em;
+      padding: 0.5em;
+      border: 0;
+      position: absolute;
+      top: 0.375em;
+      right: 0.5em;
+      vertical-align: middle;
+      color: var(--fld-color-mix-a75);
+      font-size: 1.25em;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    &:has(button) {
+      .Input {
+        padding-right: 2.5em;
+      }
+    }
   }
 
   &.Focus {
     .Label {
       color: var(--fld-primary-color);
     }
-  }
-
-  &.Filled {
-  }
-
-  &.ReadOnly {
   }
 
   &.Fill,
