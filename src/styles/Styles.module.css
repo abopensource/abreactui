@@ -34,7 +34,7 @@
   text-transform: uppercase;
   transition-duration: 250ms;
   transition-property: none;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-timing-function: var(--btn-timing-func);
   cursor: pointer;
   user-select: none;
   appearance: none;
@@ -49,6 +49,7 @@
   --btn-color-white: rgb(var(--color-white, 255, 255, 255));
   --btn-primary-color: rgb(var(--primary-color, 25, 120, 210));
   --btn-primary-color-dark: rgb(var(--primary-color-dark, 20, 100, 190));
+  --btn-timing-func: cubic-bezier(0.4, 0, 0.2, 1);
 
   * {
     pointer-events: none;
@@ -97,8 +98,8 @@
 
       &.Focus {
         animation:
-          RippleVisible 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms forwards,
-          RipplePulse 2500ms infinite cubic-bezier(0.4, 0, 0.2, 1) 200ms;
+          RippleVisible 200ms var(--btn-timing-func) 0ms forwards,
+          RipplePulse 2500ms infinite var(--btn-timing-func) 200ms;
       }
     }
   }
@@ -234,8 +235,8 @@
     .Ripple {
       span.Focus {
         animation:
-          IconRippleVisible 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms forwards,
-          IconRipplePulse 2500ms infinite cubic-bezier(0.4, 0, 0.2, 1) 200ms;
+          IconRippleVisible 200ms var(--btn-timing-func) 0ms forwards,
+          IconRipplePulse 2500ms infinite var(--btn-timing-func) 200ms;
       }
     }
 
@@ -255,6 +256,274 @@
 .Container {
   margin: 0;
   padding: 0;
+}
+
+.InputController {
+  display: inline-flex;
+  flex-direction: column;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  vertical-align: top;
+
+  --fld-color-black-a06: rgba(var(--color-black, 0, 0, 0), 0.06);
+  --fld-color-black-a09: rgba(var(--color-black, 0, 0, 0), 0.09);
+  --fld-color-black-a25: rgba(var(--color-black, 0, 0, 0), 0.25);
+  --fld-color-black-a45: rgba(var(--color-black, 0, 0, 0), 0.45);
+  --fld-color-black-a6: rgba(var(--color-black, 0, 0, 0), 0.6);
+  --fld-color-black-a75: rgba(var(--color-black, 0, 0, 0), 0.75);
+  --fld-primary-color: rgb(var(--primary-color, 25, 120, 210));
+  --fld-timing-func: cubic-bezier(0, 0, 0.2, 1);
+
+  .Label {
+    display: block;
+    max-width: calc(100% - 1.5em);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    overflow: hidden;
+    color: var(--fld-color-black-a6);
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    transition:
+      color 200ms var(--fld-timing-func),
+      transform 200ms var(--fld-timing-func),
+      max-width 200ms var(--fld-timing-func);
+    pointer-events: none;
+    transform-origin: top left;
+    transform: translate(1em, 1em) scale(1);
+  }
+
+  .Container {
+    display: inline-flex;
+    align-items: center;
+    box-sizing: border-box;
+    position: relative;
+    font-weight: 400;
+    font-size: 1rem;
+
+    .Input {
+      display: block;
+      box-sizing: content-box;
+      width: 100%;
+      min-width: 0;
+      margin: 0;
+      padding: 0.5em 0.875em;
+      border: 0;
+      outline: none;
+      background: none;
+      color: currentcolor;
+      font: inherit;
+      letter-spacing: inherit;
+    }
+  }
+
+  &.Focus {
+    .Label {
+      color: var(--fld-primary-color);
+    }
+  }
+
+  &.Filled {
+  }
+
+  &.ReadOnly {
+  }
+
+  &.Fill,
+  &.Underline {
+    .Container {
+      &::before {
+        border-bottom: 1px solid var(--fld-color-black-a25);
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        content: "\00a0";
+        pointer-events: none;
+      }
+
+      &::after {
+        border-bottom: 2px solid var(--fld-primary-color);
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        transition: transform 200ms var(--fld-timing-func);
+        content: "";
+        pointer-events: none;
+        transform: scaleX(0);
+        transform-origin: left bottom;
+      }
+    }
+
+    &:hover {
+      .Container {
+        &::before {
+          border-bottom: 1px solid var(--fld-color-black-a75);
+        }
+      }
+    }
+
+    &.Focus {
+      .Container {
+        &::after {
+          transform: scaleX(1) translate(0);
+        }
+      }
+    }
+  }
+
+  &.Fill {
+    .Container {
+      border-radius: 0.25em 0.25em 0 0;
+      background-color: var(--fld-color-black-a06);
+      transition: background-color 200ms var(--fld-timing-func);
+    }
+
+    &:has(label) {
+      .Container {
+        .Input {
+          padding: 1.5em 0.875em 0.5em 0.875em;
+        }
+      }
+    }
+
+    &:hover {
+      .Container {
+        background-color: var(--fld-color-black-a09);
+      }
+    }
+
+    &.Filled,
+    &.Focus {
+      .Label {
+        transform: translate(0.875em, 0.375em) scale(0.75);
+      }
+    }
+  }
+
+  &.Outline {
+    .Container {
+      border-radius: 0.25em;
+
+      .FieldSet {
+        min-width: 0;
+        margin: 0;
+        padding: 0 0.5em;
+        border-width: 1px;
+        border-style: solid;
+        border-color: var(--fld-color-black-a25);
+        border-radius: inherit;
+        position: absolute;
+        top: -0.25em;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        overflow: hidden;
+        text-align: left;
+        transition: border-color 200ms var(--fld-timing-func);
+        pointer-events: none;
+
+        .Legend {
+          display: block;
+          box-sizing: border-box;
+          width: auto;
+          max-width: 0.01px;
+          height: 0.6875em;
+          padding: 0;
+          overflow: hidden;
+          float: unset;
+          visibility: hidden;
+          font-size: 0.875em;
+          line-height: inherit;
+          white-space: nowrap;
+          transition: max-width 50ms var(--fld-timing-func) 0ms;
+
+          .Span {
+            letter-spacing: 0.0125em;
+            white-space: nowrap;
+            opacity: 0;
+          }
+        }
+      }
+    }
+
+    &:has(label) {
+      .Container {
+        .Input {
+          padding: 1em 0.875em;
+        }
+
+        .FieldSet {
+          top: -0.3125em;
+        }
+      }
+    }
+
+    &:hover {
+      .Container {
+        .FieldSet {
+          border-color: var(--fld-color-black-a75);
+        }
+      }
+    }
+
+    &.Focus {
+      .Container {
+        .FieldSet {
+          border-width: 2px;
+          border-color: var(--fld-primary-color);
+        }
+      }
+    }
+
+    &.Filled,
+    &.Focus {
+      .Label {
+        transform: translate(0.875em, -0.5625em) scale(0.75);
+      }
+
+      .Container {
+        .FieldSet {
+          .Legend {
+            max-width: 100%;
+            transition: max-width 100ms var(--fld-timing-func) 50ms;
+          }
+        }
+      }
+    }
+  }
+
+  &.Underline {
+    .Label {
+      transform: translate(0, 1em) scale(1);
+    }
+
+    .Container {
+      .Input {
+        padding: 0.25em 0 0.3125em;
+      }
+    }
+
+    &:has(label) {
+      .Container {
+        margin-top: 1em;
+      }
+    }
+
+    &.Filled,
+    &.Focus {
+      .Label {
+        transform: translate(0, 0) scale(0.75);
+      }
+    }
+  }
+
+  &.Disabled {
+  }
 }
 
 .Section {
