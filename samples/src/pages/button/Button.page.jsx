@@ -45,7 +45,7 @@ export const ButtonSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Button } from "abreactui"
+                {`import { Box, Button } from "abreactui"
 
 export const ButtonSample = () => {
   return (
@@ -282,7 +282,7 @@ export const ButtonSample = () => {
 
 export const ButtonSample = () => {
   return (
-    <Box>
+    <>
       <Box style={{ margin: "1rem" }}>
         styled=&quot;underline&quot; button sample: &nbsp;
         <Button styled="underline">Underline</Button>
@@ -291,7 +291,7 @@ export const ButtonSample = () => {
         styled=&quot;text&quot; button sample: &nbsp;
         <Button styled="text">Text</Button>
       </Box>
-    </Box>
+    </>
   )
 }`}
               </code>
@@ -345,11 +345,11 @@ export const ButtonSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Button } from "abreactui"
+                {`import { Box, Button } from "abreactui"
 
 export const ButtonSample = () => {
   return (
-    <Box>
+    <>
       <Box style={{ margin: "1rem" }}>
         disabled styled=&quot;underlint&quot; button sample: &nbsp;
         <Button disabled styled="underline">
@@ -362,7 +362,7 @@ export const ButtonSample = () => {
           disabled text
         </Button>
       </Box>
-    </Box>
+    </>
   )
 }`}
               </code>
