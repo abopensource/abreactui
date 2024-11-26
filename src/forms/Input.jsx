@@ -1,6 +1,6 @@
 import PropTypes from "prop-types"
 import React from "react"
-import { IoMdEye, IoMdEyeOff } from "react-icons/io"
+import { IoMdClose, IoMdEye, IoMdEyeOff } from "react-icons/io"
 
 import { Box, createElement, IconButton, style } from "../"
 
@@ -95,7 +95,7 @@ const FieldSet = (props) => {
  * @param {Boolean} [props.readOnly] Whether to use the user input field element as read-only.
  * @param {Boolean} [props.required] Whether the user input field element is the required input field.
  * @param {String} [props.type="text"] Field type of user input field element.
- * "password" | "text"(default)
+ * "password" | "search" | "text"(default)
  * @param {String} [props.value] Value of the user input field element.
  * @returns {import("react").ReactElement} Returns the created user input field element(JSX element).
  */
@@ -109,10 +109,10 @@ const Field = (props) => {
   propsField.className = style.Input
   propsField.value = value
 
-  if (type === "password" && showPassword) {
+  if (type === "password") {
+    propsField.type = showPassword ? "text" : type
+  } else if (type === "search") {
     propsField.type = "text"
-  } else {
-    propsField.type = type
   }
 
   propsField.onBlur = (event) => {
@@ -139,11 +139,56 @@ const Field = (props) => {
   }
 
   propsField.onFocus = (event) => {
-    const eleField = event?.target
+    const eleField = event.target
     const eleCtrl = eleField.parentNode?.parentNode
     eleCtrl?.classList?.add(style.Focus)
 
     onFocus && onFocus(event)
+  }
+
+  /**
+   * Focus in the passed input field and moves the cursor to the last one.
+   *
+   * @method focusAtEnd
+   * @param {HTMLInputElement} field Input field element to move focus.
+   */
+  const focusAtEnd = (field) => {
+    if (!field) return
+
+    field.focus()
+    setTimeout(() => {
+      field.selectionStart = field.selectionEnd = field.value.length
+    }, 10)
+  }
+
+  /**
+   * EventListener to be executed when the eye button in the password field is clicked.
+   *
+   * @method handleClickPassword
+   * @param {import("react").SyntheticEvent} event Event that occurred on button elements.
+   */
+  const handleClickPassword = (event) => {
+    setShowPassword(!showPassword)
+
+    const eleButton = event.target
+    const eleField = eleButton.parentNode?.firstElementChild
+    focusAtEnd(eleField)
+  }
+
+  /**
+   * EventListener to be executed when the clear button click in the search field is clicked.
+   *
+   * @method handleClickSearch
+   * @param {import("react").SyntheticEvent} event Event that occurred on button elements.
+   */
+  const handleClickSearch = (event) => {
+    const eleButton = event.target
+    const eleField = eleButton.parentNode?.firstElementChild
+
+    if (eleField) {
+      eleField.value = ""
+      eleField.focus()
+    }
   }
 
   return (
@@ -152,11 +197,20 @@ const Field = (props) => {
       {type === "password" && (
         <IconButton
           className={style.PasswordEye}
-          onClick={() => setShowPassword(!showPassword)}
+          onClick={handleClickPassword}
           tabIndex={-1}
         >
           {showPassword && <IoMdEyeOff />}
           {!showPassword && <IoMdEye />}
+        </IconButton>
+      )}
+      {type === "search" && (
+        <IconButton
+          className={style.Search}
+          onClick={handleClickSearch}
+          tabIndex={-1}
+        >
+          <IoMdClose />
         </IconButton>
       )}
     </>
@@ -173,7 +227,7 @@ Field.propTypes = {
   placeholder: PropTypes.string,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
-  type: PropTypes.oneOf(["password", "text"]),
+  type: PropTypes.oneOf(["password", "search", "text"]),
   value: PropTypes.string,
 }
 
@@ -219,7 +273,7 @@ const Label = (props) => {
  * @param {String} [props.styled="outline"] User input field style type.
  * "fill" | "outline"(default) | "underline"
  * @param {String} [props.type="text"] Field type of user input field element.
- * "password" | "text"(default)
+ * "password" | "search" | "text"(default)
  * @param {String} [props.value] Value of the user input field element.
  * @param {import("react").ForwardedRef} [forwardedRef] Object or function for use by referencing the component that will be created from the parent component.
  * @returns {import("react").ReactElement} Returns the created user input field controller element(JSX element).
@@ -267,7 +321,7 @@ Input.propTypes = {
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
   styled: PropTypes.oneOf(["fill", "outline", "underline"]),
-  type: PropTypes.oneOf(["password", "text"]),
+  type: PropTypes.oneOf(["password", "search", "text"]),
   value: PropTypes.string,
 }
 

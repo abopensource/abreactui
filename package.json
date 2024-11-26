@@ -51,6 +51,7 @@
     "prettier": "^3.3.3",
     "prop-types": "^15.8.1"
   },
+  "peerDependencies": {},
   "scripts": {
     "dist": "rm -rf dist && mkdir dist && babel src --out-dir dist --copy-files",
     "format:check": "prettier --check .",

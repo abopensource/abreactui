@@ -320,7 +320,8 @@
       letter-spacing: inherit;
     }
 
-    .PasswordEye {
+    .PasswordEye,
+    .Search {
       display: inline-flex;
       margin: -0.5em;
       padding: 0.5em;
@@ -335,9 +336,10 @@
       user-select: none;
     }
 
-    &:has(button) {
+    &:has(.PasswordEye),
+    &:has(.Search) {
       .Input {
-        padding-right: 2.5em;
+        padding-right: 2.5em !important;
       }
     }
   }
@@ -375,7 +377,7 @@
       }
     }
 
-    &:hover {
+    &:not(.Disabled):hover {
       .Container {
         &::before {
           border-bottom: 1px solid var(--fld-color-black-a75);
@@ -404,10 +406,15 @@
         .Input {
           padding: 1.5em 0.875em 0.5em 0.875em;
         }
+
+        .PasswordEye,
+        .Search {
+          top: 1.1875em;
+        }
       }
     }
 
-    &:hover {
+    &:not(.Disabled):hover {
       .Container {
         background-color: var(--fld-color-black-a09);
       }
@@ -473,13 +480,18 @@
           padding: 1em 0.875em;
         }
 
+        .PasswordEye,
+        .Search {
+          top: 0.75em;
+        }
+
         .FieldSet {
           top: -0.3125em;
         }
       }
     }
 
-    &:hover {
+    &:not(.Disabled):hover {
       .Container {
         .FieldSet {
           border-color: var(--fld-color-black-a75);
@@ -491,7 +503,7 @@
       .Container {
         .FieldSet {
           border-width: 2px;
-          border-color: var(--fld-primary-color);
+          border-color: var(--fld-primary-color) !important;
         }
       }
     }
@@ -522,11 +534,21 @@
       .Input {
         padding: 0.25em 0 0.3125em;
       }
+
+      .PasswordEye,
+      .Search {
+        top: 0.1875em;
+      }
     }
 
     &:has(label) {
       .Container {
         margin-top: 1em;
+
+        .PasswordEye,
+        .Search {
+          top: 0.1875em;
+        }
       }
     }
 
@@ -536,9 +558,6 @@
         transform: translate(0, 0) scale(0.75);
       }
     }
-  }
-
-  &.Disabled {
   }
 }
 
