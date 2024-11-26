@@ -273,6 +273,7 @@
   --fld-color-black-a45: rgba(var(--color-black, 0, 0, 0), 0.45);
   --fld-color-black-a6: rgba(var(--color-black, 0, 0, 0), 0.6);
   --fld-color-black-a75: rgba(var(--color-black, 0, 0, 0), 0.75);
+  --fld-color-error: rgb(var(--color-error, 210, 50, 50));
   --fld-color-mix-a75: color-mix(in srgb, currentcolor 75%, transparent);
   --fld-primary-color: rgb(var(--primary-color, 25, 120, 210));
   --fld-timing-func: cubic-bezier(0, 0, 0.2, 1);
@@ -344,9 +345,23 @@
     }
   }
 
+  .Helper {
+    margin: 0.5em 1.25em 0 1.25em;
+    color: var(--fld-color-mix-a75);
+    font-size: 0.75em;
+    text-align: left;
+  }
+
   &.Focus {
     .Label {
       color: var(--fld-primary-color);
+    }
+  }
+
+  &.Error {
+    .Label,
+    .Helper {
+      color: var(--fld-color-error);
     }
   }
 
@@ -377,7 +392,7 @@
       }
     }
 
-    &:not(.Disabled):hover {
+    &:not(.Disabled):not(.Error):hover {
       .Container {
         &::before {
           border-bottom: 1px solid var(--fld-color-black-a75);
@@ -389,6 +404,15 @@
       .Container {
         &::after {
           transform: scaleX(1) translate(0);
+        }
+      }
+    }
+
+    &.Error {
+      .Container {
+        &::before,
+        &::after {
+          border-bottom-color: var(--fld-color-error);
         }
       }
     }
@@ -491,7 +515,7 @@
       }
     }
 
-    &:not(.Disabled):hover {
+    &:not(.Disabled):not(.Error):not(.Focus):hover {
       .Container {
         .FieldSet {
           border-color: var(--fld-color-black-a75);
@@ -503,7 +527,7 @@
       .Container {
         .FieldSet {
           border-width: 2px;
-          border-color: var(--fld-primary-color) !important;
+          border-color: var(--fld-primary-color);
         }
       }
     }
@@ -523,6 +547,14 @@
         }
       }
     }
+
+    &.Error {
+      .Container {
+        .FieldSet {
+          border-color: var(--fld-color-error);
+        }
+      }
+    }
   }
 
   &.Underline {
@@ -539,6 +571,10 @@
       .Search {
         top: 0.1875em;
       }
+    }
+
+    .Helper {
+      margin: 0.5em 0 0 0;
     }
 
     &:has(label) {
