@@ -273,6 +273,8 @@
   --fld-color-black-a45: rgba(var(--color-black, 0, 0, 0), 0.45);
   --fld-color-black-a6: rgba(var(--color-black, 0, 0, 0), 0.6);
   --fld-color-black-a75: rgba(var(--color-black, 0, 0, 0), 0.75);
+  --fld-color-error: rgb(var(--color-error, 210, 50, 50));
+  --fld-color-mix-a75: color-mix(in srgb, currentcolor 75%, transparent);
   --fld-primary-color: rgb(var(--primary-color, 25, 120, 210));
   --fld-timing-func: cubic-bezier(0, 0, 0.2, 1);
 
@@ -318,6 +320,36 @@
       font: inherit;
       letter-spacing: inherit;
     }
+
+    .PasswordEye,
+    .Search {
+      display: inline-flex;
+      margin: -0.5em;
+      padding: 0.5em;
+      border: 0;
+      position: absolute;
+      top: 0.375em;
+      right: 0.5em;
+      vertical-align: middle;
+      color: var(--fld-color-mix-a75);
+      font-size: 1.25em;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    &:has(.PasswordEye),
+    &:has(.Search) {
+      .Input {
+        padding-right: 2.5em !important;
+      }
+    }
+  }
+
+  .Helper {
+    margin: 0.5em 1.25em 0 1.25em;
+    color: var(--fld-color-mix-a75);
+    font-size: 0.75em;
+    text-align: left;
   }
 
   &.Focus {
@@ -326,10 +358,11 @@
     }
   }
 
-  &.Filled {
-  }
-
-  &.ReadOnly {
+  &.Error {
+    .Label,
+    .Helper {
+      color: var(--fld-color-error);
+    }
   }
 
   &.Fill,
@@ -359,7 +392,7 @@
       }
     }
 
-    &:hover {
+    &:not(.Disabled):not(.Error):hover {
       .Container {
         &::before {
           border-bottom: 1px solid var(--fld-color-black-a75);
@@ -371,6 +404,15 @@
       .Container {
         &::after {
           transform: scaleX(1) translate(0);
+        }
+      }
+    }
+
+    &.Error {
+      .Container {
+        &::before,
+        &::after {
+          border-bottom-color: var(--fld-color-error);
         }
       }
     }
@@ -388,10 +430,15 @@
         .Input {
           padding: 1.5em 0.875em 0.5em 0.875em;
         }
+
+        .PasswordEye,
+        .Search {
+          top: 1.1875em;
+        }
       }
     }
 
-    &:hover {
+    &:not(.Disabled):hover {
       .Container {
         background-color: var(--fld-color-black-a09);
       }
@@ -457,13 +504,18 @@
           padding: 1em 0.875em;
         }
 
+        .PasswordEye,
+        .Search {
+          top: 0.75em;
+        }
+
         .FieldSet {
           top: -0.3125em;
         }
       }
     }
 
-    &:hover {
+    &:not(.Disabled):not(.Error):not(.Focus):hover {
       .Container {
         .FieldSet {
           border-color: var(--fld-color-black-a75);
@@ -495,6 +547,14 @@
         }
       }
     }
+
+    &.Error {
+      .Container {
+        .FieldSet {
+          border-color: var(--fld-color-error);
+        }
+      }
+    }
   }
 
   &.Underline {
@@ -506,11 +566,25 @@
       .Input {
         padding: 0.25em 0 0.3125em;
       }
+
+      .PasswordEye,
+      .Search {
+        top: 0.1875em;
+      }
+    }
+
+    .Helper {
+      margin: 0.5em 0 0 0;
     }
 
     &:has(label) {
       .Container {
         margin-top: 1em;
+
+        .PasswordEye,
+        .Search {
+          top: 0.1875em;
+        }
       }
     }
 
@@ -520,9 +594,6 @@
         transform: translate(0, 0) scale(0.75);
       }
     }
-  }
-
-  &.Disabled {
   }
 }
 
