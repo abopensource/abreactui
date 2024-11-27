@@ -114,7 +114,7 @@
     line-height: 1.75;
     transition-property: box-shadow, background-color;
 
-    &:hover {
+    &:not(.Disabled):hover {
       box-shadow:
         rgba(0, 0, 0, 0.2) 0px 2px 4px -1px,
         rgba(0, 0, 0, 0.14) 0px 4px 5px 0px,
@@ -144,7 +144,7 @@
     line-height: 1.75;
     transition-property: border-color, background-color, color;
 
-    &:hover {
+    &:not(.Disabled):hover {
       border-color: var(--btn-primary-color);
       background-color: var(--btn-color-mix-a05);
       color: var(--btn-primary-color-dark);
@@ -184,7 +184,7 @@
       }
     }
 
-    &:hover {
+    &:not(.Disabled):hover {
       background-color: var(--btn-color-mix-a05);
       color: var(--btn-primary-color-dark);
 
@@ -210,7 +210,7 @@
     transition-property: background-color;
     user-select: inherit;
 
-    &:hover {
+    &:not(.Disabled):hover {
       background-color: var(--btn-color-mix-a05);
       color: var(--btn-primary-color-dark);
       text-decoration: none !important;
@@ -306,7 +306,8 @@
     font-weight: 400;
     font-size: 1rem;
 
-    .Input {
+    .Input,
+    .TextArea {
       display: block;
       box-sizing: content-box;
       width: 100%;
@@ -319,6 +320,17 @@
       color: currentcolor;
       font: inherit;
       letter-spacing: inherit;
+
+      &::placeholder {
+        opacity: 0.75;
+      }
+    }
+
+    .TextArea {
+      min-height: 1.1875em;
+      overflow-y: auto;
+      line-height: 1.75;
+      resize: none;
     }
 
     .PasswordEye,
@@ -333,8 +345,13 @@
       vertical-align: middle;
       color: var(--fld-color-mix-a75);
       font-size: 1.25em;
-      cursor: pointer;
       user-select: none;
+    }
+
+    .Empty {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
     }
 
     &:has(.PasswordEye),
@@ -427,8 +444,13 @@
 
     &:has(label) {
       .Container {
-        .Input {
+        .Input,
+        .TextArea {
           padding: 1.5em 0.875em 0.5em 0.875em;
+
+          &::placeholder {
+            opacity: 0;
+          }
         }
 
         .PasswordEye,
@@ -448,6 +470,15 @@
     &.Focus {
       .Label {
         transform: translate(0.875em, 0.375em) scale(0.75);
+      }
+
+      .Container {
+        .Input,
+        .TextArea {
+          &::placeholder {
+            opacity: 0.75;
+          }
+        }
       }
     }
   }
@@ -500,8 +531,13 @@
 
     &:has(label) {
       .Container {
-        .Input {
+        .Input,
+        .TextArea {
           padding: 1em 0.875em;
+
+          &::placeholder {
+            opacity: 0;
+          }
         }
 
         .PasswordEye,
@@ -539,6 +575,13 @@
       }
 
       .Container {
+        .Input,
+        .TextArea {
+          &::placeholder {
+            opacity: 0.75;
+          }
+        }
+
         .FieldSet {
           .Legend {
             max-width: 100%;
@@ -563,7 +606,8 @@
     }
 
     .Container {
-      .Input {
+      .Input,
+      .TextArea {
         padding: 0.25em 0 0.3125em;
       }
 
@@ -581,6 +625,13 @@
       .Container {
         margin-top: 1em;
 
+        .Input,
+        .TextArea {
+          &::placeholder {
+            opacity: 0;
+          }
+        }
+
         .PasswordEye,
         .Search {
           top: 0.1875em;
@@ -592,6 +643,15 @@
     &.Focus {
       .Label {
         transform: translate(0, 0) scale(0.75);
+      }
+
+      .Container {
+        .Input,
+        .TextArea {
+          &::placeholder {
+            opacity: 0.75;
+          }
+        }
       }
     }
   }
