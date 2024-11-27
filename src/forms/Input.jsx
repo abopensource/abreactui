@@ -8,6 +8,7 @@ import { Box, createElement, IconButton, style } from "../"
  * Returns after created the container element(JSX element) for user input field element.
  *
  * @module Container
+ * @type {import("react").FunctionComponentElement}
  * @param {import("react").ComponentProps} props `React.ComponentProps` passed to React component.
  * @param {import("react").ReactNode} props.children Child nodes to include in the container element.
  * @returns {import("react").ReactElement} Returns the created container element(JSX element) for user input field element.
@@ -22,6 +23,7 @@ const Container = (props) => {
  * Returns after created the controller element(JSX element) for user input field element.
  *
  * @module Controller
+ * @type {import("react").FunctionComponentElement}
  * @param {import("react").ComponentProps} props `React.ComponentProps` passed to React component.
  * @param {import("react").ReactNode} props.children Child nodes to include in the controller element.
  * @param {String} [props.className] Stylesheet class name to apply to the user input field controller element to be created.
@@ -57,6 +59,7 @@ const Controller = (props) => {
  * Returns after created the fieldset element(JSX element) for user input field element.
  *
  * @module FieldSet
+ * @type {import("react").FunctionComponentElement}
  * @param {import("react").ComponentProps} [props] `React.ComponentProps` passed to React component.
  * @param {String} [props.label=""] Label string for user input field element.
  * @returns {import("react").ReactElement} Returns the created fieldset element(JSX element) for user input field element.
@@ -83,6 +86,7 @@ const FieldSet = (props) => {
  * Returns after created the helper element(JSX element) for user input field element.
  *
  * @module Container
+ * @type {import("react").FunctionComponentElement}
  * @param {import("react").ComponentProps} props `React.ComponentProps` passed to React component.
  * @param {import("react").ReactNode} props.children Child nodes to include in the helper element.
  * @returns {import("react").ReactElement} Returns the created helper element(JSX element) for user input field element.
@@ -101,42 +105,44 @@ const Helper = (props) => {
  * Returns after created the user input field element(JSX element).
  *
  * @module Field
- * @type {import("react").FunctionComponentElement}
+ * @type {import("react").ForwardRefExoticComponent}
  * @param {import("react").ComponentProps} [props] `React.ComponentProps` passed to React component.
- * @param {String} [props.autoComplete] Attribute*(`autocomplete`) for user input text field element.
  * @see {@link https://developer.mozilla.org/docs/Web/HTML/Attributes/autocomplete}
  * @param {String} [props.defaultValue] Default value of the user input field element.
  * @param {Boolean} [props.disabled] Whether the user input field element is disabled.
- * @param {Boolean} [props.error] Whether the user input value is invalid.
- * @param {String} [props.helper] Help for user input values.
  * @param {String} [props.id] Identifier(`id`) attribute for the user input field element.
+ * @param {Number} [props.maxRows=20] Maximum number of lines if it is a multiline input field.
+ * @param {Boolean} [props.multiline] Whether to use the `<textarea>` element as an auto-resizeable element.
  * @param {EventListener} [props.onBlur] `EventListener` to execute when the user input field element has lost focus.
  * @param {EventListener} [props.onChange] `EventListener` to execute when the value of the user input field element changes.
  * @param {EventListener} [props.onFocus] `EventListener` to execute when the user input field element has received focus.
- * @param {String} [props.placeholder] Short hint that describes the expected value of the user input field element.
+ * @param {EventListener} [props.onKeyDown] `EventListener` to execute when keyboard input is entered into a user input field element.
  * @param {Boolean} [props.readOnly] Whether to use the user input field element as read-only.
  * @param {Boolean} [props.required] Whether the user input field element is the required input field.
- * @param {Function} [props.setError] Function that changes the error status of a user input field.
- * @param {Function} [props.setHelper] Function that can set the help for a user input field.
+ * @param {Number} [props.rows=1] Number of lines if it is a multiline input field.
  * @param {String} [props.type="text"] Field type of user input field element.
  * "password" | "search" | "text"(default)
+ * @see {@link https://developer.mozilla.org/docs/Web/HTML/Element/input#input_types}
  * @param {String} [props.value] Value of the user input field element.
+ * @param {import("react").ForwardedRef} [forwardedRef] Object or function for use by referencing the component that will be created from the parent component.
  * @returns {import("react").ReactElement} Returns the created user input field element(JSX element).
  */
-const Field = (props) => {
+const Field = React.forwardRef((props, forwardedRef) => {
   const { onBlur, onChange, onFocus, ...propsEH } = props
-  const { error, helper, setError, setHelper, ...propsEE } = propsEH
-  const { defaultValue, type = "text", ...propsField } = propsEE
+  const { maxRows = 20, multiline, ...proptEM } = propsEH
+  const { defaultValue, type = "text", ...propsField } = proptEM
 
-  const [value, setValue] = React.useState(props.value || defaultValue || "")
+  const [rows, setRows] = React.useState(props.rows || 1)
   const [showPassword, setShowPassword] = React.useState(false)
+  const [value, setValue] = React.useState(props.value || defaultValue || "")
 
-  propsField.className = style.Input
+  propsField.className = multiline ? style.TextArea : style.Input
   propsField.value = value
+  forwardedRef && (propsField.ref = forwardedRef)
 
   if (type === "password") {
     propsField.type = showPassword ? "text" : type
-  } else if (type === "search") {
+  } else if (type === "email" || type === "search") {
     propsField.type = "text"
   }
 
@@ -150,17 +156,16 @@ const Field = (props) => {
 
   propsField.onChange = (event) => {
     const eleField = event.target
+    const newValue = eleField.value
     const eleCtrl = eleField.parentNode?.parentNode
 
-    setValue(eleField.value)
+    setValue(newValue)
 
-    if (eleField.value?.length > 0) {
+    if (newValue.length > 0) {
       eleCtrl?.classList?.add(style.Filled)
     } else {
       eleCtrl?.classList?.remove(style.Filled)
     }
-
-    // TODO: Validation
 
     onChange && onChange(event)
   }
@@ -171,6 +176,43 @@ const Field = (props) => {
     eleCtrl?.classList?.add(style.Focus)
 
     onFocus && onFocus(event)
+  }
+
+  if (multiline) {
+    propsField.rows = rows
+
+    propsField.onKeyDown = (event) => {
+      setTimeout(() => {
+        const field = event.target
+        const value = field.value
+        const style = window.getComputedStyle(field)
+        const lineH = parseFloat(style.lineHeight)
+        const eTemp = Object.assign(document.createElement("div"), {
+          style: `
+            width: ${style.width};
+            position: absolute;
+            z-index: -1;
+            visibility: hidden;
+            font: ${style.font};
+            white-space: pre-wrap;
+            word-wrap: break-word;
+          `,
+          textContent: value,
+        })
+        field.parentNode.appendChild(eTemp)
+        const height = eTemp.offsetHeight
+        field.parentNode.removeChild(eTemp)
+
+        let lines = Math.ceil(height / lineH)
+        new RegExp(/[\r\n]$/).test(value) && lines++
+        !isNaN(props.rows) && lines < props.rows && (lines = props.rows)
+        lines < 1 && (lines = 1)
+        lines > maxRows && (lines = maxRows)
+        setRows(lines)
+      }, 5)
+
+      props.onKeyDown && props.onKeyDown(event)
+    }
   }
 
   /**
@@ -213,15 +255,17 @@ const Field = (props) => {
     const eleField = eleButton.parentNode?.firstElementChild
 
     if (eleField) {
-      eleField.value = ""
+      setValue("")
       eleField.focus()
     }
   }
 
-  return (
-    <>
-      {createElement({ props: propsField, tag: "input" })}
-      {type === "password" && (
+  let eleField = createElement({ props: propsField, tag: "input" })
+
+  if (type === "password") {
+    eleField = (
+      <>
+        {eleField}
         <IconButton
           className={style.PasswordEye}
           onClick={handleClickPassword}
@@ -230,34 +274,45 @@ const Field = (props) => {
           {showPassword && <IoMdEyeOff />}
           {!showPassword && <IoMdEye />}
         </IconButton>
-      )}
-      {type === "search" && (
+      </>
+    )
+  } else if (type === "search") {
+    eleField = (
+      <>
+        {eleField}
         <IconButton
           className={style.Search}
+          disabled={value.length < 1}
           onClick={handleClickSearch}
           tabIndex={-1}
         >
-          <IoMdClose />
+          {value.length > 0 && <IoMdClose />}
+          {value.length < 1 && <Box className={style.Empty} />}
         </IconButton>
-      )}
-    </>
-  )
-}
+      </>
+    )
+  }
+
+  if (multiline) {
+    eleField = createElement({ props: propsField, tag: "textarea" })
+  }
+
+  return eleField
+})
+Field.displayName = "Field"
 Field.propTypes = {
-  autoComplete: PropTypes.string,
   defaultValue: PropTypes.string,
   disabled: PropTypes.bool,
-  error: PropTypes.bool,
-  helper: PropTypes.string,
   id: PropTypes.string,
+  maxRows: PropTypes.number,
+  multiline: PropTypes.bool,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
-  placeholder: PropTypes.string,
+  onKeyDown: PropTypes.func,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
-  setError: PropTypes.func,
-  setHelper: PropTypes.func,
+  rows: PropTypes.number,
   type: PropTypes.oneOf(["password", "search", "text"]),
   value: PropTypes.string,
 }
@@ -266,6 +321,7 @@ Field.propTypes = {
  * Returns after created the label element(JSX element) for user input field element.
  *
  * @module Label
+ * @type {import("react").FunctionComponentElement}
  * @param {import("react").ComponentProps} [props] `React.ComponentProps` passed to React component.
  * @param {String} [props.label=""] Label string for user input field element.
  * @param {String} [props.id=""] Identifier(`id`) attribute for the user input field element.
@@ -285,9 +341,8 @@ const Label = (props) => {
  * Returns after created the user input field controller element(JSX element).
  *
  * @module Input
- * @type {import("react").FunctionComponentElement}
+ * @type {import("react").ForwardRefExoticComponent}
  * @param {import("react").ComponentProps} [props] `React.ComponentProps` passed to React component.
- * @param {String} [props.autoComplete] Attribute*(`autocomplete`) for user input text field element.
  * @see {@link https://developer.mozilla.org/docs/Web/HTML/Attributes/autocomplete}
  * @param {import("react").ReactNode} [props.children] Child nodes to include in the user input field controller element to be created.
  * @param {String} [props.className] Stylesheet class name to apply to the user input field controller element to be created.
@@ -297,25 +352,28 @@ const Label = (props) => {
  * @param {String} [props.helper] Help for user input values.
  * @param {String} [props.id] Identifier(`id`) attribute for the user input field element.
  * @param {String} [props.label] Label string for user input field element.
+ * @param {Number} [props.maxRows=20] Maximum number of lines if it is a multiline input field.
+ * @param {Boolean} [props.multiline] Whether to use the `<textarea>` element as an auto-resizeable element.
  * @param {EventListener} [props.onBlur] `EventListener` to execute when the user input field element has lost focus.
  * @param {EventListener} [props.onChange] `EventListener` to execute when the value of the user input field element changes.
  * @param {EventListener} [props.onFocus] `EventListener` to execute when the user input field element has received focus.
- * @param {String} [props.placeholder] Short hint that describes the expected value of the user input field element.
+ * @param {EventListener} [props.onKeyDown] `EventListener` to execute when keyboard input is entered into a user input field element.
  * @param {Boolean} [props.readOnly] Whether to use the user input field element as read-only.
  * @param {Boolean} [props.required] Whether the user input field element is the required input field.
+ * @param {Number} [props.rows=1] Number of lines if it is a multiline input field.
  * @param {String} [props.styled="outline"] User input field style type.
  * "fill" | "outline"(default) | "underline"
  * @param {String} [props.type="text"] Field type of user input field element.
  * "password" | "search" | "text"(default)
+ * @see {@link https://developer.mozilla.org/docs/Web/HTML/Element/input#input_types}
  * @param {String} [props.value] Value of the user input field element.
  * @param {import("react").ForwardedRef} [forwardedRef] Object or function for use by referencing the component that will be created from the parent component.
  * @returns {import("react").ReactElement} Returns the created user input field controller element(JSX element).
  */
 const Input = React.forwardRef((props, forwardedRef) => {
-  const { children, label, styled = "outline", ...propsInput } = props
-
-  const [error, setError] = React.useState(props.error || false)
-  const [helper, setHelper] = React.useState(props.helper || "")
+  const { error, helper, ...propsEV } = props
+  const { children, className, styled = "outline", ...propsEC } = propsEV
+  const { label, ...propsInput } = propsEC
 
   const childrenCtrl = []
   const childrenCont = []
@@ -323,10 +381,6 @@ const Input = React.forwardRef((props, forwardedRef) => {
   label && childrenCtrl.push(<Label id={props.id} key="L" label={label} />)
 
   forwardedRef && (propsInput.ref = forwardedRef)
-  propsInput.error = error
-  propsInput.setError = setError
-  propsInput.helper = helper
-  propsInput.setHelper = setHelper
   childrenCont.push(<Field key="I" {...propsInput} />)
 
   styled === "outline" && childrenCont.push(<FieldSet key="FS" label={label} />)
@@ -344,11 +398,20 @@ const Input = React.forwardRef((props, forwardedRef) => {
     childrenCtrl.push(<Box key={"c"}>{children}</Box>)
   }
 
-  return <Controller {...props}>{childrenCtrl}</Controller>
+  const propsCtrl = {
+    className,
+    defaultValue: propsInput.defaultValue,
+    disabled: propsInput.disabled,
+    error,
+    readOnly: propsInput.readOnly,
+    styled,
+    value: propsInput.value,
+  }
+
+  return <Controller {...propsCtrl}>{childrenCtrl}</Controller>
 })
 Input.displayName = "Input"
 Input.propTypes = {
-  autoComplete: PropTypes.string,
   children: PropTypes.node,
   className: PropTypes.string,
   defaultValue: PropTypes.string,
@@ -357,12 +420,15 @@ Input.propTypes = {
   helper: PropTypes.string,
   id: PropTypes.string,
   label: PropTypes.string,
+  maxRows: PropTypes.number,
+  multiline: PropTypes.bool,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   onFocus: PropTypes.func,
-  placeholder: PropTypes.string,
+  onKeyDown: PropTypes.func,
   readOnly: PropTypes.bool,
   required: PropTypes.bool,
+  rows: PropTypes.number,
   styled: PropTypes.oneOf(["fill", "outline", "underline"]),
   type: PropTypes.oneOf(["password", "search", "text"]),
   value: PropTypes.string,
