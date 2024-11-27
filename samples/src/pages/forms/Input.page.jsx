@@ -1,4 +1,5 @@
 import { Box, Input } from "abreactui"
+import { useRef } from "react"
 
 import "../styles"
 
@@ -9,6 +10,8 @@ import "../styles"
  * @type {import("react").ReactElement}
  */
 const InputPage = () => {
+  const refInput = useRef(null)
+
   return (
     <div className="Pages SamplePage InputPage">
       <section className="Title">
@@ -455,12 +458,94 @@ export const InputSample = () => {
         </article>
         <article className="Sample">
           <h2>
+            <code>label multiline rows styled</code> props
+          </h2>
+          <div className="Example">
+            <pre>
+              <code>{`import { Box, Input } from "abreactui"
+
+export const InputSample = () => {
+  return (
+    <>
+      <Box style={{ display: "flex", gap: "1rem", padding: "1rem" }}>
+        <Input label="Basic" multiline rows={3} />
+        <Input label="Fill" multiline rows={3} styled="fill" />
+      </Box>
+      <Box style={{ display: "flex", gap: "1rem", padding: "1rem" }}>
+        <Input label="Outline" multiline rows={3} styled="outline" />
+        <Input label="Underline" multiline rows={3} styled="underline" />
+      </Box>
+    </>
+  )
+}`}</code>
+            </pre>
+            <div className="Result">
+              <Box style={{ display: "flex", gap: "1rem", padding: "1rem" }}>
+                <Input label="Basic" multiline rows={3} />
+                <Input label="Fill" multiline rows={3} styled="fill" />
+              </Box>
+              <Box style={{ display: "flex", gap: "1rem", padding: "1rem" }}>
+                <Input label="Outline" multiline rows={3} styled="outline" />
+                <Input
+                  label="Underline"
+                  multiline
+                  rows={3}
+                  styled="underline"
+                />
+              </Box>
+            </div>
+          </div>
+        </article>
+        <article className="Sample">
+          <h2>
+            <code>label placeholder styled</code> props
+          </h2>
+          <div className="Example">
+            <pre>
+              <code>{`import { Box, Input } from "abreactui"
+
+export const InputSample = () => {
+  return (
+    <>
+      <Box style={{ display: "flex", gap: "1rem", padding: "1rem" }}>
+        <Input label="Basic" placeholder="Placeholder" />
+        <Input label="Fill" placeholder="Placeholder" styled="fill" />
+      </Box>
+      <Box style={{ display: "flex", gap: "1rem", padding: "1rem" }}>
+        <Input label="Outline" placeholder="Placeholder" styled="outline" />
+        <Input label="Underline" placeholder="Placeholder" styled="underline" />
+      </Box>
+    </>
+  )
+}`}</code>
+            </pre>
+            <div className="Result">
+              <Box style={{ display: "flex", gap: "1rem", padding: "1rem" }}>
+                <Input label="Basic" placeholder="Placeholder" />
+                <Input label="Fill" placeholder="Placeholder" styled="fill" />
+              </Box>
+              <Box style={{ display: "flex", gap: "1rem", padding: "1rem" }}>
+                <Input
+                  label="Outline"
+                  placeholder="Placeholder"
+                  styled="outline"
+                />
+                <Input
+                  label="Underline"
+                  placeholder="Placeholder"
+                  styled="underline"
+                />
+              </Box>
+            </div>
+          </div>
+        </article>
+        <article className="Sample">
+          <h2>
             <code>label styled</code> props
           </h2>
           <div className="Example">
             <pre>
               <code>{`import { Box, Input } from "abreactui"
-import { values } from '../../../node_modules/typescript/lib/tsserver';
 
 export const InputSample = () => {
   return (
@@ -542,6 +627,127 @@ export const InputSample = () => {
         </article>
         <article className="Sample">
           <h2>
+            <code>multiline</code> props
+          </h2>
+          <div className="Example">
+            <pre>
+              <code>{`import { Input } from "abreactui"
+
+export const InputSample = () => {
+  return <Input multiline />
+}`}</code>
+            </pre>
+            <div className="Result">
+              <Input multiline />
+            </div>
+          </div>
+        </article>
+        <article className="Sample">
+          <h2>
+            <code>multiline rows</code> props
+          </h2>
+          <div className="Example">
+            <pre>
+              <code>{`import { Input } from "abreactui"
+
+export const InputSample = () => {
+  return <Input multiline rows={3} />
+}`}</code>
+            </pre>
+            <div className="Result">
+              <Input multiline rows={3} />
+            </div>
+          </div>
+        </article>
+        <article className="Sample">
+          <h2>
+            <code>multiline rows styled</code> props
+          </h2>
+          <div className="Example">
+            <pre>
+              <code>{`import { Box, Input } from "abreactui"
+
+export const InputSample = () => {
+  return (
+    <>
+      <Box style={{ display: "flex", gap: "1rem", padding: "1rem" }}>
+        <Input multiline rows={3} />
+        <Input multiline rows={3} styled="fill" />
+      </Box>
+      <Box style={{ display: "flex", gap: "1rem", padding: "1rem" }}>
+        <Input multiline rows={3} styled="outline" />
+        <Input multiline rows={3} styled="underline" />
+      </Box>
+    </>
+  )
+}`}</code>
+            </pre>
+            <div className="Result">
+              <Box style={{ display: "flex", gap: "1rem", padding: "1rem" }}>
+                <Input multiline rows={3} />
+                <Input multiline rows={3} styled="fill" />
+              </Box>
+              <Box style={{ display: "flex", gap: "1rem", padding: "1rem" }}>
+                <Input multiline rows={3} styled="outline" />
+                <Input multiline rows={3} styled="underline" />
+              </Box>
+            </div>
+          </div>
+        </article>
+        <article className="Sample">
+          <h2>
+            <code>placeholder</code> props
+          </h2>
+          <div className="Example">
+            <pre>
+              <code>{`import { Input } from "abreactui"
+
+export const InputSample = () => {
+  return <Input placeholder="Placeholder" />
+}`}</code>
+            </pre>
+            <div className="Result">
+              <Input placeholder="Placeholder" />
+            </div>
+          </div>
+        </article>
+        <article className="Sample">
+          <h2>
+            <code>placeholder styled</code> props
+          </h2>
+          <div className="Example">
+            <pre>
+              <code>{`import { Box, Input } from "abreactui"
+
+export const InputSample = () => {
+  return (
+    <>
+      <Box style={{ display: "flex", gap: "1rem", padding: "1rem" }}>
+        <Input label="Basic" placeholder="Placeholder" />
+        <Input label="Fill" placeholder="Placeholder" styled="fill" />
+      </Box>
+      <Box style={{ display: "flex", gap: "1rem", padding: "1rem" }}>
+        <Input label="Outline" placeholder="Placeholder" styled="outline" />
+        <Input label="Underline" placeholder="Placeholder" styled="underline" />
+      </Box>
+    </>
+  )
+}`}</code>
+            </pre>
+            <div className="Result">
+              <Box style={{ display: "flex", gap: "1rem", padding: "1rem" }}>
+                <Input placeholder="Placeholder" />
+                <Input placeholder="Placeholder" styled="fill" />
+              </Box>
+              <Box style={{ display: "flex", gap: "1rem", padding: "1rem" }}>
+                <Input placeholder="Placeholder" styled="outline" />
+                <Input placeholder="Placeholder" styled="underline" />
+              </Box>
+            </div>
+          </div>
+        </article>
+        <article className="Sample">
+          <h2>
             <code>readOnly</code> props
           </h2>
           <div className="Example">
@@ -571,6 +777,46 @@ export const InputSample = () => {
             </pre>
             <div className="Result">
               <Input readOnly value="Value" />
+            </div>
+          </div>
+        </article>
+        <article className="Sample">
+          <h2>
+            <code>ref</code> props
+          </h2>
+          <div className="Example">
+            <pre>
+              <code>{`import { Input } from "abreactui"
+import { useRef } from "react"
+
+export const InputSample = () => {
+  const refInput = useRef(null)
+
+  return (
+    <Input
+      onBlur={() => {
+        refInput.current.value = Number(refInput.current.value) + 1
+      }}
+      onFocus={() => {
+        refInput.current.value = Number(refInput.current.value) + 1
+      }}
+      ref={refInput}
+      value="1"
+    />
+  )
+}`}</code>
+            </pre>
+            <div className="Result">
+              <Input
+                onBlur={() => {
+                  refInput.current.value = Number(refInput.current.value) + 1
+                }}
+                onFocus={() => {
+                  refInput.current.value = Number(refInput.current.value) + 1
+                }}
+                ref={refInput}
+                value="1"
+              />
             </div>
           </div>
         </article>
@@ -676,7 +922,6 @@ export const InputSample = () => {
           <div className="Example">
             <pre>
               <code>{`import { Input } from "abreactui"
-import { type } from '../../../../node_modules/acorn/dist/acorn.d';
 
 export const InputSample = () => {
   return <Input value="Value" />
