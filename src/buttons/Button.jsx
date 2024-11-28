@@ -6,7 +6,7 @@ import { createElement, style } from "../"
 /**
  * Returns after created a container element(JSX element) for the ripple effect on the button element.
  *
- * @method createButtonRipple
+ * @function createButtonRipple
  * @returns {import("react").ReactElement} Returns a container element(JSX element) created for the ripple effect on the button element.
  */
 const createButtonRipple = () =>
@@ -18,7 +18,7 @@ const createButtonRipple = () =>
 /**
  * Returns after created a container element(JSX element) for the icon node on the button element.
  *
- * @method createIcon
+ * @function createIcon
  * @param {import("react").ReactNode} nodeIcon `ReactNode` to use as the icon for the button element.
  * @param {String} [key="Icon"] Unique `key`(`ComponentProps`) to use for the container element to be created.
  * @returns {import("react").ReactElement} Returns a container element(JSX element) created for the icon node on the button element.
@@ -33,7 +33,7 @@ const createIcon = (nodeIcon, key = "Icon") =>
 /**
  * Apply an event dependent ripple effect to the button element.
  *
- * @method effectButtonRipple
+ * @function effectButtonRipple
  * @param {import("react").SyntheticEvent} event Event that occurred on button elements.
  */
 const effectButtonRipple = (event) => {
@@ -95,8 +95,8 @@ const effectButtonRipple = (event) => {
 const Button = React.forwardRef((props, forwardedRef) => {
   const { children, iconEnd, iconStart, ...propsEC } = props
   const { className, disabled, styled = "fill", ...propsES } = propsEC
-  const { href, tag = "button", type = "button", ...propsEO } = propsES
-  const { onBlur, onClick, onFocus, onMouseOut, ...propsOther } = propsEO
+  const { href, tag = "button", type = "button", ...propsET } = propsES
+  const { onBlur, onClick, onFocus, onMouseOut, ...propsOther } = propsET
 
   const childrenButton = [children]
   iconEnd && childrenButton.push(createIcon(iconEnd, "IconEnd"))
