@@ -795,13 +795,15 @@ export const InputSample = () => {
   return (
     <Input
       onBlur={() => {
-        refInput.current.value = Number(refInput.current.value) + 1
+        const ele = refInput.current.element
+        ele.value = Number(ele.value) + 1
       }}
       onFocus={() => {
-        refInput.current.value = Number(refInput.current.value) + 1
+        const ele = refInput.current.element
+        ele.value = Number(ele.value) + 1
       }}
       ref={refInput}
-      value="1"
+      value={0}
     />
   )
 }`}</code>
@@ -809,13 +811,15 @@ export const InputSample = () => {
             <div className="Result">
               <Input
                 onBlur={() => {
-                  refInput.current.value = Number(refInput.current.value) + 1
+                  const ele = refInput.current.element
+                  ele.value = Number(ele.value) + 1
                 }}
                 onFocus={() => {
-                  refInput.current.value = Number(refInput.current.value) + 1
+                  const ele = refInput.current.element
+                  ele.value = Number(ele.value) + 1
                 }}
                 ref={refInput}
-                value="1"
+                value={0}
               />
             </div>
           </div>
