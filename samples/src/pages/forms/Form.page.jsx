@@ -69,6 +69,33 @@ export const FormSample = () => {
         </article>
         <article className="Sample">
           <h2>
+            <code>children</code> props
+          </h2>
+          <div className="Example">
+            <pre>
+              <code>
+                {`import { Form, Input } from "abreactui"
+
+export const FormSample = () => {
+  return (
+    <Form>
+      <Input label="First Name" />
+      <Input type="submit" value="Submit" />
+    </Form>
+  )
+}`}
+              </code>
+            </pre>
+            <div className="Result">
+              <Form>
+                <Input label="First Name" />
+                <Input type="submit" value="Submit" />
+              </Form>
+            </div>
+          </div>
+        </article>
+        <article className="Sample">
+          <h2>
             <code>className</code> props
           </h2>
           <div className="Example">
