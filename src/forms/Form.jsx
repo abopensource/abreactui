@@ -43,7 +43,7 @@ const Form = React.forwardRef((props, forwardedRef) => {
   const propsForm = { ...propsOther, className: styles.join(" "), ref: refForm }
   if (forwardedRef) {
     React.useImperativeHandle(forwardedRef, () => ({
-      submit: refForm.current.submit(),
+      submit: refForm.current.submit,
       element: refForm.current,
     }))
   }
