@@ -1,3 +1,11 @@
+:root {
+  --color-black: 0, 0, 0;
+  --color-error: 210, 50, 50;
+  --color-white: 255, 255, 255;
+  --primary-color: 25, 120, 210;
+  --primary-color-dark: 20, 100, 190;
+}
+
 .Article {
   margin: 0;
   padding: 0;
@@ -258,6 +266,12 @@
   padding: 0;
 }
 
+.Form {
+  display: flex;
+  gap: 1em;
+  flex-direction: column;
+}
+
 .InputController {
   display: inline-flex;
   flex-direction: column;
@@ -278,7 +292,13 @@
   --fld-primary-color: rgb(var(--primary-color, 25, 120, 210));
   --fld-timing-func: cubic-bezier(0, 0, 0.2, 1);
 
-  .Label {
+  .Button[type="reset"],
+  .Button[type="submit"] {
+    margin: 0;
+    padding: 0.625em 2em;
+  }
+
+  .InputLabel {
     display: block;
     max-width: calc(100% - 1.5em);
     position: absolute;
@@ -298,7 +318,7 @@
     transform: translate(1em, 1em) scale(1);
   }
 
-  .Container {
+  .InputContainer {
     display: inline-flex;
     align-items: center;
     box-sizing: border-box;
@@ -362,7 +382,7 @@
     }
   }
 
-  .Helper {
+  .InputHelper {
     margin: 0.5em 1.25em 0 1.25em;
     color: var(--fld-color-mix-a75);
     font-size: 0.75em;
@@ -370,21 +390,21 @@
   }
 
   &.Focus {
-    .Label {
+    .InputLabel {
       color: var(--fld-primary-color);
     }
   }
 
   &.Error {
-    .Label,
-    .Helper {
+    .InputLabel,
+    .InputHelper {
       color: var(--fld-color-error);
     }
   }
 
   &.Fill,
   &.Underline {
-    .Container {
+    .InputContainer {
       &::before {
         border-bottom: 1px solid var(--fld-color-black-a25);
         position: absolute;
@@ -410,7 +430,7 @@
     }
 
     &:not(.Disabled):not(.Error):hover {
-      .Container {
+      .InputContainer {
         &::before {
           border-bottom: 1px solid var(--fld-color-black-a75);
         }
@@ -418,7 +438,7 @@
     }
 
     &.Focus {
-      .Container {
+      .InputContainer {
         &::after {
           transform: scaleX(1) translate(0);
         }
@@ -426,7 +446,7 @@
     }
 
     &.Error {
-      .Container {
+      .InputContainer {
         &::before,
         &::after {
           border-bottom-color: var(--fld-color-error);
@@ -436,14 +456,14 @@
   }
 
   &.Fill {
-    .Container {
+    .InputContainer {
       border-radius: 0.25em 0.25em 0 0;
       background-color: var(--fld-color-black-a06);
       transition: background-color 200ms var(--fld-timing-func);
     }
 
     &:has(label) {
-      .Container {
+      .InputContainer {
         .Input,
         .TextArea {
           padding: 1.5em 0.875em 0.5em 0.875em;
@@ -461,18 +481,18 @@
     }
 
     &:not(.Disabled):hover {
-      .Container {
+      .InputContainer {
         background-color: var(--fld-color-black-a09);
       }
     }
 
     &.Filled,
     &.Focus {
-      .Label {
+      .InputLabel {
         transform: translate(0.875em, 0.375em) scale(0.75);
       }
 
-      .Container {
+      .InputContainer {
         .Input,
         .TextArea {
           &::placeholder {
@@ -484,7 +504,7 @@
   }
 
   &.Outline {
-    .Container {
+    .InputContainer {
       border-radius: 0.25em;
 
       .FieldSet {
@@ -530,7 +550,7 @@
     }
 
     &:has(label) {
-      .Container {
+      .InputContainer {
         .Input,
         .TextArea {
           padding: 1em 0.875em;
@@ -552,7 +572,7 @@
     }
 
     &:not(.Disabled):not(.Error):not(.Focus):hover {
-      .Container {
+      .InputContainer {
         .FieldSet {
           border-color: var(--fld-color-black-a75);
         }
@@ -560,7 +580,7 @@
     }
 
     &.Focus {
-      .Container {
+      .InputContainer {
         .FieldSet {
           border-width: 2px;
           border-color: var(--fld-primary-color);
@@ -570,11 +590,11 @@
 
     &.Filled,
     &.Focus {
-      .Label {
+      .InputLabel {
         transform: translate(0.875em, -0.5625em) scale(0.75);
       }
 
-      .Container {
+      .InputContainer {
         .Input,
         .TextArea {
           &::placeholder {
@@ -592,7 +612,7 @@
     }
 
     &.Error {
-      .Container {
+      .InputContainer {
         .FieldSet {
           border-color: var(--fld-color-error);
         }
@@ -600,12 +620,15 @@
     }
   }
 
+  &.Standard {
+  }
+
   &.Underline {
-    .Label {
+    .InputLabel {
       transform: translate(0, 1em) scale(1);
     }
 
-    .Container {
+    .InputContainer {
       .Input,
       .TextArea {
         padding: 0.25em 0 0.3125em;
@@ -617,12 +640,12 @@
       }
     }
 
-    .Helper {
+    .InputHelper {
       margin: 0.5em 0 0 0;
     }
 
     &:has(label) {
-      .Container {
+      .InputContainer {
         margin-top: 1em;
 
         .Input,
@@ -641,11 +664,11 @@
 
     &.Filled,
     &.Focus {
-      .Label {
+      .InputLabel {
         transform: translate(0, 0) scale(0.75);
       }
 
-      .Container {
+      .InputContainer {
         .Input,
         .TextArea {
           &::placeholder {
