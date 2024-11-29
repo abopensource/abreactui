@@ -7,6 +7,7 @@ import {
   ButtonsPage,
   ContainerPage,
   ContainersPage,
+  FormPage,
   FormsPage,
   HomePage,
   IconButtonPage,
@@ -84,6 +85,10 @@ const routes = [
           {
             path: "",
             element: <FormsPage />,
+          },
+          {
+            path: "form",
+            element: <FormPage />,
           },
           {
             path: "input",

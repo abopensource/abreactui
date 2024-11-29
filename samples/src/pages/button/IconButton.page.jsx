@@ -1,5 +1,5 @@
 import { Box, IconButton } from "abreactui"
-import { useRef } from "react"
+import React from "react"
 import {
   BsBellFill,
   BsBookmarkFill,
@@ -17,7 +17,8 @@ import "../styles"
  * @type {import("react").ReactElement}
  */
 const IconButtonPage = () => {
-  const refButton = useRef(null)
+  const refButton = React.useRef()
+  const [active, setActive] = React.useState(false)
 
   return (
     <div className="Pages SamplePage IconButtonPage">
@@ -149,6 +150,95 @@ export const IconButtonSample = () => {
         </article>
         <article className="Sample">
           <h2>
+            <code>disabled styled</code> props
+          </h2>
+          <div className="Example">
+            <pre>
+              <code>
+                {`import { Box, IconButton } from "abreactui"
+import { BsBellFill, BsBookmarkFill, BsGrid, BsTrash3 } from "react-icons/bs"
+
+export const IconButtonSample = () => {
+  return (
+    <>
+      <Box style={{ margin: "1rem" }}>
+        Disabled styled=&quot;fill&quot; button sample: &nbsp;
+        <IconButton disabled styled="fill">
+          <BsBellFill />
+        </IconButton>
+        <IconButton disabled styled="fill">
+          <BsTrash3 />
+        </IconButton>
+      </Box>
+      <Box style={{ margin: "1rem" }}>
+        Disabled styled=&quot;outline&quot; button sample: &nbsp;
+        <IconButton disabled styled="outline">
+          <BsBellFill />
+        </IconButton>
+        <IconButton disabled styled="outline">
+          <BsTrash3 />
+        </IconButton>
+      </Box>
+      <Box style={{ margin: "1rem" }}>
+        Disabled basic button and styled=&quot;normal&quot; button sample: &nbsp;
+        <IconButton disabled>
+          <BsBellFill />
+        </IconButton>
+        <IconButton disabled>
+          <BsTrash3 />
+        </IconButton>
+        <IconButton disabled styled="normal">
+          <BsBookmarkFill />
+        </IconButton>
+        <IconButton disabled styled="normal">
+          <BsGrid />
+        </IconButton>
+      </Box>
+    </>
+  )
+}`}
+              </code>
+            </pre>
+            <div className="Result">
+              <Box style={{ margin: "1rem" }}>
+                Disabled styled=&quot;fill&quot; button sample: &nbsp;
+                <IconButton disabled styled="fill">
+                  <BsBellFill />
+                </IconButton>
+                <IconButton disabled styled="fill">
+                  <BsTrash3 />
+                </IconButton>
+              </Box>
+              <Box style={{ margin: "1rem" }}>
+                Disabled styled=&quot;outline&quot; button sample: &nbsp;
+                <IconButton disabled styled="outline">
+                  <BsBellFill />
+                </IconButton>
+                <IconButton disabled styled="outline">
+                  <BsTrash3 />
+                </IconButton>
+              </Box>
+              <Box style={{ margin: "1rem" }}>
+                Disabled basic button and styled=&quot;normal&quot; button
+                sample: &nbsp;
+                <IconButton disabled>
+                  <BsBellFill />
+                </IconButton>
+                <IconButton disabled>
+                  <BsTrash3 />
+                </IconButton>
+                <IconButton disabled styled="normal">
+                  <BsBookmarkFill />
+                </IconButton>
+                <IconButton disabled styled="normal">
+                  <BsGrid />
+                </IconButton>
+              </Box>
+            </div>
+          </div>
+        </article>
+        <article className="Sample">
+          <h2>
             <code>href</code> props
           </h2>
           <div className="Example">
@@ -181,23 +271,23 @@ export const IconButtonSample = () => {
             <pre>
               <code>
                 {`import { IconButton } from "abreactui"
-import { useRef } from "react"
-import { BsBellFill } from "react-icons/bs"
+import React from "react"
+import { BsTrash3 } from "react-icons/bs"
 
 export const IconButtonSample = () => {
-  const refButton = useRef(null)
+  const refButton = React.useRef()
+  const [active, setActive] = React.useState(false)
 
   return (
     <IconButton
-      onMouseOut={() => {
-        refButton.current.style.color = ""
-      }}
-      onMouseOver={() => {
-        refButton.current.style.color = "yellowgreen"
+      onClick={() => {
+        const button = refButton.current
+        button.style.color = !active ? "yellowgreen" : ""
+        setActive(!active)
       }}
       ref={refButton}
     >
-      <BsBellFill />
+      <BsTrash3 />
     </IconButton>
   )
 }`}
@@ -205,48 +295,13 @@ export const IconButtonSample = () => {
             </pre>
             <div className="Result">
               <IconButton
-                onMouseOut={() => {
-                  refButton.current.style.color = ""
-                }}
-                onMouseOver={() => {
-                  refButton.current.style.color = "yellowgreen"
+                onClick={() => {
+                  const button = refButton.current
+                  button.style.color = !active ? "yellowgreen" : ""
+                  setActive(!active)
                 }}
                 ref={refButton}
               >
-                <BsBellFill />
-              </IconButton>
-            </div>
-          </div>
-        </article>
-        <article className="Sample">
-          <h2>
-            <code>style</code> props
-          </h2>
-          <div className="Example">
-            <pre>
-              <code>
-                {`import { IconButton } from "abreactui"
-import { BsBellFill, BsTrash3 } from "react-icons/bs"
-
-export const IconButtonSample = () => {
-  return (
-    <>
-      <IconButton style={{ color: "yellowgreen" }}>
-        <BsBellFill />
-      </IconButton>
-      <IconButton style={{ color: "red" }}>
-        <BsTrash3 />
-      </IconButton>
-    </>
-  )
-}`}
-              </code>
-            </pre>
-            <div className="Result">
-              <IconButton style={{ color: "yellowgreen" }}>
-                <BsBellFill />
-              </IconButton>
-              <IconButton style={{ color: "red" }}>
                 <BsTrash3 />
               </IconButton>
             </div>
@@ -260,152 +315,41 @@ export const IconButtonSample = () => {
             <pre>
               <code>
                 {`import { Box, IconButton } from "abreactui"
-import { BsBellFill, BsTrash3 } from "react-icons/bs"
-
-export const IconButtonSample = () => {
-  return (
-    <>
-      <Box style={{ margin: "1rem" }}>
-        styled=&quot;fill&quot; button sample: &nbsp;
-        <IconButton styled="fill">
-          <BsBellFill />
-        </IconButton>
-        <IconButton styled="fill">
-          <BsTrash3 />
-        </IconButton>
-      </Box>
-      <Box style={{ margin: "1rem" }}>
-        styled=&quot;outline&quot; button sample: &nbsp;
-        <IconButton styled="outline">
-          <BsBellFill />
-        </IconButton>
-        <IconButton styled="outline">
-          <BsTrash3 />
-        </IconButton>
-      </Box>
-    </>
-  )
-}`}
-              </code>
-            </pre>
-            <div className="Result">
-              <Box style={{ margin: "1rem" }}>
-                styled=&quot;fill&quot; button sample: &nbsp;
-                <IconButton styled="fill">
-                  <BsBellFill />
-                </IconButton>
-                <IconButton styled="fill">
-                  <BsTrash3 />
-                </IconButton>
-              </Box>
-              <Box style={{ margin: "1rem" }}>
-                styled=&quot;outline&quot; button sample: &nbsp;
-                <IconButton styled="outline">
-                  <BsBellFill />
-                </IconButton>
-                <IconButton styled="outline">
-                  <BsTrash3 />
-                </IconButton>
-              </Box>
-            </div>
-          </div>
-          <div className="Example">
-            <pre>
-              <code>
-                {`import { Box, IconButton } from "abreactui"
 import { BsBellFill, BsBookmarkFill, BsGrid, BsTrash3 } from "react-icons/bs"
 
 export const IconButtonSample = () => {
   return (
-    <Box style={{ margin: "1rem" }}>
-      Basic button and styled=&quot;normal&quot; button sample: &nbsp;
-      <IconButton>
-        <BsBellFill />
-      </IconButton>
-      <IconButton>
-        <BsTrash3 />
-      </IconButton>
-      <IconButton styled="normal">
-        <BsBookmarkFill />
-      </IconButton>
-      <IconButton styled="normal">
-        <BsGrid />
-      </IconButton>
-    </Box>
-  )
-}`}
-              </code>
-            </pre>
-            <div className="Result">
-              <Box style={{ margin: "1rem" }}>
-                Basic button and styled=&quot;normal&quot; button sample: &nbsp;
-                <IconButton>
-                  <BsBellFill />
-                </IconButton>
-                <IconButton>
-                  <BsTrash3 />
-                </IconButton>
-                <IconButton styled="normal">
-                  <BsBookmarkFill />
-                </IconButton>
-                <IconButton styled="normal">
-                  <BsGrid />
-                </IconButton>
-              </Box>
-            </div>
-          </div>
-        </article>
-        <article className="Sample">
-          <h2>
-            <code>styled disabled</code> props
-          </h2>
-          <div className="Example">
-            <pre>
-              <code>
-                {`import { IconButton } from "abreactui"
-import { BsBellFill, BsTrash3 } from "react-icons/bs"
-
-export const IconButtonSample = () => {
-  return (
-    <>
-      <IconButton disabled styled="fill">
-        <BsBellFill />
-      </IconButton>
-      <IconButton disabled styled="outline">
-        <BsTrash3 />
-      </IconButton>
-    </>
-  )
-}`}
-              </code>
-            </pre>
-            <div className="Result">
-              <IconButton disabled styled="fill">
-                <BsBellFill />
-              </IconButton>
-              <IconButton disabled styled="outline">
-                <BsTrash3 />
-              </IconButton>
-            </div>
-          </div>
-          <div className="Example">
-            <pre>
-              <code>
-                {`import { Box, IconButton } from "abreactui"
-import { BsBookmarkFill, BsGrid } from "react-icons/bs"
-
-export const IconButtonSample = () => {
-  return (
     <>
       <Box style={{ margin: "1rem" }}>
-        Disabled basic button button sample: &nbsp;
-        <IconButton disabled>
-          <BsBookmarkFill />
+        Button styled=&quot;fill&quot; sample: &nbsp;
+        <IconButton styled="fill">
+          <BsBellFill />
+        </IconButton>
+        <IconButton styled="fill">
+          <BsTrash3 />
         </IconButton>
       </Box>
       <Box style={{ margin: "1rem" }}>
-        Disabled styled=&quot;normal&quot; button sample: &nbsp;
-        <IconButton disabled styled="normal">
+        Button styled=&quot;outline&quot; sample: &nbsp;
+        <IconButton styled="outline">
+          <BsBellFill />
+        </IconButton>
+        <IconButton styled="outline">
+          <BsTrash3 />
+        </IconButton>
+      </Box>
+      <Box style={{ margin: "1rem" }}>
+        Button basic button and styled=&quot;normal&quot; sample: &nbsp;
+        <IconButton>
+          <BsBellFill />
+        </IconButton>
+        <IconButton>
+          <BsTrash3 />
+        </IconButton>
+        <IconButton styled="normal">
+          <BsBookmarkFill />
+        </IconButton>
+        <IconButton styled="normal">
           <BsGrid />
         </IconButton>
       </Box>
@@ -416,14 +360,35 @@ export const IconButtonSample = () => {
             </pre>
             <div className="Result">
               <Box style={{ margin: "1rem" }}>
-                Disabled basic button button sample: &nbsp;
-                <IconButton disabled>
-                  <BsBookmarkFill />
+                Button styled=&quot;fill&quot; sample: &nbsp;
+                <IconButton styled="fill">
+                  <BsBellFill />
+                </IconButton>
+                <IconButton styled="fill">
+                  <BsTrash3 />
                 </IconButton>
               </Box>
               <Box style={{ margin: "1rem" }}>
-                Disabled styled=&quot;normal&quot; button sample: &nbsp;
-                <IconButton disabled styled="normal">
+                Button styled=&quot;outline&quot; sample: &nbsp;
+                <IconButton styled="outline">
+                  <BsBellFill />
+                </IconButton>
+                <IconButton styled="outline">
+                  <BsTrash3 />
+                </IconButton>
+              </Box>
+              <Box style={{ margin: "1rem" }}>
+                Button basic button and styled=&quot;normal&quot; sample: &nbsp;
+                <IconButton>
+                  <BsBellFill />
+                </IconButton>
+                <IconButton>
+                  <BsTrash3 />
+                </IconButton>
+                <IconButton styled="normal">
+                  <BsBookmarkFill />
+                </IconButton>
+                <IconButton styled="normal">
                   <BsGrid />
                 </IconButton>
               </Box>
@@ -442,7 +407,7 @@ import { BsGoogle } from "react-icons/bs"
 
 export const IconButtonSample = () => {
   return (
-    <IconButton href="https://google.com" tag="a" target="blank">
+    <IconButton tag="a">
       <BsGoogle />
     </IconButton>
   )
@@ -450,7 +415,7 @@ export const IconButtonSample = () => {
               </code>
             </pre>
             <div className="Result">
-              <IconButton href="https://google.com" tag="a" target="blank">
+              <IconButton tag="a">
                 <BsGoogle />
               </IconButton>
             </div>

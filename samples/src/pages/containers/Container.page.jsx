@@ -1,5 +1,5 @@
-import { Container } from "abreactui"
-import { useRef } from "react"
+import { Box, Button, Container } from "abreactui"
+import React from "react"
 
 import "../styles"
 
@@ -10,7 +10,8 @@ import "../styles"
  * @type {import("react").ReactElement}
  */
 const ContainerPage = () => {
-  const refContainer = useRef(null)
+  const refContainer = React.useRef()
+  const [active, setActive] = React.useState(false)
 
   return (
     <div className="Pages SamplePage ContainerPage">
@@ -73,69 +74,75 @@ export const ContainerSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Container } from "abreactui"
-import { useRef } from "react"
+                {`import { Box, Button, Container } from "abreactui"
+import React from "react"
 
 export const ContainerSample = () => {
-  const refContainer = useRef(null)
+  const refContainer = React.useRef()
+  const [active, setActive] = React.useState(false)
 
   return (
-    <Container
-      onMouseOut={() => {
-        refContainer.current.style.backgroundColor = ""
-      }}
-      onMouseOver={() => {
-        refContainer.current.style.backgroundColor =
-          "rgba(0, 0, 0, 0.125)"
-      }}
-      ref={refContainer}
-    >
-      Container ref props sample
-    </Container>
+    <Box style={{ textAlign: "center" }}>
+      <Container
+        ref={refContainer}
+        style={{
+          margin: "1rem",
+          padding: "1rem",
+          border: "1px solid transparent",
+          borderRadius: "0.5rem",
+        }}
+      >
+        Container ref props sample
+      </Container>
+      <Button
+        onClick={() => {
+          const article = refContainer.current
+          if (!active) {
+            article.style.borderColor = "rgba(0, 0, 0, 0.25)"
+            article.style.backgroundColor = "rgba(150, 200, 50, 0.25)"
+          } else {
+            article.style.borderColor = "transparent"
+            article.style.backgroundColor = ""
+          }
+          setActive(!active)
+        }}
+      >
+        {active ? "Inactive" : "Active"} container
+      </Button>
+    </Box>
   )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Container
-                onMouseOut={() => {
-                  refContainer.current.style.backgroundColor = ""
-                }}
-                onMouseOver={() => {
-                  refContainer.current.style.backgroundColor =
-                    "rgba(0, 0, 0, 0.125)"
-                }}
-                ref={refContainer}
-              >
-                Container ref props sample
-              </Container>
-            </div>
-          </div>
-        </article>
-        <article className="Sample">
-          <h2>
-            <code>style</code> props
-          </h2>
-          <div className="Example">
-            <pre>
-              <code>
-                {`import { Container } from "abreactui"
-
-export const ContainerSample = () => {
-  return (
-    <Container style={{ padding: "1rem", backgroundColor: "yellowgreen" }}>
-      Container style props sample
-    </Container>
-  )
-}`}
-              </code>
-            </pre>
-            <div className="Result">
-              <Container
-                style={{ padding: "1rem", backgroundColor: "yellowgreen" }}
-              >
-                Container style props sample
-              </Container>
+              <Box style={{ textAlign: "center" }}>
+                <Container
+                  ref={refContainer}
+                  style={{
+                    margin: "1rem",
+                    padding: "1rem",
+                    border: "1px solid transparent",
+                    borderRadius: "0.5rem",
+                  }}
+                >
+                  Container ref props sample
+                </Container>
+                <Button
+                  onClick={() => {
+                    const article = refContainer.current
+                    if (!active) {
+                      article.style.borderColor = "rgba(0, 0, 0, 0.25)"
+                      article.style.backgroundColor = "rgba(150, 200, 50, 0.25)"
+                    } else {
+                      article.style.borderColor = "transparent"
+                      article.style.backgroundColor = ""
+                    }
+                    setActive(!active)
+                  }}
+                >
+                  {active ? "Inactive" : "Active"} container
+                </Button>
+              </Box>
             </div>
           </div>
         </article>
@@ -149,12 +156,12 @@ export const ContainerSample = () => {
                 {`import { Container } from "abreactui"
 
 export const ContainerSample = () => {
-  return <Container tag="span">Container tag props sample</Container>
+  return <Container tag="section">Container tag props sample</Container>
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Container tag="span">Container tag props sample</Container>
+              <Container tag="section">Container tag props sample</Container>
             </div>
           </div>
         </article>

@@ -1,5 +1,5 @@
 import { Box, Button } from "abreactui"
-import { useRef } from "react"
+import React from "react"
 import { BsSave, BsSaveFill } from "react-icons/bs"
 
 import "../styles"
@@ -11,7 +11,8 @@ import "../styles"
  * @type {import("react").ReactElement}
  */
 const ButtonPage = () => {
-  const refButton = useRef(null)
+  const refButton = React.useRef()
+  const [active, setActive] = React.useState(false)
 
   return (
     <div className="Pages SamplePage ButtonPage">
@@ -50,8 +51,8 @@ export const ButtonSample = () => {
 export const ButtonSample = () => {
   return (
     <Button>
-      <Box>Button children props sample</Box>
-      <Box style={{ marginLeft: "1rem" }}>Children</Box>
+      <Box>Button children props sample: </Box>
+      <Box style={{ marginLeft: "1rem" }}>children</Box>
     </Button>
   )
 }`}
@@ -59,8 +60,8 @@ export const ButtonSample = () => {
             </pre>
             <div className="Result">
               <Button>
-                <Box>Button children props sample</Box>
-                <Box style={{ marginLeft: "1rem" }}>Children</Box>
+                <Box>Button children props sample: </Box>
+                <Box style={{ marginLeft: "1rem" }}>children</Box>
               </Button>
             </div>
           </div>
@@ -77,7 +78,7 @@ export const ButtonSample = () => {
 export const ButtonSample = () => {
   return (
     <>
-      <style>{".myButton { padding: 1rem 2rem; }"}</style>
+      <style>{".myButton { padding: 1rem 3rem; }"}</style>
       <Button className="myButton">Button className props sample</Button>
     </>
   )
@@ -85,7 +86,7 @@ export const ButtonSample = () => {
               </code>
             </pre>
             <div className="Result">
-              <style>{".myButton { padding: 1rem 2rem; }"}</style>
+              <style>{".myButton { padding: 1rem 3rem; }"}</style>
               <Button className="myButton">
                 Button className props sample
               </Button>
@@ -108,6 +109,61 @@ export const ButtonSample = () => {
             </pre>
             <div className="Result">
               <Button disabled>Button disabled props sample</Button>
+            </div>
+          </div>
+        </article>
+        <article className="Sample">
+          <h2>
+            <code>disabled styled</code> props
+          </h2>
+          <div className="Example">
+            <pre>
+              <code>
+                {`import { Box, Button } from "abreactui"
+
+export const ButtonSample = () => {
+  return (
+    <>
+      <Button disabled>Disabled Basic</Button>
+      <Button disabled styled="fill">
+        Disabled Fill
+      </Button>
+      <Button disabled styled="outline">
+        Disabled Outline
+      </Button>
+      <Box style={{ margin: "1rem" }}>
+        <Button disabled styled="underline">
+          Disabled Underline
+        </Button>
+      </Box>
+      <Box style={{ margin: "1rem" }}>
+        <Button disabled styled="text">
+          Disabled Text
+        </Button>
+      </Box>
+    </>
+  )
+}`}
+              </code>
+            </pre>
+            <div className="Result">
+              <Button disabled>Disabled Basic</Button>
+              <Button disabled styled="fill">
+                Disabled Fill
+              </Button>
+              <Button disabled styled="outline">
+                Disabled Outline
+              </Button>
+              <Box style={{ margin: "1rem" }}>
+                <Button disabled styled="underline">
+                  Disabled Underline
+                </Button>
+              </Box>
+              <Box style={{ margin: "1rem" }}>
+                <Button disabled styled="text">
+                  Disabled Text
+                </Button>
+              </Box>
             </div>
           </div>
         </article>
@@ -188,22 +244,22 @@ export const ButtonSample = () => {
             <pre>
               <code>
                 {`import { Button } from "abreactui"
-import { useRef } from "react"
+import React from "react"
 
 export const ButtonSample = () => {
-  const refButton = useRef(null)
+  const refButton = React.useRef()
+  const [active, setActive] = React.useState(false)
 
   return (
     <Button
-      onMouseOut={() => {
-        refButton.current.style.backgroundColor = ""
-      }}
-      onMouseOver={() => {
-        refButton.current.style.backgroundColor = "yellowgreen"
+      onClick={() => {
+        const button = refButton.current
+        button.style.backgroundColor = !active ? "yellowgreen" : ""
+        setActive(!active)
       }}
       ref={refButton}
     >
-      Button ref props sample
+      {active ? "Inactive" : "Active"} button
     </Button>
   )
 }`}
@@ -211,40 +267,14 @@ export const ButtonSample = () => {
             </pre>
             <div className="Result">
               <Button
-                onMouseOut={() => {
-                  refButton.current.style.backgroundColor = ""
-                }}
-                onMouseOver={() => {
-                  refButton.current.style.backgroundColor = "yellowgreen"
+                onClick={() => {
+                  const button = refButton.current
+                  button.style.backgroundColor = !active ? "yellowgreen" : ""
+                  setActive(!active)
                 }}
                 ref={refButton}
               >
-                Button ref props sample
-              </Button>
-            </div>
-          </div>
-        </article>
-        <article className="Sample">
-          <h2>
-            <code>style</code> props
-          </h2>
-          <div className="Example">
-            <pre>
-              <code>
-                {`import { Button } from "abreactui"
-
-export const ButtonSample = () => {
-  return (
-    <Button style={{ backgroundColor: "yellowgreen" }}>
-      Button style props sample
-    </Button>
-  )
-}`}
-              </code>
-            </pre>
-            <div className="Result">
-              <Button style={{ backgroundColor: "yellowgreen" }}>
-                Button style props sample
+                {active ? "Inactive" : "Active"} button
               </Button>
             </div>
           </div>
@@ -256,39 +286,17 @@ export const ButtonSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Button } from "abreactui"
-
-export const ButtonSample = () => {
-  return (
-    <>
-      <Button>Basic</Button>
-      <Button styled="fill">fill</Button>
-      <Button styled="outline">outline</Button>
-    </>
-  )
-}`}
-              </code>
-            </pre>
-            <div className="Result">
-              <Button>basic</Button>
-              <Button styled="fill">fill</Button>
-              <Button styled="outline">outline</Button>
-            </div>
-          </div>
-          <div className="Example">
-            <pre>
-              <code>
                 {`import { Box, Button } from "abreactui"
 
 export const ButtonSample = () => {
   return (
     <>
+      <Button>Basic</Button>
+      <Button styled="fill">Fill</Button>
+      <Button styled="outline">Outline</Button>
       <Box style={{ margin: "1rem" }}>
-        styled=&quot;underline&quot; button sample: &nbsp;
         <Button styled="underline">Underline</Button>
-      </Box>
-      <Box style={{ margin: "1rem" }}>
-        styled=&quot;text&quot; button sample: &nbsp;
+        &nbsp;
         <Button styled="text">Text</Button>
       </Box>
     </>
@@ -297,88 +305,13 @@ export const ButtonSample = () => {
               </code>
             </pre>
             <div className="Result">
+              <Button>Basic</Button>
+              <Button styled="fill">Fill</Button>
+              <Button styled="outline">Outline</Button>
               <Box style={{ margin: "1rem" }}>
-                styled=&quot;underline&quot; button sample: &nbsp;
                 <Button styled="underline">Underline</Button>
-              </Box>
-              <Box style={{ margin: "1rem" }}>
-                styled=&quot;text&quot; button sample: &nbsp;
+                &nbsp;
                 <Button styled="text">Text</Button>
-              </Box>
-            </div>
-          </div>
-        </article>
-        <article className="Sample">
-          <h2>
-            <code>styled disabled</code> props
-          </h2>
-          <div className="Example">
-            <pre>
-              <code>
-                {`import { Button } from "abreactui"
-
-export const ButtonSample = () => {
-  return (
-    <>
-      <Button disabled>disabled basic</Button>
-      <Button disabled styled="fill">
-        disabled fill
-      </Button>
-      <Button disabled styled="outline">
-        disabled outline
-      </Button>
-    </>
-  )
-}`}
-              </code>
-            </pre>
-            <div className="Result">
-              <Button disabled>disabled basic</Button>
-              <Button disabled styled="fill">
-                disabled fill
-              </Button>
-              <Button disabled styled="outline">
-                disabled outline
-              </Button>
-            </div>
-          </div>
-          <div className="Example">
-            <pre>
-              <code>
-                {`import { Box, Button } from "abreactui"
-
-export const ButtonSample = () => {
-  return (
-    <>
-      <Box style={{ margin: "1rem" }}>
-        disabled styled=&quot;underlint&quot; button sample: &nbsp;
-        <Button disabled styled="underline">
-          disabled underline
-        </Button>
-      </Box>
-      <Box style={{ margin: "1rem" }}>
-        disabled styled=&quot;text&quot; button sample: &nbsp;
-        <Button disabled styled="text">
-          disabled text
-        </Button>
-      </Box>
-    </>
-  )
-}`}
-              </code>
-            </pre>
-            <div className="Result">
-              <Box style={{ margin: "1rem" }}>
-                disabled styled=&quot;underlint&quot; button sample: &nbsp;
-                <Button disabled styled="underline">
-                  disabled underline
-                </Button>
-              </Box>
-              <Box style={{ margin: "1rem" }}>
-                disabled styled=&quot;text&quot; button sample: &nbsp;
-                <Button disabled styled="text">
-                  disabled text
-                </Button>
               </Box>
             </div>
           </div>
@@ -393,18 +326,12 @@ export const ButtonSample = () => {
                 {`import { Button } from "abreactui"
 
 export const ButtonSample = () => {
-  return (
-    <Button href="https://google.com" tag="a" target="blank">
-      Button tag props sample
-    </Button>
-  )
+  return <Button tag="a">Button tag props sample</Button>
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Button href="https://google.com" tag="a" target="blank">
-                Button tag props sample
-              </Button>
+              <Button tag="a">Button tag props sample</Button>
             </div>
           </div>
         </article>
