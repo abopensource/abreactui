@@ -6,7 +6,7 @@ import { Button, style } from "../"
 /**
  * Apply an event dependent ripple effect to the icon button element.
  *
- * @method effectButtonRipple
+ * @function effectButtonRipple
  * @param {import("react").SyntheticEvent} event Event that occurred on icon button elements.
  */
 const effectButtonRipple = (event) => {
