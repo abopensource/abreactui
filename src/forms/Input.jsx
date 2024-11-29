@@ -20,7 +20,7 @@ import {
  * @param {import("react").ComponentProps} [props] `React.ComponentProps` passed to React component.
  * @param {import("react").ReactNode} [props.children] Child nodes to include in the user input field controller element to be created.
  * @param {String} [props.className] Stylesheet class name to apply to the user input field controller element to be created.
- * @param {String} [props.defaultValue] Default value of the user input field element.
+ * @param {String|Number} [props.defaultValue] Default value of the user input field element.
  * @param {Boolean} [props.disabled] Whether the user input field element is disabled.
  * @param {Boolean} [props.error] Whether the user input value is invalid.
  * @param {String} [props.helper] Help message for user input value.
@@ -41,7 +41,7 @@ import {
  * "email" | "password" | "reset" | "search" | "submit" | "text"(default) | "textarea"
  * @see {@link https://developer.mozilla.org/docs/Web/HTML/Element/input#input_types}
  * @param {Object} [props.validity={}] Object containing information for validating user input field values.
- * @param {String} [props.value] Value of the user input field element.
+ * @param {String|Number} [props.value] Value of the user input field element.
  * @param {import("react").ForwardedRef} [forwardedRef] Object or function for use by referencing the component that will be created from the parent component.
  * @returns {import("react").ReactElement} Returns the created user input field controller element(JSX element).
  */
@@ -111,7 +111,7 @@ Input.displayName = "Input"
 Input.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
-  defaultValue: PropTypes.string,
+  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   disabled: PropTypes.bool,
   error: PropTypes.bool,
   helper: PropTypes.string,
@@ -137,7 +137,7 @@ Input.propTypes = {
     "textarea",
   ]),
   validity: PropTypes.object,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
 export { Input }

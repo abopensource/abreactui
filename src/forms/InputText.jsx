@@ -149,27 +149,12 @@ const extendValidity = (type, props, validity) => {
 }
 
 /**
- * Focus in the passed input field and moves the cursor to the last one.
- *
- * @method focusAtEnd
- * @param {HTMLInputElement} eleInput Input field element to move focus.
- */
-const focusAtEnd = (eleInput) => {
-  if (!eleInput) return
-
-  eleInput.focus()
-  setTimeout(() => {
-    eleInput.selectionStart = eleInput.selectionEnd = eleInput.value.length
-  }, 10)
-}
-
-/**
  * Returns after created the user input text field element(JSX element).
  *
  * @module Field
  * @type {import("react").ForwardRefExoticComponent}
  * @param {import("react").ComponentProps} [props] `React.ComponentProps` passed to React component.
- * @param {String} [props.defaultValue] Default value of the user input text field element.
+ * @param {String|Number} [props.defaultValue] Default value of the user input text field element.
  * @param {Boolean} [props.disabled] Whether the user input text field element is disabled.
  * @param {Boolean} [props.error] Whether the user input value is invalid.
  * @param {String} [props.helper] Help message for user input values.
@@ -186,7 +171,7 @@ const focusAtEnd = (eleInput) => {
  * "email" | "password" | "search" | "text"(default) | "textarea"
  * @see {@link https://developer.mozilla.org/docs/Web/HTML/Element/input#input_types}
  * @param {Object} [props.validity={}] Object containing information for validating user input text field values.
- * @param {String} [props.value] Value of the user input text field element.
+ * @param {String|Number} [props.value] Value of the user input text field element.
  * @param {import("react").ForwardedRef} [forwardedRef] Object or function for use by referencing the component that will be created from the parent component.
  * @returns {import("react").ReactElement} Returns the created user input text field element(JSX element).
  */
@@ -205,11 +190,11 @@ const InputText = React.forwardRef((props, forwardedRef) => {
 
   propsInput.className = multiline ? style.TextArea : style.Input
   if (forwardedRef) {
-    propsInput.ref = refInput
     React.useImperativeHandle(forwardedRef, () => ({
       checkValidation,
       element: refInput.current,
     }))
+    propsInput.ref = refInput
   }
   propsInput.value = value
 
@@ -225,10 +210,10 @@ const InputText = React.forwardRef((props, forwardedRef) => {
    * Apply the result after validating the value of the user input field.
    *
    * @function checkValidation
-   * @param {HTMLInputElement} eleInput User input field element.
+   * @param {HTMLInputElement} field User input field element.
    */
-  const checkValidation = (eleInput) => {
-    const value = eleInput?.value || refInput.current?.value
+  const checkValidation = (field) => {
+    const value = field?.value || refInput.current?.value
     const result = checkValidity(value, validity)
 
     if (result.error) {
@@ -248,6 +233,27 @@ const InputText = React.forwardRef((props, forwardedRef) => {
     }
 
     return !result.error
+  }
+
+  /**
+   * Focus to the end of the user input field element.
+   *
+   * @method focusAtEnd
+   * @param {HTMLElement} element The element on which the event occurred.
+   */
+  const focusAtEnd = (element) => {
+    if (!element) return
+
+    const parent = element.parentNode
+    const field = parent.querySelectorAll("input, textarea")[0]
+    if (!field) return
+
+    field.focus()
+    setTimeout(() => {
+      const length = field.value.length
+      field.selectionStart = length
+      field.selectionEnd = length
+    }, 10)
   }
 
   propsInput.onBlur = (event) => {
@@ -371,7 +377,7 @@ const InputText = React.forwardRef((props, forwardedRef) => {
 })
 InputText.displayName = "InputText"
 InputText.propTypes = {
-  defaultValue: PropTypes.string,
+  defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   error: PropTypes.bool,
   helper: PropTypes.string,
   maxRows: PropTypes.number,
@@ -385,7 +391,7 @@ InputText.propTypes = {
   rows: PropTypes.number,
   type: PropTypes.oneOf(["email", "password", "search", "text", "textarea"]),
   validity: PropTypes.object,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
 export { InputText }
