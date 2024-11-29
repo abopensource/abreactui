@@ -194,8 +194,8 @@ const InputText = React.forwardRef((props, forwardedRef) => {
       checkValidation,
       element: refInput.current,
     }))
-    propsInput.ref = refInput
   }
+  propsInput.ref = refInput
   propsInput.value = value
 
   if (type === "password") {
@@ -239,15 +239,9 @@ const InputText = React.forwardRef((props, forwardedRef) => {
    * Focus to the end of the user input field element.
    *
    * @method focusAtEnd
-   * @param {HTMLElement} element The element on which the event occurred.
    */
-  const focusAtEnd = (element) => {
-    if (!element) return
-
-    const parent = element.parentNode
-    const field = parent.querySelectorAll("input, textarea")[0]
-    if (!field) return
-
+  const focusAtEnd = () => {
+    const field = refInput.current
     field.focus()
     setTimeout(() => {
       const length = field.value.length
