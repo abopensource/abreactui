@@ -17,6 +17,11 @@ const FormsPage = () => {
       <section className="Links">
         <ul>
           <li>
+            <a href="/forms/form">
+              <code>Form</code>
+            </a>
+          </li>
+          <li>
             <a href="/forms/input">
               <code>Input</code>
             </a>
