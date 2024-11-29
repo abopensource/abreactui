@@ -1,5 +1,5 @@
-import { Section } from "abreactui"
-import { useRef } from "react"
+import { Box, Button, Section } from "abreactui"
+import React from "react"
 
 import "../styles"
 
@@ -10,7 +10,8 @@ import "../styles"
  * @type {import("react").ReactElement}
  */
 const SectionPage = () => {
-  const refSection = useRef(null)
+  const refSection = React.useRef()
+  const [active, setActive] = React.useState(false)
 
   return (
     <div className="Pages SamplePage SectionPage">
@@ -71,68 +72,75 @@ export const SectionSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Section } from "abreactui"
-import { useRef } from "react"
+                {`import { Box, Button, Section } from "abreactui"
+import React from "react"
 
 export const SectionSample = () => {
-  const refSection = useRef(null)
+  const refSection = React.useRef()
+  const [active, setActive] = React.useState(false)
 
   return (
-    <Section
-      onMouseOut={() => {
-        refSection.current.style.backgroundColor = ""
-      }}
-      onMouseOver={() => {
-        refSection.current.style.backgroundColor = "rgba(0, 0, 0, 0.125)"
-      }}
-      ref={refSection}
-    >
-      Section ref props sample
-    </Section>
+    <Box style={{ textAlign: "center" }}>
+      <Section
+        ref={refSection}
+        style={{
+          margin: "1rem",
+          padding: "1rem",
+          border: "1px solid transparent",
+          borderRadius: "0.5rem",
+        }}
+      >
+        Section ref props sample
+      </Section>
+      <Button
+        onClick={() => {
+          const article = refSection.current
+          if (!active) {
+            article.style.borderColor = "rgba(0, 0, 0, 0.25)"
+            article.style.backgroundColor = "rgba(150, 200, 50, 0.25)"
+          } else {
+            article.style.borderColor = "transparent"
+            article.style.backgroundColor = ""
+          }
+          setActive(!active)
+        }}
+      >
+        {active ? "Inactive" : "Active"} section
+      </Button>
+    </Box>
   )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Section
-                onMouseOut={() => {
-                  refSection.current.style.backgroundColor = ""
-                }}
-                onMouseOver={() => {
-                  refSection.current.style.backgroundColor =
-                    "rgba(0, 0, 0, 0.125)"
-                }}
-                ref={refSection}
-              >
-                Section ref props sample
-              </Section>
-            </div>
-          </div>
-        </article>
-        <article className="Sample">
-          <h2>
-            <code>style</code> props
-          </h2>
-          <div className="Example">
-            <pre>
-              <code>
-                {`import { Section } from "abreactui"
-
-export const SectionSample = () => {
-  return (
-    <Section style={{ padding: "1rem", backgroundColor: "yellowgreen" }}>
-      Section style props sample
-    </Section>
-  )
-}`}
-              </code>
-            </pre>
-            <div className="Result">
-              <Section
-                style={{ padding: "1rem", backgroundColor: "yellowgreen" }}
-              >
-                Section style props sample
-              </Section>
+              <Box style={{ textAlign: "center" }}>
+                <Section
+                  ref={refSection}
+                  style={{
+                    margin: "1rem",
+                    padding: "1rem",
+                    border: "1px solid transparent",
+                    borderRadius: "0.5rem",
+                  }}
+                >
+                  Section ref props sample
+                </Section>
+                <Button
+                  onClick={() => {
+                    const article = refSection.current
+                    if (!active) {
+                      article.style.borderColor = "rgba(0, 0, 0, 0.25)"
+                      article.style.backgroundColor = "rgba(150, 200, 50, 0.25)"
+                    } else {
+                      article.style.borderColor = "transparent"
+                      article.style.backgroundColor = ""
+                    }
+                    setActive(!active)
+                  }}
+                >
+                  {active ? "Inactive" : "Active"} section
+                </Button>
+              </Box>
             </div>
           </div>
         </article>
@@ -146,12 +154,12 @@ export const SectionSample = () => {
                 {`import { Section } from "abreactui"
 
 export const SectionSample = () => {
-  return <Section tag="span">Section tag props sample</Section>
+  return <Section tag="div">Section tag props sample</Section>
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Section tag="span">Section tag props sample</Section>
+              <Section tag="div">Section tag props sample</Section>
             </div>
           </div>
         </article>

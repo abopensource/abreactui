@@ -1,5 +1,5 @@
-import { Article } from "abreactui"
-import { useRef } from "react"
+import { Article, Box, Button } from "abreactui"
+import React from "react"
 
 import "../styles"
 
@@ -10,7 +10,8 @@ import "../styles"
  * @type {import("react").ReactElement}
  */
 const ArticlePage = () => {
-  const refArticle = useRef(null)
+  const refArticle = React.useRef()
+  const [active, setActive] = React.useState(false)
 
   return (
     <div className="Pages SamplePage ArticlePage">
@@ -71,68 +72,75 @@ export const ArticleSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Article } from "abreactui"
-import { useRef } from "react"
+                {`import { Article, Box, Button } from "abreactui"
+import React from "react"
 
 export const ArticleSample = () => {
-  const refArticle = useRef(null)
+  const refArticle = React.useRef()
+  const [active, setActive] = React.useState(false)
 
   return (
-    <Article
-      onMouseOut={() => {
-        refArticle.current.style.backgroundColor = ""
-      }}
-      onMouseOver={() => {
-        refArticle.current.style.backgroundColor = "rgba(0, 0, 0, 0.125)"
-      }}
-      ref={refArticle}
-    >
-      Article ref props sample
-    </Article>
+    <Box style={{ textAlign: "center" }}>
+      <Article
+        ref={refArticle}
+        style={{
+          margin: "1rem",
+          padding: "1rem",
+          border: "1px solid transparent",
+          borderRadius: "0.5rem",
+        }}
+      >
+        Article ref props sample
+      </Article>
+      <Button
+        onClick={() => {
+          const article = refArticle.current
+          if (!active) {
+            article.style.borderColor = "rgba(0, 0, 0, 0.25)"
+            article.style.backgroundColor = "rgba(150, 200, 50, 0.25)"
+          } else {
+            article.style.borderColor = "transparent"
+            article.style.backgroundColor = ""
+          }
+          setActive(!active)
+        }}
+      >
+        {active ? "Inactive" : "Active"} article
+      </Button>
+    </Box>
   )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Article
-                onMouseOut={() => {
-                  refArticle.current.style.backgroundColor = ""
-                }}
-                onMouseOver={() => {
-                  refArticle.current.style.backgroundColor =
-                    "rgba(0, 0, 0, 0.125)"
-                }}
-                ref={refArticle}
-              >
-                Article ref props sample
-              </Article>
-            </div>
-          </div>
-        </article>
-        <article className="Sample">
-          <h2>
-            <code>style</code> props
-          </h2>
-          <div className="Example">
-            <pre>
-              <code>
-                {`import { Article } from "abreactui"
-
-export const ArticleSample = () => {
-  return (
-    <Article style={{ padding: "1rem", backgroundColor: "yellowgreen" }}>
-      Article style props sample
-    </Article>
-  )
-}`}
-              </code>
-            </pre>
-            <div className="Result">
-              <Article
-                style={{ padding: "1rem", backgroundColor: "yellowgreen" }}
-              >
-                Article style props sample
-              </Article>
+              <Box style={{ textAlign: "center" }}>
+                <Article
+                  ref={refArticle}
+                  style={{
+                    margin: "1rem",
+                    padding: "1rem",
+                    border: "1px solid transparent",
+                    borderRadius: "0.5rem",
+                  }}
+                >
+                  Article ref props sample
+                </Article>
+                <Button
+                  onClick={() => {
+                    const article = refArticle.current
+                    if (!active) {
+                      article.style.borderColor = "rgba(0, 0, 0, 0.25)"
+                      article.style.backgroundColor = "rgba(150, 200, 50, 0.25)"
+                    } else {
+                      article.style.borderColor = "transparent"
+                      article.style.backgroundColor = ""
+                    }
+                    setActive(!active)
+                  }}
+                >
+                  {active ? "Inactive" : "Active"} article
+                </Button>
+              </Box>
             </div>
           </div>
         </article>
@@ -146,12 +154,12 @@ export const ArticleSample = () => {
                 {`import { Article } from "abreactui"
 
 export const ArticleSample = () => {
-  return <Article tag="span">Article tag props sample</Article>
+  return <Article tag="div">Article tag props sample</Article>
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Article tag="span">Article tag props sample</Article>
+              <Article tag="div">Article tag props sample</Article>
             </div>
           </div>
         </article>

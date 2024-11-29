@@ -1,5 +1,5 @@
-import { Text } from "abreactui"
-import { useRef } from "react"
+import { Box, Button, Text } from "abreactui"
+import React from "react"
 
 import "../styles"
 
@@ -10,7 +10,8 @@ import "../styles"
  * @type {import("react").ReactElement}
  */
 const TextPage = () => {
-  const refText = useRef(null)
+  const refText = React.useRef()
+  const [active, setActive] = React.useState(false)
 
   return (
     <div className="Pages SamplePage TextPage">
@@ -69,65 +70,49 @@ export const TextSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Text } from "abreactui"
-import { useRef } from "react"
+                {`import { Box, Button, Text } from "abreactui"
+import React from "react"
 
 export const TextSample = () => {
-  const refText = useRef(null)
+  const refText = React.useRef()
+  const [active, setActive] = React.useState(false)
 
   return (
-    <Text
-      onMouseOut={() => {
-        refText.current.style.backgroundColor = ""
-      }}
-      onMouseOver={() => {
-        refText.current.style.backgroundColor = "rgba(0, 0, 0, 0.125)"
-      }}
-      ref={refText}
-    >
-      Text ref props sample
-    </Text>
+    <>
+      <Box style={{ margin: "1rem", textAlign: "center" }}>
+        <Text ref={refText}>Text ref props sample</Text>
+      </Box>
+      <Box style={{ margin: "1rem", textAlign: "center" }}>
+        <Button
+          onClick={() => {
+            const text = refText.current
+            text.style.color = !active ? "red" : ""
+            setActive(!active)
+          }}
+        >
+          {active ? "Inactive" : "Active"} text
+        </Button>
+      </Box>
+    </>
   )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Text
-                onMouseOut={() => {
-                  refText.current.style.backgroundColor = ""
-                }}
-                onMouseOver={() => {
-                  refText.current.style.backgroundColor = "rgba(0, 0, 0, 0.125)"
-                }}
-                ref={refText}
-              >
-                Text ref props sample
-              </Text>
-            </div>
-          </div>
-        </article>
-        <article className="Sample">
-          <h2>
-            <code>style</code> props
-          </h2>
-          <div className="Example">
-            <pre>
-              <code>
-                {`import { Text } from "abreactui"
-
-export const TextSample = () => {
-  return (
-    <Text style={{ padding: "1rem", backgroundColor: "yellowgreen" }}>
-      Text style props sample
-    </Text>
-  )
-}`}
-              </code>
-            </pre>
-            <div className="Result">
-              <Text style={{ padding: "1rem", backgroundColor: "yellowgreen" }}>
-                Text style props sample
-              </Text>
+              <Box style={{ margin: "1rem", textAlign: "center" }}>
+                <Text ref={refText}>Text ref props sample</Text>
+              </Box>
+              <Box style={{ margin: "1rem", textAlign: "center" }}>
+                <Button
+                  onClick={() => {
+                    const text = refText.current
+                    text.style.color = !active ? "red" : ""
+                    setActive(!active)
+                  }}
+                >
+                  {active ? "Inactive" : "Active"} text
+                </Button>
+              </Box>
             </div>
           </div>
         </article>
