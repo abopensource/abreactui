@@ -869,7 +869,7 @@ export const InputSample = () => {
         <Input ref={refInput} styled="standard" />
       </Box>
       <Box style={{ textAlign: "center" }}>
-        <Button onClick={() => refInput.current.element.focus()}>
+        <Button onClick={() => refInput.current.focus()}>
           Focus input fields
         </Button>
       </Box>
@@ -883,7 +883,7 @@ export const InputSample = () => {
                 <Input ref={refInput} styled="standard" />
               </Box>
               <Box style={{ textAlign: "center" }}>
-                <Button onClick={() => refInput.current.element.focus()}>
+                <Button onClick={() => refInput.current.focus()}>
                   Focus input fields
                 </Button>
               </Box>
@@ -913,7 +913,7 @@ export const InputSample = () => {
         <Button
           onClick={() => {
             refInputs.current.forEach((refInput) => {
-              refInput.element.style.backgroundColor =
+              refInput.field.style.backgroundColor =
                 !active ? "rgba(150, 200, 50, 0.125)" : ""
             })
             setActive(!active)
@@ -952,7 +952,7 @@ export const InputSample = () => {
                 <Button
                   onClick={() => {
                     refInputs.current.forEach((refInput) => {
-                      refInput.element.style.backgroundColor =
+                      refInput.field.style.backgroundColor =
                         !active ? "rgba(150, 200, 50, 0.125)" : ""
                     })
                     setActive(!active)

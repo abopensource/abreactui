@@ -28,6 +28,9 @@ const HomePage = () => {
             <a href="/forms">Form elements</a>
           </li>
           <li>
+            <a href="/layouts">Layout elements</a>
+          </li>
+          <li>
             <a href="/texts">Text elements</a>
           </li>
         </ul>

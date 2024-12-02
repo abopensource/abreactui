@@ -12,6 +12,8 @@ import {
   HomePage,
   IconButtonPage,
   InputPage,
+  LayoutsPage,
+  PagePage,
   SamplePage,
   SectionPage,
   TextPage,
@@ -93,6 +95,19 @@ const routes = [
           {
             path: "input",
             element: <InputPage />,
+          },
+        ],
+      },
+      {
+        path: "layouts",
+        children: [
+          {
+            path: "",
+            element: <LayoutsPage />,
+          },
+          {
+            path: "page",
+            element: <PagePage />,
           },
         ],
       },
