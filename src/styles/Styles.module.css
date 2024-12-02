@@ -733,6 +733,11 @@
   }
 }
 
+.Page {
+  margin: 0;
+  padding: 0;
+}
+
 .Section {
   margin: 0;
   padding: 0;
