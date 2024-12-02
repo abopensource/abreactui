@@ -40,6 +40,27 @@ export const BoxSample = () => {
         </article>
         <article className="Sample">
           <h2>
+            <code>align</code> props
+          </h2>
+          <div className="Example">
+            <pre>
+              <code>
+                {`import { Box } from "abreactui"
+
+export const BoxSample = () => {
+  return <Box align="center">Box align=&quot;center&quot; props sample</Box>
+}`}
+              </code>
+            </pre>
+            <div className="Result">
+              <Box align="center">
+                Box align=&quot;center&quot; props sample
+              </Box>
+            </div>
+          </div>
+        </article>
+        <article className="Sample">
+          <h2>
             <code>className</code> props
           </h2>
           <div className="Example">
