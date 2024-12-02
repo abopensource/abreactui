@@ -16,7 +16,7 @@ import { createElement, style } from "../"
  * @param {Boolean} [props.error] Whether the user input value is invalid.
  * @param {Boolean} [props.readOnly] Whether to use the user input field element as read-only.
  * @param {String} [props.styled="standard"] User input field style type.
- * "fill" | "outline" | "standard"(default) | "underline"
+ * "fill" | "outline"(default) | "standard" | "underline"
  * @param {String|Number} [props.value] Value of the user input field element.
  * @param {import("react").ForwardedRef} [forwardedRef] Object or function for use by referencing the component that will be created from the parent component.
  * @returns {import("react").ReactElement} Returns the created controller element(JSX element) for user input field element.
@@ -28,7 +28,7 @@ const InputController = React.forwardRef((props, forwardedRef) => {
 
   const styles = [style.InputController]
   styled && styles.push(style[styled[0].toUpperCase() + styled.slice(1)])
-  if (String(defaultValue)?.length || String(value)?.length) {
+  if (defaultValue?.length || value?.length) {
     styles.push(style.Filled)
   }
   readOnly && styles.push(style.ReadOnly)

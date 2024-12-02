@@ -20,48 +20,86 @@ const Form = React.forwardRef((props, forwardedRef) => {
   const { children, className, fields, ...propsOther } = props
 
   const refForm = React.useRef()
-
-  const refFields = {}
   const childrenForm = []
+  const refFields = {}
 
   if (fields) {
     Object.keys(fields).forEach((field, f) => {
       const refField = React.useRef()
-
       childrenForm.push(<Input key={f} {...fields[field]} ref={refField} />)
 
       if (fields[field].type !== "reset" && fields[field].type !== "submit") {
         refFields[field] = refField
       }
     })
+
+    childrenForm.push(children)
+  } else {
+    const clonedChildren = React.Children.map(children, (child, c) => {
+      if (React.isValidElement(child)) {
+        const refField = React.createRef()
+        const key = child.props?.id || child.props?.name || c
+        const clonedChild = React.cloneElement(child, {
+          ref: (node) => {
+            if (typeof child.ref === "function") child.ref(node)
+            else if (child.ref) child.ref.current = node
+
+            refField.current = node
+          },
+        })
+        refFields[key] = refField
+
+        return clonedChild
+      }
+
+      return child
+    })
+
+    childrenForm.push(clonedChildren)
   }
-  childrenForm.push(children)
 
   const styles = [style.Form]
   className && styles.push(className)
 
+  /**
+   * Returns the values of the fields contained in a form element.
+   *
+   * @method getValues
+   * @returns {Object} Values of the fields contained in a form element.
+   */
+  const getValues = () => {
+    const values = {}
+
+    for (const key of Object.keys(refFields)) {
+      const value = refFields[key].current?.value
+      value && (values[key] = value)
+    }
+
+    return values
+  }
+
   const propsForm = { ...propsOther, className: styles.join(" "), ref: refForm }
   if (forwardedRef) {
     React.useImperativeHandle(forwardedRef, () => ({
-      submit: refForm.current.submit(),
-      element: refForm.current,
+      reset: refForm.current.reset,
+      submit: refForm.current.submit,
+      fields: refFields,
+      form: refForm.current,
+      getValues,
     }))
   }
 
   propsForm.onSubmit = (event) => {
     event?.preventDefault()
 
-    for (const field of Object.keys(refFields)) {
-      if (!refFields[field].current.checkValidation()) {
-        return refFields[field].current.element.focus()
+    for (const key of Object.keys(refFields)) {
+      const ref = refFields[key].current
+      if (ref?.checkValidation && !ref.checkValidation()) {
+        return ref?.field?.focus && ref.field.focus()
       }
     }
 
-    if (props.onSubmit) {
-      props.onSubmit(event)
-    } else {
-      refForm.current.submit()
-    }
+    props.onSubmit ? props.onSubmit(getValues()) : refForm.current.submit()
   }
 
   return createElement({
