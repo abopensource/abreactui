@@ -275,6 +275,16 @@
   flex-direction: column;
 }
 
+.H1,
+.H2,
+.H3,
+.H4,
+.H5,
+.H6 {
+  margin: 0;
+  padding: 0;
+}
+
 .InputController {
   display: inline-flex;
   flex-direction: column;
@@ -741,6 +751,11 @@
   text-align: left;
 }
 
+.P {
+  margin: 0;
+  padding: 0;
+}
+
 .Page {
   margin: 0;
   padding: 1em;
@@ -750,15 +765,15 @@
   text-align: right;
 }
 
-.Section {
-  margin: 0;
-  padding: 0;
-}
-
-.Text {
+.S {
   margin: 0;
   padding: 0;
   font-style: normal;
+}
+
+.Section {
+  margin: 0;
+  padding: 0;
 }
 
 @keyframes IconRipplePulse {
