@@ -18,6 +18,7 @@ const FormPage = () => {
       validity: {
         required: true,
       },
+      value: "test@test.com",
     },
     password: {
       autoComplete: "off",
@@ -28,6 +29,7 @@ const FormPage = () => {
       validity: {
         required: true,
       },
+      value: "1qaz@WSX",
     },
     submit: {
       id: "submit",
@@ -78,18 +80,30 @@ export const FormSample = () => {
 
 export const FormSample = () => {
   return (
-    <Form>
-      <Input label="First Name" />
-      <Input type="submit" value="Submit" />
+    <Form onSubmit={(values) => console.log(values)}>
+      <Input id="femail" label="Email" type="email" value="test@test.com" />
+      <Input id="fpassword" label="Password" type="password" value="1qaz@WSX" />
+      <Input type="submit" value="SignIn" />
     </Form>
   )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Form>
-                <Input label="First Name" />
-                <Input type="submit" value="Submit" />
+              <Form onSubmit={(values) => console.log(values)}>
+                <Input
+                  id="femail"
+                  label="Email"
+                  type="email"
+                  value="test@test.com"
+                />
+                <Input
+                  id="fpassword"
+                  label="Password"
+                  type="password"
+                  value="1qaz@WSX"
+                />
+                <Input type="submit" value="SignIn" />
               </Form>
             </div>
           </div>
@@ -146,6 +160,7 @@ export const FormSample = () => {
       validity: {
         required: true,
       },
+      value: "test@test.com",
     },
     password: {
       autoComplete: "off",
@@ -156,6 +171,7 @@ export const FormSample = () => {
       validity: {
         required: true,
       },
+      value: "1qaz@WSX",
     },
     submit: {
       id: "submit",
@@ -164,12 +180,17 @@ export const FormSample = () => {
     },
   }
 
-  return <Form fields={fieldsSignIn} />
+  return (
+    <Form fields={fieldsSignIn} onSubmit={(values) => console.log(values)} />
+  )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Form fields={fieldsSignIn} />
+              <Form
+                fields={fieldsSignIn}
+                onSubmit={(values) => console.log(values)}
+              />
             </div>
           </div>
         </article>

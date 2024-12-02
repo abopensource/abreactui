@@ -40,6 +40,27 @@ export const ContainerSample = () => {
         </article>
         <article className="Sample">
           <h2>
+            <code>align</code> props
+          </h2>
+          <div className="Example">
+            <pre>
+              <code>
+                {`import { Container } from "abreactui"
+
+export const ContainerSample = () => {
+  return <Container align="center">Container align=&quot;center&quot; props sample</Container>
+}`}
+              </code>
+            </pre>
+            <div className="Result">
+              <Container align="center">
+                Container align=&quot;center&quot; props sample
+              </Container>
+            </div>
+          </div>
+        </article>
+        <article className="Sample">
+          <h2>
             <code>className</code> props
           </h2>
           <div className="Example">
