@@ -260,6 +260,10 @@
   }
 }
 
+.Center {
+  text-align: center;
+}
+
 .Container {
   margin: 0;
   padding: 0;
@@ -733,9 +737,17 @@
   }
 }
 
+.Left {
+  text-align: left;
+}
+
 .Page {
   margin: 0;
-  padding: 0;
+  padding: 1em;
+}
+
+.Right {
+  text-align: right;
 }
 
 .Section {

@@ -9,6 +9,8 @@ import { createElement, style } from "../"
  * @module Container
  * @type {import("react").ForwardRefExoticComponent}
  * @param {import("react").ComponentProps} [props] `React.ComponentProps` passed to React component.
+ * @param {String} [props.align] Align content horizontally.
+ * "center" | "left"(default) | "right"
  * @param {import("react").ReactNode} [props.children] Child nodes to include in the container element to be created.
  * @param {String} [props.className] Stylesheet class name to apply to the container element to be created.
  * @param {String} [props.tag="div"] HTML tag to use for the container element to be created.
@@ -16,9 +18,10 @@ import { createElement, style } from "../"
  * @returns {import("react").ReactElement} Returns the created container element(JSX element).
  */
 const Container = React.forwardRef((props, forwardedRef) => {
-  const { children, className, tag, ...propsOther } = props
+  const { align, children, className, tag, ...propsOther } = props
 
   const styles = [style.Container]
+  align && styles.push(style[align[0].toUpperCase() + align.slice(1)])
   className && styles.push(className)
 
   const propsContainer = { ...propsOther, className: styles.join(" ") }
@@ -28,6 +31,7 @@ const Container = React.forwardRef((props, forwardedRef) => {
 })
 Container.displayName = "Container"
 Container.propTypes = {
+  align: PropTypes.oneOf(["center", "left", "right"]),
   children: PropTypes.node,
   className: PropTypes.string,
   tag: PropTypes.string,

@@ -9,6 +9,8 @@ import { createElement, style } from "../"
  * @module Article
  * @type {import("react").ForwardRefExoticComponent}
  * @param {import("react").ComponentProps} [props] `React.ComponentProps` passed to React component.
+ * @param {String} [props.align] Align content horizontally.
+ * "center" | "left"(default) | "right"
  * @param {import("react").ReactNode} [props.children] Child nodes to include in the article element to be created.
  * @param {String} [props.className] Stylesheet class name to apply to the article element to be created.
  * @param {String} [props.tag="article"] HTML tag to use for the article element to be created.
@@ -16,9 +18,10 @@ import { createElement, style } from "../"
  * @returns {import("react").ReactElement} Returns the created article element(JSX element).
  */
 const Article = React.forwardRef((props, forwardedRef) => {
-  const { children, className, tag, ...propsOther } = props
+  const { align, children, className, tag, ...propsOther } = props
 
   const styles = [style.Article]
+  align && styles.push(style[align[0].toUpperCase() + align.slice(1)])
   className && styles.push(className)
 
   const propsArticle = { ...propsOther, className: styles.join(" ") }
@@ -32,6 +35,7 @@ const Article = React.forwardRef((props, forwardedRef) => {
 })
 Article.displayName = "Article"
 Article.propTypes = {
+  align: PropTypes.oneOf(["center", "left", "right"]),
   children: PropTypes.node,
   className: PropTypes.string,
   tag: PropTypes.string,
