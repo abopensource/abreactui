@@ -338,6 +338,7 @@
       background: none;
       color: currentcolor;
       font: inherit;
+      line-height: normal;
       letter-spacing: inherit;
 
       &::placeholder {
