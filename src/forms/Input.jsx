@@ -36,7 +36,7 @@ import {
  * @param {Boolean} [props.required] Whether the user input field element is the required input field.
  * @param {Number} [props.rows=2] Number of lines if it is a multiline input field.
  * @param {String} [props.styled="standard"] User input field style type.
- * "fill" | "outline" | "standard"(default) | "underline"
+ * "fill" | "outline"(default) | "standard" | "underline"
  * @param {String} [props.type="text"] Field type of user input field element.
  * "email" | "password" | "reset" | "search" | "submit" | "text"(default) | "textarea"
  * @see {@link https://developer.mozilla.org/docs/Web/HTML/Element/input#input_types}
@@ -54,7 +54,9 @@ const Input = React.forwardRef((props, forwardedRef) => {
       <InputController
         {...{ children, className, disabled: propsField.disabled, styled }}
       >
-        <Button {...{ styled, type }}>{propsField.value || label}</Button>
+        <Button {...{ styled: styled === "standard" ? "fill" : styled, type }}>
+          {propsField.value || label}
+        </Button>
       </InputController>
     )
   }

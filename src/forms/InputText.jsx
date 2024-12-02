@@ -191,8 +191,14 @@ const InputText = React.forwardRef((props, forwardedRef) => {
   propsInput.className = multiline ? style.TextArea : style.Input
   if (forwardedRef) {
     React.useImperativeHandle(forwardedRef, () => ({
+      blur: () => refInput.current.blur(),
       checkValidation,
-      element: refInput.current,
+      field: refInput.current,
+      focus: () => refInput.current.focus(),
+      value: refInput.current.value,
+      setRows,
+      setShowPassword,
+      setValue,
     }))
   }
   propsInput.ref = refInput

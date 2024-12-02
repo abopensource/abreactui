@@ -39,7 +39,6 @@
   letter-spacing: inherit;
   word-spacing: inherit;
   text-decoration: none;
-  text-transform: uppercase;
   transition-duration: 250ms;
   transition-property: none;
   transition-timing-function: var(--btn-timing-func);
@@ -292,8 +291,8 @@
   --fld-primary-color: rgb(var(--primary-color, 25, 120, 210));
   --fld-timing-func: cubic-bezier(0, 0, 0.2, 1);
 
-  .Button[type="reset"],
-  .Button[type="submit"] {
+  button[type="reset"],
+  button[type="submit"] {
     margin: 0;
     padding: 0.625em 2em;
   }
@@ -339,6 +338,7 @@
       background: none;
       color: currentcolor;
       font: inherit;
+      line-height: normal;
       letter-spacing: inherit;
 
       &::placeholder {
@@ -503,7 +503,8 @@
     }
   }
 
-  &.Outline {
+  &.Outline,
+  &.Standard {
     .InputContainer {
       border-radius: 0.25em;
 
@@ -621,6 +622,58 @@
   }
 
   &.Standard {
+    .InputLabel {
+      display: flex;
+      align-items: center;
+      max-width: none;
+      padding: 0.5em 0.875em;
+      position: relative;
+      font-weight: 500;
+      transition: none;
+      transform: none !important;
+    }
+
+    .InputContainer {
+      .FieldSet {
+        top: 0;
+
+        .Legend {
+          display: none;
+        }
+      }
+    }
+
+    .InputHelper {
+      flex-basis: 100%;
+    }
+
+    &:has(label) {
+      .InputContainer {
+        .Input,
+        .TextArea {
+          padding: 0.5em 0.875em;
+
+          &::placeholder {
+            opacity: 0.75;
+          }
+        }
+
+        .PasswordEye,
+        .Search {
+          top: 0.375em;
+        }
+
+        .FieldSet {
+          top: 0;
+        }
+      }
+    }
+
+    &.Disabled {
+      .InputLabel {
+        opacity: 0.75;
+      }
+    }
   }
 
   &.Underline {
@@ -680,6 +733,11 @@
   }
 }
 
+.Page {
+  margin: 0;
+  padding: 0;
+}
+
 .Section {
   margin: 0;
   padding: 0;
@@ -687,6 +745,7 @@
 
 .Text {
   margin: 0;
+  padding: 0;
   font-style: normal;
 }
 
