@@ -25,35 +25,35 @@
     padding: 1rem;
   }
 
-  h1,
-  h2,
-  h3 {
-    margin: 0;
-  }
-
-  h1 {
-    font-size: 2rem;
-  }
-
-  h2 {
-    font-size: 1.5rem;
-  }
-
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
       monospace;
   }
 
-  a:link,
-  a:visited {
-    text-decoration: none;
+  .Links {
+    ul,
+    ol {
+      margin: 0;
+      padding: 1rem;
 
-    &:not([type]) {
-      color: var(--color);
+      li {
+        max-width: 100%;
+        padding: 0.125em 2em;
+        text-indent: -1.75em;
+
+        a:link,
+        a:visited {
+          text-decoration: none;
+
+          &:not([type]) {
+            color: var(--color);
+          }
+        }
+
+        a:hover {
+          text-decoration: underline dotted;
+        }
+      }
     }
-  }
-
-  a:hover {
-    text-decoration: underline dotted;
   }
 }

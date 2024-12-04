@@ -21,6 +21,11 @@ const LayoutsPage = () => {
               <code>Page</code>
             </a>
           </li>
+          <li>
+            <a href="/layouts/mpage">
+              <code>MPage(Memoized Page)</code>
+            </a>
+          </li>
         </ul>
       </section>
     </div>

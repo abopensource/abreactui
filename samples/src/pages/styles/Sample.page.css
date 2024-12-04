@@ -1,7 +1,9 @@
 .SamplePage {
   .Title {
     h1 {
+      margin: 0;
       font-weight: 100;
+      font-size: 2rem;
 
       code {
         font-style: normal;
@@ -11,20 +13,14 @@
     }
   }
 
-  .Links {
-    ul,
-    ol {
-      margin: 0;
-      padding: 1rem;
-    }
-  }
-
   .Samples {
     padding-bottom: 3rem;
 
     .Sample {
-      h2 {
+      & > h2 {
+        margin: 0;
         font-weight: 100;
+        font-size: 1.5rem;
 
         code {
           padding-right: 0.5rem;
@@ -56,6 +52,10 @@
           border-radius: 0 0 0.5rem 0.5rem;
           background-color: var(--bgcolor);
           color: var(--color);
+
+          h1 {
+            font-size: 2em;
+          }
         }
       }
     }

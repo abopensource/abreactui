@@ -10,13 +10,27 @@ import {
   FormPage,
   FormsPage,
   HomePage,
+  HPage,
   IconButtonPage,
   InputPage,
   LayoutsPage,
+  MArticlePage,
+  MBoxPage,
+  MButtonPage,
+  MContainerPage,
+  MFormPage,
+  MHPage,
+  MIconButtonPage,
+  MInputPage,
+  MPagePage,
+  MPPage,
+  MSectionPage,
+  MSPage,
   PagePage,
+  PPage,
   SamplePage,
   SectionPage,
-  TextPage,
+  SPage,
   TextsPage,
 } from "../pages"
 
@@ -51,8 +65,16 @@ const routes = [
             element: <ButtonPage />,
           },
           {
-            path: "icon-button",
+            path: "mbutton",
+            element: <MButtonPage />,
+          },
+          {
+            path: "iconbutton",
             element: <IconButtonPage />,
+          },
+          {
+            path: "miconbutton",
+            element: <MIconButtonPage />,
           },
         ],
       },
@@ -68,16 +90,32 @@ const routes = [
             element: <ArticlePage />,
           },
           {
+            path: "marticle",
+            element: <MArticlePage />,
+          },
+          {
             path: "box",
             element: <BoxPage />,
+          },
+          {
+            path: "mbox",
+            element: <MBoxPage />,
           },
           {
             path: "container",
             element: <ContainerPage />,
           },
           {
+            path: "mcontainer",
+            element: <MContainerPage />,
+          },
+          {
             path: "section",
             element: <SectionPage />,
+          },
+          {
+            path: "msection",
+            element: <MSectionPage />,
           },
         ],
       },
@@ -93,8 +131,16 @@ const routes = [
             element: <FormPage />,
           },
           {
+            path: "mform",
+            element: <MFormPage />,
+          },
+          {
             path: "input",
             element: <InputPage />,
+          },
+          {
+            path: "minput",
+            element: <MInputPage />,
           },
         ],
       },
@@ -109,6 +155,10 @@ const routes = [
             path: "page",
             element: <PagePage />,
           },
+          {
+            path: "mpage",
+            element: <MPagePage />,
+          },
         ],
       },
       {
@@ -119,8 +169,28 @@ const routes = [
             element: <TextsPage />,
           },
           {
-            path: "text",
-            element: <TextPage />,
+            path: "h",
+            element: <HPage />,
+          },
+          {
+            path: "mh",
+            element: <MHPage />,
+          },
+          {
+            path: "mp",
+            element: <MPPage />,
+          },
+          {
+            path: "ms",
+            element: <MSPage />,
+          },
+          {
+            path: "p",
+            element: <PPage />,
+          },
+          {
+            path: "s",
+            element: <SPage />,
           },
         ],
       },
@@ -134,6 +204,15 @@ const routes = [
  * @module routes/Router
  * @type {import("@remix-run/router").Router}
  */
-const Router = createBrowserRouter(routes)
+const Router = createBrowserRouter(
+  routes.map((route) => {
+    return {
+      children: route.children,
+      element: route.element,
+      errorElement: route.errorElement,
+      path: route.path,
+    }
+  }),
+)
 
 export { Router }
