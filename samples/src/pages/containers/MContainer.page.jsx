@@ -1,23 +1,23 @@
-import { Box, Button } from "abreactui"
+import { Box, Button, MContainer } from "abreactui"
 import React from "react"
 
 import "../styles"
 
 /**
- * `Box` component sample page.
+ * `MContainer` component sample page.
  *
- * @module pages/containers/BoxPage
+ * @module pages/containers/MContainerPage
  * @type {import("react").ReactElement}
  */
-const BoxPage = () => {
-  const refBox = React.useRef()
+const MContainerPage = () => {
+  const refMContainer = React.useRef()
   const [active, setActive] = React.useState(false)
 
   return (
-    <div className="Pages SamplePage BoxPage">
+    <div className="Pages SamplePage MContainerPage">
       <section className="Title">
         <h1>
-          <code>Box</code> samples
+          <code>MContainer</code>(Memoized Container) samples
         </h1>
       </section>
       <section className="Samples">
@@ -26,15 +26,15 @@ const BoxPage = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Box } from "abreactui"
+                {`import { MContainer } from "abreactui"
 
-export const BoxSample = () => {
-  return <Box debug>Box basic sample</Box>
+export const MContainerSample = () => {
+  return <MContainer debug>MContainer basic sample</MContainer>
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Box debug>Box basic sample</Box>
+              <MContainer debug>MContainer basic sample</MContainer>
             </div>
           </div>
         </article>
@@ -45,21 +45,21 @@ export const BoxSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Box } from "abreactui"
+                {`import { MContainer } from "abreactui"
 
-export const BoxSample = () => {
+export const MContainerSample = () => {
   return (
-    <Box align="center" debug>
-      Box align=&quot;center&quot; props sample
-    </Box>
+    <MContainer align="center" debug>
+      MContainer align=&quot;center&quot; props sample
+    </MContainer>
   )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Box align="center" debug>
-                Box align=&quot;center&quot; props sample
-              </Box>
+              <MContainer align="center" debug>
+                MContainer align=&quot;center&quot; props sample
+              </MContainer>
             </div>
           </div>
         </article>
@@ -70,25 +70,25 @@ export const BoxSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Box } from "abreactui"
+                {`import { MContainer } from "abreactui"
 
-export const BoxSample = () => {
+export const MContainerSample = () => {
   return (
     <>
-      <style>{".myBox { color: red; }"}</style>
-      <Box className="myBox" debug>
-        Box className props sample
-      </Box>
+      <style>{".myContainer { color: red; }"}</style>
+      <MContainer className="myContainer" debug>
+        MContainer className props sample
+      </MContainer>
     </>
   )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <style>{".myBox { color: red; }"}</style>
-              <Box className="myBox" debug>
-                Box className props sample
-              </Box>
+              <style>{".myContainer { color: red; }"}</style>
+              <MContainer className="myContainer" debug>
+                MContainer className props sample
+              </MContainer>
             </div>
           </div>
         </article>
@@ -99,18 +99,18 @@ export const BoxSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Box, Button } from "abreactui"
+                {`import { Box, Button, MContainer } from "abreactui"
 import React from "react"
 
-export const BoxSample = () => {
-  const refBox = React.useRef()
+export const MContainerSample = () => {
+  const refMContainer = React.useRef()
   const [active, setActive] = React.useState(false)
 
   return (
     <Box style={{ textAlign: "center" }}>
-      <Box
+      <MContainer
         debug
-        ref={refBox}
+        ref={refMContainer}
         style={{
           margin: "1rem",
           padding: "1rem",
@@ -118,22 +118,22 @@ export const BoxSample = () => {
           borderRadius: "0.5rem",
         }}
       >
-        Box ref props sample
-      </Box>
+        MContainer ref props sample
+      </MContainer>
       <Button
         onClick={() => {
-          const box = refBox.current
+          const article = refMContainer.current
           if (!active) {
-            box.style.borderColor = "rgba(0, 0, 0, 0.25)"
-            box.style.backgroundColor = "rgba(150, 200, 50, 0.125)"
+            article.style.borderColor = "rgba(0, 0, 0, 0.25)"
+            article.style.backgroundColor = "rgba(150, 200, 50, 0.25)"
           } else {
-            box.style.borderColor = "transparent"
-            box.style.backgroundColor = ""
+            article.style.borderColor = "transparent"
+            article.style.backgroundColor = ""
           }
           setActive(!active)
         }}
       >
-        {active ? "Inactive" : "Active"} box
+        {active ? "Inactive" : "Active"} container
       </Button>
     </Box>
   )
@@ -142,9 +142,9 @@ export const BoxSample = () => {
             </pre>
             <div className="Result">
               <Box style={{ textAlign: "center" }}>
-                <Box
+                <MContainer
                   debug
-                  ref={refBox}
+                  ref={refMContainer}
                   style={{
                     margin: "1rem",
                     padding: "1rem",
@@ -152,22 +152,22 @@ export const BoxSample = () => {
                     borderRadius: "0.5rem",
                   }}
                 >
-                  Box ref props sample
-                </Box>
+                  MContainer ref props sample
+                </MContainer>
                 <Button
                   onClick={() => {
-                    const box = refBox.current
+                    const article = refMContainer.current
                     if (!active) {
-                      box.style.borderColor = "rgba(0, 0, 0, 0.25)"
-                      box.style.backgroundColor = "rgba(150, 200, 50, 0.125)"
+                      article.style.borderColor = "rgba(0, 0, 0, 0.25)"
+                      article.style.backgroundColor = "rgba(150, 200, 50, 0.25)"
                     } else {
-                      box.style.borderColor = "transparent"
-                      box.style.backgroundColor = ""
+                      article.style.borderColor = "transparent"
+                      article.style.backgroundColor = ""
                     }
                     setActive(!active)
                   }}
                 >
-                  {active ? "Inactive" : "Active"} box
+                  {active ? "Inactive" : "Active"} container
                 </Button>
               </Box>
             </div>
@@ -180,21 +180,21 @@ export const BoxSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Box } from "abreactui"
+                {`import { MContainer } from "abreactui"
 
-export const BoxSample = () => {
+export const MContainerSample = () => {
   return (
-    <Box debug tag="p">
-      Box tag props sample
-    </Box>
+    <MContainer debug tag="section">
+      MContainer tag props sample
+    </MContainer>
   )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Box debug tag="p">
-                Box tag props sample
-              </Box>
+              <MContainer debug tag="section">
+                MContainer tag props sample
+              </MContainer>
             </div>
           </div>
         </article>
@@ -203,4 +203,4 @@ export const BoxSample = () => {
   )
 }
 
-export { BoxPage }
+export { MContainerPage }

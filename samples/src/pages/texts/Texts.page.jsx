@@ -17,8 +17,33 @@ const TextsPage = () => {
       <section className="Links">
         <ul>
           <li>
-            <a href="/texts/text">
-              <code>Text</code>
+            <a href="/texts/h">
+              <code>H(Heading)</code>
+            </a>
+          </li>
+          <li>
+            <a href="/texts/mh">
+              <code>MH(Memoized Heading)</code>
+            </a>
+          </li>
+          <li>
+            <a href="/texts/p">
+              <code>P(Paragraph)</code>
+            </a>
+          </li>
+          <li>
+            <a href="/texts/mp">
+              <code>MP(Memoized Paragraph)</code>
+            </a>
+          </li>
+          <li>
+            <a href="/texts/s">
+              <code>S(Span)</code>
+            </a>
+          </li>
+          <li>
+            <a href="/texts/ms">
+              <code>MS(Memoized Span)</code>
             </a>
           </li>
         </ul>

@@ -1,23 +1,23 @@
-import { Box, Button, Text } from "abreactui"
+import { Box, Button, P } from "abreactui"
 import React from "react"
 
 import "../styles"
 
 /**
- * `Text` component sample page.
+ * `P` component sample page.
  *
- * @module pages/texts/TextPage
+ * @module pages/texts/PPage
  * @type {import("react").ReactElement}
  */
-const TextPage = () => {
-  const refText = React.useRef()
+const PPage = () => {
+  const refP = React.useRef()
   const [active, setActive] = React.useState(false)
 
   return (
-    <div className="Pages SamplePage TextPage">
+    <div className="Pages SamplePage SPage">
       <section className="Title">
         <h1>
-          <code>Text</code> samples
+          <code>P</code>(Paragraph) samples
         </h1>
       </section>
       <section className="Samples">
@@ -26,15 +26,15 @@ const TextPage = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Text } from "abreactui"
+                {`import { P } from "abreactui"
 
-export const TextSample = () => {
-  return <Text>Text basic sample</Text>
+export const PSample = () => {
+  return <P debug>P basic sample</P>
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Text>Text basic sample</Text>
+              <P debug>P basic sample</P>
             </div>
           </div>
         </article>
@@ -45,21 +45,25 @@ export const TextSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Text } from "abreactui"
+                {`import { P } from "abreactui"
 
-export const TextSample = () => {
+export const PSample = () => {
   return (
     <>
-      <style>{".myText { color: red; }"}</style>
-      <Text className="myText">Text className props sample</Text>
+      <style>{".myP { color: red; }"}</style>
+      <P className="myP" debug>
+        P className props sample
+      </P>
     </>
   )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <style>{".myText { color: red; }"}</style>
-              <Text className="myText">Text className props sample</Text>
+              <style>{".myP { color: red; }"}</style>
+              <P className="myP" debug>
+                P className props sample
+              </P>
             </div>
           </div>
         </article>
@@ -70,22 +74,22 @@ export const TextSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Box, Button, Text } from "abreactui"
+                {`import { Box, Button, P } from "abreactui"
 import React from "react"
 
-export const TextSample = () => {
-  const refText = React.useRef()
+export const PSample = () => {
+  const refS = React.useRef()
   const [active, setActive] = React.useState(false)
 
   return (
     <>
       <Box style={{ margin: "1rem", textAlign: "center" }}>
-        <Text ref={refText}>Text ref props sample</Text>
+        <P ref={refP} debug>P ref props sample</P>
       </Box>
       <Box style={{ margin: "1rem", textAlign: "center" }}>
         <Button
           onClick={() => {
-            const text = refText.current
+            const text = refP.current
             text.style.color = !active ? "red" : ""
             setActive(!active)
           }}
@@ -100,12 +104,14 @@ export const TextSample = () => {
             </pre>
             <div className="Result">
               <Box style={{ margin: "1rem", textAlign: "center" }}>
-                <Text ref={refText}>Text ref props sample</Text>
+                <P ref={refP} debug>
+                  P ref props sample
+                </P>
               </Box>
               <Box style={{ margin: "1rem", textAlign: "center" }}>
                 <Button
                   onClick={() => {
-                    const text = refText.current
+                    const text = refP.current
                     text.style.color = !active ? "red" : ""
                     setActive(!active)
                   }}
@@ -116,28 +122,9 @@ export const TextSample = () => {
             </div>
           </div>
         </article>
-        <article className="Sample">
-          <h2>
-            <code>tag</code> props
-          </h2>
-          <div className="Example">
-            <pre>
-              <code>
-                {`import { Text } from "abreactui"
-
-export const TextSample = () => {
-  return <Text tag="p">Text tag props sample</Text>
-}`}
-              </code>
-            </pre>
-            <div className="Result">
-              <Text tag="p">Text tag props sample</Text>
-            </div>
-          </div>
-        </article>
       </section>
     </div>
   )
 }
 
-export { TextPage }
+export { PPage }

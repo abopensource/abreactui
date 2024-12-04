@@ -1,23 +1,23 @@
-import { Box, Button } from "abreactui"
+import { Box, Button, MSection } from "abreactui"
 import React from "react"
 
 import "../styles"
 
 /**
- * `Box` component sample page.
+ * `MSection` component sample page.
  *
- * @module pages/containers/BoxPage
+ * @module pages/containers/MSectionPage
  * @type {import("react").ReactElement}
  */
-const BoxPage = () => {
-  const refBox = React.useRef()
+const MSectionPage = () => {
+  const refMSection = React.useRef()
   const [active, setActive] = React.useState(false)
 
   return (
-    <div className="Pages SamplePage BoxPage">
+    <div className="Pages SamplePage MSectionPage">
       <section className="Title">
         <h1>
-          <code>Box</code> samples
+          <code>MSection</code>(Memoized Section) samples
         </h1>
       </section>
       <section className="Samples">
@@ -26,15 +26,15 @@ const BoxPage = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Box } from "abreactui"
+                {`import { MSection } from "abreactui"
 
-export const BoxSample = () => {
-  return <Box debug>Box basic sample</Box>
+export const MSectionSample = () => {
+  return <MSection debug>MSection basic sample</MSection>
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Box debug>Box basic sample</Box>
+              <MSection debug>MSection basic sample</MSection>
             </div>
           </div>
         </article>
@@ -45,21 +45,21 @@ export const BoxSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Box } from "abreactui"
+                {`import { MSection } from "abreactui"
 
-export const BoxSample = () => {
+export const MSectionSample = () => {
   return (
-    <Box align="center" debug>
-      Box align=&quot;center&quot; props sample
-    </Box>
+    <MSection align="center" debug>
+      MSection align=&quot;center&quot; props sample
+    </MSection>
   )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Box align="center" debug>
-                Box align=&quot;center&quot; props sample
-              </Box>
+              <MSection align="center" debug>
+                MSection align=&quot;center&quot; props sample
+              </MSection>
             </div>
           </div>
         </article>
@@ -70,25 +70,25 @@ export const BoxSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Box } from "abreactui"
+                {`import { MSection } from "abreactui"
 
-export const BoxSample = () => {
+export const MSectionSample = () => {
   return (
     <>
-      <style>{".myBox { color: red; }"}</style>
-      <Box className="myBox" debug>
-        Box className props sample
-      </Box>
+      <style>{".mySection { color: red; }"}</style>
+      <MSection className="mySection" debug>
+        MSection className props sample
+      </MSection>
     </>
   )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <style>{".myBox { color: red; }"}</style>
-              <Box className="myBox" debug>
-                Box className props sample
-              </Box>
+              <style>{".mySection { color: red; }"}</style>
+              <MSection className="mySection" debug>
+                MSection className props sample
+              </MSection>
             </div>
           </div>
         </article>
@@ -99,18 +99,18 @@ export const BoxSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Box, Button } from "abreactui"
+                {`import { Box, Button, MSection } from "abreactui"
 import React from "react"
 
-export const BoxSample = () => {
-  const refBox = React.useRef()
+export const MSectionSample = () => {
+  const refMSection = React.useRef()
   const [active, setActive] = React.useState(false)
 
   return (
     <Box style={{ textAlign: "center" }}>
-      <Box
+      <MSection
         debug
-        ref={refBox}
+        ref={refMSection}
         style={{
           margin: "1rem",
           padding: "1rem",
@@ -118,22 +118,22 @@ export const BoxSample = () => {
           borderRadius: "0.5rem",
         }}
       >
-        Box ref props sample
-      </Box>
+        MSection ref props sample
+      </MSection>
       <Button
         onClick={() => {
-          const box = refBox.current
+          const article = refMSection.current
           if (!active) {
-            box.style.borderColor = "rgba(0, 0, 0, 0.25)"
-            box.style.backgroundColor = "rgba(150, 200, 50, 0.125)"
+            article.style.borderColor = "rgba(0, 0, 0, 0.25)"
+            article.style.backgroundColor = "rgba(150, 200, 50, 0.25)"
           } else {
-            box.style.borderColor = "transparent"
-            box.style.backgroundColor = ""
+            article.style.borderColor = "transparent"
+            article.style.backgroundColor = ""
           }
           setActive(!active)
         }}
       >
-        {active ? "Inactive" : "Active"} box
+        {active ? "Inactive" : "Active"} section
       </Button>
     </Box>
   )
@@ -142,9 +142,9 @@ export const BoxSample = () => {
             </pre>
             <div className="Result">
               <Box style={{ textAlign: "center" }}>
-                <Box
+                <MSection
                   debug
-                  ref={refBox}
+                  ref={refMSection}
                   style={{
                     margin: "1rem",
                     padding: "1rem",
@@ -152,22 +152,22 @@ export const BoxSample = () => {
                     borderRadius: "0.5rem",
                   }}
                 >
-                  Box ref props sample
-                </Box>
+                  MSection ref props sample
+                </MSection>
                 <Button
                   onClick={() => {
-                    const box = refBox.current
+                    const article = refMSection.current
                     if (!active) {
-                      box.style.borderColor = "rgba(0, 0, 0, 0.25)"
-                      box.style.backgroundColor = "rgba(150, 200, 50, 0.125)"
+                      article.style.borderColor = "rgba(0, 0, 0, 0.25)"
+                      article.style.backgroundColor = "rgba(150, 200, 50, 0.25)"
                     } else {
-                      box.style.borderColor = "transparent"
-                      box.style.backgroundColor = ""
+                      article.style.borderColor = "transparent"
+                      article.style.backgroundColor = ""
                     }
                     setActive(!active)
                   }}
                 >
-                  {active ? "Inactive" : "Active"} box
+                  {active ? "Inactive" : "Active"} section
                 </Button>
               </Box>
             </div>
@@ -180,21 +180,21 @@ export const BoxSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Box } from "abreactui"
+                {`import { MSection } from "abreactui"
 
-export const BoxSample = () => {
+export const MSectionSample = () => {
   return (
-    <Box debug tag="p">
-      Box tag props sample
-    </Box>
+    <MSection debug tag="div">
+      MSection tag props sample
+    </MSection>
   )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Box debug tag="p">
-                Box tag props sample
-              </Box>
+              <MSection debug tag="div">
+                MSection tag props sample
+              </MSection>
             </div>
           </div>
         </article>
@@ -203,4 +203,4 @@ export const BoxSample = () => {
   )
 }
 
-export { BoxPage }
+export { MSectionPage }

@@ -1,23 +1,23 @@
-import { Box, Button } from "abreactui"
+import { MArticle, Box, Button } from "abreactui"
 import React from "react"
 
 import "../styles"
 
 /**
- * `Box` component sample page.
+ * `MArticle` component sample page.
  *
- * @module pages/containers/BoxPage
+ * @module pages/containers/MArticlePage
  * @type {import("react").ReactElement}
  */
-const BoxPage = () => {
-  const refBox = React.useRef()
+const MArticlePage = () => {
+  const refMArticle = React.useRef()
   const [active, setActive] = React.useState(false)
 
   return (
-    <div className="Pages SamplePage BoxPage">
+    <div className="Pages SamplePage MArticlePage">
       <section className="Title">
         <h1>
-          <code>Box</code> samples
+          <code>MArticle</code>(Memoized Article) samples
         </h1>
       </section>
       <section className="Samples">
@@ -26,15 +26,15 @@ const BoxPage = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Box } from "abreactui"
+                {`import { MArticle } from "abreactui"
 
-export const BoxSample = () => {
-  return <Box debug>Box basic sample</Box>
+export const MArticleSample = () => {
+  return <MArticle debug>MArticle basic sample</MArticle>
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Box debug>Box basic sample</Box>
+              <MArticle debug>MArticle basic sample</MArticle>
             </div>
           </div>
         </article>
@@ -45,21 +45,21 @@ export const BoxSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Box } from "abreactui"
+                {`import { MArticle } from "abreactui"
 
-export const BoxSample = () => {
+export const MArticleSample = () => {
   return (
-    <Box align="center" debug>
-      Box align=&quot;center&quot; props sample
-    </Box>
+    <MArticle align="center" debug>
+      MArticle align=&quot;center&quot; props sample
+    </MArticle>
   )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Box align="center" debug>
-                Box align=&quot;center&quot; props sample
-              </Box>
+              <MArticle align="center" debug>
+                MArticle align=&quot;center&quot; props sample
+              </MArticle>
             </div>
           </div>
         </article>
@@ -70,25 +70,25 @@ export const BoxSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Box } from "abreactui"
+                {`import { MArticle } from "abreactui"
 
-export const BoxSample = () => {
+export const MArticleSample = () => {
   return (
     <>
-      <style>{".myBox { color: red; }"}</style>
-      <Box className="myBox" debug>
-        Box className props sample
-      </Box>
+      <style>{".myArticle { color: red; }"}</style>
+      <MArticle className="myArticle" debug>
+        MArticle className props sample
+      </MArticle>
     </>
   )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <style>{".myBox { color: red; }"}</style>
-              <Box className="myBox" debug>
-                Box className props sample
-              </Box>
+              <style>{".myArticle { color: red; }"}</style>
+              <MArticle className="myArticle" debug>
+                MArticle className props sample
+              </MArticle>
             </div>
           </div>
         </article>
@@ -99,18 +99,18 @@ export const BoxSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Box, Button } from "abreactui"
+                {`import { MArticle, Box, Button } from "abreactui"
 import React from "react"
 
-export const BoxSample = () => {
-  const refBox = React.useRef()
+export const MArticleSample = () => {
+  const refMArticle = React.useRef()
   const [active, setActive] = React.useState(false)
 
   return (
     <Box style={{ textAlign: "center" }}>
-      <Box
+      <MArticle
         debug
-        ref={refBox}
+        ref={refMArticle}
         style={{
           margin: "1rem",
           padding: "1rem",
@@ -118,22 +118,22 @@ export const BoxSample = () => {
           borderRadius: "0.5rem",
         }}
       >
-        Box ref props sample
-      </Box>
+        MArticle ref props sample
+      </MArticle>
       <Button
         onClick={() => {
-          const box = refBox.current
+          const article = refMArticle.current
           if (!active) {
-            box.style.borderColor = "rgba(0, 0, 0, 0.25)"
-            box.style.backgroundColor = "rgba(150, 200, 50, 0.125)"
+            article.style.borderColor = "rgba(0, 0, 0, 0.25)"
+            article.style.backgroundColor = "rgba(150, 200, 50, 0.25)"
           } else {
-            box.style.borderColor = "transparent"
-            box.style.backgroundColor = ""
+            article.style.borderColor = "transparent"
+            article.style.backgroundColor = ""
           }
           setActive(!active)
         }}
       >
-        {active ? "Inactive" : "Active"} box
+        {active ? "Inactive" : "Active"} article
       </Button>
     </Box>
   )
@@ -142,9 +142,9 @@ export const BoxSample = () => {
             </pre>
             <div className="Result">
               <Box style={{ textAlign: "center" }}>
-                <Box
+                <MArticle
                   debug
-                  ref={refBox}
+                  ref={refMArticle}
                   style={{
                     margin: "1rem",
                     padding: "1rem",
@@ -152,22 +152,22 @@ export const BoxSample = () => {
                     borderRadius: "0.5rem",
                   }}
                 >
-                  Box ref props sample
-                </Box>
+                  MArticle ref props sample
+                </MArticle>
                 <Button
                   onClick={() => {
-                    const box = refBox.current
+                    const article = refMArticle.current
                     if (!active) {
-                      box.style.borderColor = "rgba(0, 0, 0, 0.25)"
-                      box.style.backgroundColor = "rgba(150, 200, 50, 0.125)"
+                      article.style.borderColor = "rgba(0, 0, 0, 0.25)"
+                      article.style.backgroundColor = "rgba(150, 200, 50, 0.25)"
                     } else {
-                      box.style.borderColor = "transparent"
-                      box.style.backgroundColor = ""
+                      article.style.borderColor = "transparent"
+                      article.style.backgroundColor = ""
                     }
                     setActive(!active)
                   }}
                 >
-                  {active ? "Inactive" : "Active"} box
+                  {active ? "Inactive" : "Active"} article
                 </Button>
               </Box>
             </div>
@@ -180,21 +180,21 @@ export const BoxSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Box } from "abreactui"
+                {`import { MArticle } from "abreactui"
 
-export const BoxSample = () => {
+export const MArticleSample = () => {
   return (
-    <Box debug tag="p">
-      Box tag props sample
-    </Box>
+    <MArticle debug tag="div">
+      MArticle tag props sample
+    </MArticle>
   )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Box debug tag="p">
-                Box tag props sample
-              </Box>
+              <MArticle debug tag="div">
+                MArticle tag props sample
+              </MArticle>
             </div>
           </div>
         </article>
@@ -203,4 +203,4 @@ export const BoxSample = () => {
   )
 }
 
-export { BoxPage }
+export { MArticlePage }

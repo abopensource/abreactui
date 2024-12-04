@@ -1,16 +1,16 @@
-import { Box, Button, Form, Input } from "abreactui"
+import { Box, Button, MForm, Input } from "abreactui"
 import React from "react"
 
 import "../styles"
 
 /**
- * `Form` component sample page.
+ * `MForm` component sample page.
  *
- * @module pages/forms/FormPage
+ * @module pages/forms/MFormPage
  * @type {import("react").ReactElement}
  */
-const FormPage = () => {
-  const refForm = React.useRef()
+const MFormPage = () => {
+  const refMForm = React.useRef()
   const [active, setActive] = React.useState(false)
 
   const fieldsSignIn = {
@@ -41,10 +41,10 @@ const FormPage = () => {
   }
 
   return (
-    <div className="Pages SamplePage FormPage">
+    <div className="Pages SamplePage MFormPage">
       <section className="Title">
         <h1>
-          <code>Form</code> samples
+          <code>MForm</code> samples
         </h1>
       </section>
       <section className="Samples">
@@ -53,21 +53,21 @@ const FormPage = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Form, Input } from "abreactui"
+                {`import { MForm, Input } from "abreactui"
 
 export const FormSample = () => {
   return (
-    <Form debug>
+    <MForm debug>
       <Input />
-    </Form>
+    </MForm>
   )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Form debug>
+              <MForm debug>
                 <Input />
-              </Form>
+              </MForm>
             </div>
           </div>
         </article>
@@ -78,11 +78,11 @@ export const FormSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Form, Input } from "abreactui"
+                {`import { MForm, Input } from "abreactui"
 
 export const FormSample = () => {
   return (
-    <Form debug onSubmit={(values) => console.log(values)}>
+    <MForm debug onSubmit={(values) => console.log(values)}>
       <Input id="femail" label="Email" type="email" />
       <Input
         autoComplete="off"
@@ -91,13 +91,13 @@ export const FormSample = () => {
         type="password"
       />
       <Input type="submit" value="SignIn" />
-    </Form>
+    </MForm>
   )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Form debug onSubmit={(values) => console.log(values)}>
+              <MForm debug onSubmit={(values) => console.log(values)}>
                 <Input id="femail" label="Email" type="email" />
                 <Input
                   autoComplete="off"
@@ -106,7 +106,7 @@ export const FormSample = () => {
                   type="password"
                 />
                 <Input type="submit" value="SignIn" />
-              </Form>
+              </MForm>
             </div>
           </div>
         </article>
@@ -117,7 +117,7 @@ export const FormSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Form, Input } from "abreactui"
+                {`import { MForm, Input } from "abreactui"
 
 export const FormSample = () => {
   return (
@@ -125,9 +125,9 @@ export const FormSample = () => {
       <style>
         {".myForm { padding: 2em; background: rgba(0, 0, 0, 0.025); }"}
       </style>
-      <Form debug className="myForm">
+      <MForm debug className="myForm">
         <Input label="First Name" />
-      </Form>
+      </MForm>
     </>
   )
 }`}
@@ -137,9 +137,9 @@ export const FormSample = () => {
               <style>
                 {".myForm { padding: 2em; background: rgba(0, 0, 0, 0.025); }"}
               </style>
-              <Form debug className="myForm">
+              <MForm debug className="myForm">
                 <Input label="First Name" />
-              </Form>
+              </MForm>
             </div>
           </div>
         </article>
@@ -150,7 +150,7 @@ export const FormSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Form } from "abreactui"
+                {`import { MForm } from "abreactui"
 
 export const FormSample = () => {
   const fieldsSignIn = {
@@ -181,7 +181,7 @@ export const FormSample = () => {
   }
 
   return (
-    <Form
+    <MForm
       debug
       fields={fieldsSignIn}
       onSubmit={(values) => console.log(values)}
@@ -191,7 +191,7 @@ export const FormSample = () => {
               </code>
             </pre>
             <div className="Result">
-              <Form
+              <MForm
                 debug
                 fields={fieldsSignIn}
                 onSubmit={(values) => console.log(values)}
@@ -206,16 +206,16 @@ export const FormSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Box, Button, Form, Input } from "abreactui"
+                {`import { Box, Button, MForm, Input } from "abreactui"
 import React from "react"
 
 export const FormSample = () => {
-  const refForm = React.useRef()
+  const refMForm = React.useRef()
   const [active, setActive] = React.useState(false)
 
   return (
     <Box align="center">
-      <Form debug onSubmit={() => {}} ref={refForm} style={{ padding: "2em" }}>
+      <MForm debug onSubmit={() => {}} ref={refMForm} style={{ padding: "2em" }}>
         <Input debug id="remail" label="Email" type="email" />
         <Input
           autoComplete="off"
@@ -224,10 +224,10 @@ export const FormSample = () => {
           type="password"
         />
         <Input type="submit" value="SignIn" />
-      </Form>
+      </MForm>
       <Button
         onClick={() => {
-          const form = refForm.current.form
+          const form = refMForm.current.form
           if (!active) {
             form.style.backgroundColor = "rgba(25, 120, 210, 0.1)"
           } else {
@@ -236,7 +236,7 @@ export const FormSample = () => {
           setActive(!active)
         }}
       >
-        {active ? "Inactive" : "Active"} Form
+        {active ? "Inactive" : "Active"} MForm
       </Button>
     </Box>
   )
@@ -245,10 +245,10 @@ export const FormSample = () => {
             </pre>
             <div className="Result">
               <Box align="center">
-                <Form
+                <MForm
                   debug
                   onSubmit={() => {}}
-                  ref={refForm}
+                  ref={refMForm}
                   style={{ padding: "2em" }}
                 >
                   <Input debug id="remail" label="Email" type="email" />
@@ -259,10 +259,10 @@ export const FormSample = () => {
                     type="password"
                   />
                   <Input type="submit" value="SignIn" />
-                </Form>
+                </MForm>
                 <Button
                   onClick={() => {
-                    const form = refForm.current.form
+                    const form = refMForm.current.form
                     if (!active) {
                       form.style.backgroundColor = "rgba(25, 120, 210, 0.1)"
                     } else {
@@ -271,7 +271,7 @@ export const FormSample = () => {
                     setActive(!active)
                   }}
                 >
-                  {active ? "Inactive" : "Active"} Form
+                  {active ? "Inactive" : "Active"} MForm
                 </Button>
               </Box>
             </div>
@@ -282,4 +282,4 @@ export const FormSample = () => {
   )
 }
 
-export { FormPage }
+export { MFormPage }

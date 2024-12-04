@@ -29,12 +29,12 @@ const SectionPage = () => {
                 {`import { Section } from "abreactui"
 
 export const SectionSample = () => {
-  return <Section>Section basic sample</Section>
+  return <Section debug>Section basic sample</Section>
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Section>Section basic sample</Section>
+              <Section debug>Section basic sample</Section>
             </div>
           </div>
         </article>
@@ -48,12 +48,16 @@ export const SectionSample = () => {
                 {`import { Section } from "abreactui"
 
 export const SectionSample = () => {
-  return <Section align="center">Section align=&quot;center&quot; props sample</Section>
+  return (
+    <Section align="center" debug>
+      Section align=&quot;center&quot; props sample
+    </Section>
+  )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Section align="center">
+              <Section align="center" debug>
                 Section align=&quot;center&quot; props sample
               </Section>
             </div>
@@ -72,7 +76,9 @@ export const SectionSample = () => {
   return (
     <>
       <style>{".mySection { color: red; }"}</style>
-      <Section className="mySection">Section className props sample</Section>
+      <Section className="mySection" debug>
+        Section className props sample
+      </Section>
     </>
   )
 }`}
@@ -80,7 +86,7 @@ export const SectionSample = () => {
             </pre>
             <div className="Result">
               <style>{".mySection { color: red; }"}</style>
-              <Section className="mySection">
+              <Section className="mySection" debug>
                 Section className props sample
               </Section>
             </div>
@@ -103,6 +109,7 @@ export const SectionSample = () => {
   return (
     <Box style={{ textAlign: "center" }}>
       <Section
+        debug
         ref={refSection}
         style={{
           margin: "1rem",
@@ -136,6 +143,7 @@ export const SectionSample = () => {
             <div className="Result">
               <Box style={{ textAlign: "center" }}>
                 <Section
+                  debug
                   ref={refSection}
                   style={{
                     margin: "1rem",
@@ -175,12 +183,18 @@ export const SectionSample = () => {
                 {`import { Section } from "abreactui"
 
 export const SectionSample = () => {
-  return <Section tag="div">Section tag props sample</Section>
+  return (
+    <Section debug tag="div">
+      Section tag props sample
+    </Section>
+  )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Section tag="div">Section tag props sample</Section>
+              <Section debug tag="div">
+                Section tag props sample
+              </Section>
             </div>
           </div>
         </article>

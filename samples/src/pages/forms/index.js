@@ -1,3 +1,5 @@
 export * from "./Form.page"
 export * from "./Forms.page"
 export * from "./Input.page"
+export * from "./MForm.page"
+export * from "./MInput.page"
