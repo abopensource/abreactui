@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 import React from "react"
 
-import { createElement, style } from "../"
+import { createElement, log, style } from "../"
 
 /**
  * Returns after created a container element(JSX element) for the ripple effect on the button element.
@@ -72,31 +72,50 @@ const effectButtonRipple = (event) => {
  *
  * @module Button
  * @type {import("react").ForwardRefExoticComponent}
- * @param {import("react").ComponentProps} [props] `React.ComponentProps` passed to React component.
- * @param {import("react").ReactNode} [props.children] Child nodes to include in the button element to be created.
- * @param {String} [props.className] Stylesheet class name to apply to the button element to be created.
- * @param {Boolean} [props.disabled] Whether the button element is disabled.
- * @param {String} [props.href] URL to link to when the button is clicked. If defined, `a`(`HTMLLinkElement`) will be used as the root node.
- * @param {import("react").ReactNode} [props.iconEnd] Icon element placed after the `children`.
- * @param {import("react").ReactNode} [props.iconStart] Icon element placed before the `children`.
- * @param {EventListener} [props.onBlur] `EventListener` to execute when the button element has lost focus.
- * @param {EventListener} [props.onClick] `EventListener` to execute when the button element on click.
- * @param {EventListener} [props.onFocus] `EventListener` to execute when the button element has received focus.
- * @param {EventListener} [props.onMouseOut] `EventListener` to execute when the mouse(cursor) leaves at the button element.
- * @param {String} [props.styled="fill"] Button style type.
+ * @param {import("react").ComponentProps} [Props] `React.ComponentProps` passed to React component.
+ * @param {import("react").ReactNode} [Props.children] Child nodes to include in the button element to be created.
+ * @param {String} [Props.className] Stylesheet class name to apply to the button element to be created.
+ * @param {Boolean} [Props.debug=false] Whether to enable debug logs.
+ * @param {Boolean} [Props.disabled] Whether the button element is disabled.
+ * @param {String} [Props.href] URL to link to when the button is clicked. If defined, `a`(`HTMLLinkElement`) will be used as the root node.
+ * @param {import("react").ReactNode} [Props.iconEnd] Icon element placed after the `children`.
+ * @param {import("react").ReactNode} [Props.iconStart] Icon element placed before the `children`.
+ * @param {EventListener} [Props.onBlur] `EventListener` to execute when the button element has lost focus.
+ * @param {EventListener} [Props.onClick] `EventListener` to execute when the button element on click.
+ * @param {EventListener} [Props.onFocus] `EventListener` to execute when the button element has received focus.
+ * @param {EventListener} [Props.onMouseOut] `EventListener` to execute when the mouse(cursor) leaves at the button element.
+ * @param {String} [Props.styled="fill"] Button style type.
  * "fill"(default) | "outline" | "underline" | "text"
- * @param {String} [props.tag="button"] HTML tag to use for the button element to be created.
+ * @param {String} [Props.tag="button"] HTML tag to use for the button element to be created.
  * "a" | "button"(default)
- * @param {String} [props.type="button"] Button element type.
+ * @param {String} [Props.type="button"] Button element type.
  * "button"(default) | "reset" | "submit"
  * @param {import("react").ForwardedRef} [forwardedRef] Object or function for use by referencing a component that will be created from a parent component.
  * @returns {import("react").ReactElement} Returns the created button element(JSX element).
  */
-const Button = React.forwardRef((props, forwardedRef) => {
-  const { children, iconEnd, iconStart, ...propsEC } = props
-  const { className, disabled, styled = "fill", ...propsES } = propsEC
-  const { href, tag = "button", type = "button", ...propsET } = propsES
-  const { onBlur, onClick, onFocus, onMouseOut, ...propsOther } = propsET
+const Button = React.forwardRef((Props, forwardedRef) => {
+  const {
+    children,
+    className,
+    debug = false,
+    disabled,
+    href,
+    iconEnd,
+    iconStart,
+    onBlur,
+    onClick,
+    onFocus,
+    onMouseOut,
+    styled = "fill",
+    tag = "button",
+    type = "button",
+    ...propsOther
+  } = Props
+  const _tag = `[${log._tag}][Button]`
+  if (debug) {
+    log.debug(`${_tag}() Props: %o`, Props)
+    forwardedRef && log.debug(`${_tag}() forwardedRef: %o`, forwardedRef)
+  }
 
   const childrenButton = [children]
   iconEnd && childrenButton.push(createIcon(iconEnd, "IconEnd"))
@@ -108,45 +127,56 @@ const Button = React.forwardRef((props, forwardedRef) => {
   disabled && styles.push(style["Disabled"])
   className && styles.push(className)
 
-  const propsButton = { ...propsOther, className: styles.join(" ") }
-  disabled && (propsButton.disabled = true)
-  href && (propsButton.href = href)
-  forwardedRef && (propsButton.ref = forwardedRef)
-  propsButton.type = type
+  const props = { ...propsOther, className: styles.join(" ") }
+  disabled && (props.disabled = true)
+  href && (props.href = href)
+  forwardedRef && (props.ref = forwardedRef)
+  props.type = type
 
-  propsButton.onBlur = (event) => {
+  props.onBlur = (event) => {
+    debug && log.debug(`${_tag} onBlur event: %o`, event)
+
     effectButtonRipple(event)
     onBlur && onBlur(event)
   }
 
-  propsButton.onClick = (event) => {
+  props.onClick = (event) => {
+    debug && log.debug(`${_tag} onClick event: %o`, event)
+
     effectButtonRipple(event)
     onClick && onClick(event)
   }
 
-  propsButton.onFocus = (event) => {
+  props.onFocus = (event) => {
+    debug && log.debug(`${_tag} onFocus event: %o`, event)
+
     effectButtonRipple(event)
     onFocus && onFocus(event)
   }
 
-  propsButton.onMouseOut = (event) => {
+  props.onMouseOut = (event) => {
+    debug && log.debug(`${_tag} onMouseOut event: %o`, event)
+
     effectButtonRipple(event)
     onMouseOut && onMouseOut(event)
   }
 
   return createElement({
     children: childrenButton,
-    props: propsButton,
-    tag:
-      href ? "a"
-      : tag ? tag
-      : "button",
+    props,
+    tag: href ? "a" : tag,
   })
 })
+const MButton = React.memo(
+  React.forwardRef((props, forwardedRef) => (
+    <Button {...props} ref={forwardedRef} />
+  )),
+)
 Button.displayName = "Button"
 Button.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  debug: PropTypes.bool,
   disabled: PropTypes.bool,
   href: PropTypes.string,
   iconEnd: PropTypes.node,
@@ -160,4 +190,4 @@ Button.propTypes = {
   type: PropTypes.oneOf(["button", "reset", "submit"]),
 }
 
-export { Button }
+export { Button, MButton }

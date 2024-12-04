@@ -23,6 +23,7 @@ const createElement = ({ children, props, tag }) =>
  * @module utils/log
  */
 const log = {
+  _tag: "ABReactUI",
   /**
    * Debug log output.
    *
