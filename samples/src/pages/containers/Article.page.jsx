@@ -29,12 +29,12 @@ const ArticlePage = () => {
                 {`import { Article } from "abreactui"
 
 export const ArticleSample = () => {
-  return <Article>Article basic sample</Article>
+  return <Article debug>Article basic sample</Article>
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Article>Article basic sample</Article>
+              <Article debug>Article basic sample</Article>
             </div>
           </div>
         </article>
@@ -48,12 +48,16 @@ export const ArticleSample = () => {
                 {`import { Article } from "abreactui"
 
 export const ArticleSample = () => {
-  return <Article align="center">Article align=&quot;center&quot; props sample</Article>
+  return (
+    <Article align="center" debug>
+      Article align=&quot;center&quot; props sample
+    </Article>
+  )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Article align="center">
+              <Article align="center" debug>
                 Article align=&quot;center&quot; props sample
               </Article>
             </div>
@@ -72,7 +76,9 @@ export const ArticleSample = () => {
   return (
     <>
       <style>{".myArticle { color: red; }"}</style>
-      <Article className="myArticle">Article className props sample</Article>
+      <Article className="myArticle" debug>
+        Article className props sample
+      </Article>
     </>
   )
 }`}
@@ -80,7 +86,7 @@ export const ArticleSample = () => {
             </pre>
             <div className="Result">
               <style>{".myArticle { color: red; }"}</style>
-              <Article className="myArticle">
+              <Article className="myArticle" debug>
                 Article className props sample
               </Article>
             </div>
@@ -103,6 +109,7 @@ export const ArticleSample = () => {
   return (
     <Box style={{ textAlign: "center" }}>
       <Article
+        debug
         ref={refArticle}
         style={{
           margin: "1rem",
@@ -136,6 +143,7 @@ export const ArticleSample = () => {
             <div className="Result">
               <Box style={{ textAlign: "center" }}>
                 <Article
+                  debug
                   ref={refArticle}
                   style={{
                     margin: "1rem",
@@ -175,12 +183,18 @@ export const ArticleSample = () => {
                 {`import { Article } from "abreactui"
 
 export const ArticleSample = () => {
-  return <Article tag="div">Article tag props sample</Article>
+  return (
+    <Article debug tag="div">
+      Article tag props sample
+    </Article>
+  )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Article tag="div">Article tag props sample</Article>
+              <Article debug tag="div">
+                Article tag props sample
+              </Article>
             </div>
           </div>
         </article>

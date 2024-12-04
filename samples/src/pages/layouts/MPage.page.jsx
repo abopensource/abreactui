@@ -1,23 +1,23 @@
-import { Button, Page } from "abreactui"
+import { Button, MPage } from "abreactui"
 import React from "react"
 
 import "../styles"
 
 /**
- * `Page` component sample page.
+ * `MPage` component sample page.
  *
- * @module pages/layouts/PagePage
+ * @module pages/layouts/MPagePage
  * @type {import("react").ReactElement}
  */
-const PagePage = () => {
-  const refPage = React.useRef()
+const MPagePage = () => {
+  const refMPage = React.useRef()
   const [active, setActive] = React.useState(false)
 
   return (
-    <div className="Pages SamplePage PagePage">
+    <div className="Pages SamplePage MPagePage">
       <section className="Title">
         <h1>
-          <code>Page</code> samples
+          <code>MPage</code>(Memoized Page) samples
         </h1>
       </section>
       <section className="Samples">
@@ -26,15 +26,15 @@ const PagePage = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Page } from "abreactui"
+                {`import { MPage } from "abreactui"
 
-export const PageSample = () => {
-  return <Page debug>Page basic sample</Page>
+export const MPageSample = () => {
+  return <MPage debug>MPage basic sample</MPage>
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Page debug>Page basic sample</Page>
+              <MPage debug>MPage basic sample</MPage>
             </div>
           </div>
         </article>
@@ -45,21 +45,21 @@ export const PageSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Page } from "abreactui"
+                {`import { MPage } from "abreactui"
 
-export const PageSample = () => {
+export const MPageSample = () => {
   return (
-    <Page align="center" debug>
-      Page align=&quot;center&quot; props sample
-    </Page>
+    <MPage align="center" debug>
+      MPage align=&quot;center&quot; props sample
+    </MPage>
   )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Page align="center" debug>
-                Page align=&quot;center&quot; props sample
-              </Page>
+              <MPage align="center" debug>
+                MPage align=&quot;center&quot; props sample
+              </MPage>
             </div>
           </div>
         </article>
@@ -70,15 +70,15 @@ export const PageSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Page } from "abreactui"
+                {`import { MPage } from "abreactui"
 
-export const PageSample = () => {
+export const MPageSample = () => {
   return (
     <>
       <style>{".myPage { background-color: rgb(240, 240, 240) }"}</style>
-      <Page className="myPage" debug>
-        Page className props sample
-      </Page>
+      <MPage className="myPage" debug>
+        MPage className props sample
+      </MPage>
     </>
   )
 }`}
@@ -88,9 +88,9 @@ export const PageSample = () => {
               <style>
                 {".myPage { background-color: rgb(240, 240, 240) }"}
               </style>
-              <Page className="myPage" debug>
-                Page className props sample
-              </Page>
+              <MPage className="myPage" debug>
+                MPage className props sample
+              </MPage>
             </div>
           </div>
         </article>
@@ -101,17 +101,17 @@ export const PageSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Button, Page } from "abreactui"
+                {`import { Button, MPage } from "abreactui"
 
-export const PageSample = () => {
-  const refPage = React.useRef()
+export const MPageSample = () => {
+  const refMPage = React.useRef()
   const [active, setActive] = React.useState(false)
 
   return (
-    <Page align="center" debug ref={refPage}>
+    <MPage align="center" debug ref={refMPage}>
       <Button
         onClick={() => {
-          const page = refPage.current
+          const page = refMPage.current
           if (!active) {
             page.style.backgroundColor = "rgba(245, 245, 245)"
           } else {
@@ -122,16 +122,16 @@ export const PageSample = () => {
       >
         {active ? "Inactive" : "Active"} page
       </Button>
-    </Page>
+    </MPage>
   )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Page align="center" debug ref={refPage}>
+              <MPage align="center" debug ref={refMPage}>
                 <Button
                   onClick={() => {
-                    const page = refPage.current
+                    const page = refMPage.current
                     if (!active) {
                       page.style.backgroundColor = "rgba(245, 245, 245)"
                     } else {
@@ -142,7 +142,7 @@ export const PageSample = () => {
                 >
                   {active ? "Inactive" : "Active"} page
                 </Button>
-              </Page>
+              </MPage>
             </div>
           </div>
         </article>
@@ -153,21 +153,21 @@ export const PageSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Page } from "abreactui"
+                {`import { MPage } from "abreactui"
 
-export const PageSample = () => {
+export const MPageSample = () => {
   return (
-    <Page debug tag="p">
-      Page tag props sample
-    </Page>
+    <MPage debug tag="p">
+      MPage tag props sample
+    </MPage>
   )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Page debug tag="p">
-                Page tag props sample
-              </Page>
+              <MPage debug tag="p">
+                MPage tag props sample
+              </MPage>
             </div>
           </div>
         </article>
@@ -176,4 +176,4 @@ export const PageSample = () => {
   )
 }
 
-export { PagePage }
+export { MPagePage }

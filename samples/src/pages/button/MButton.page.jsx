@@ -1,24 +1,24 @@
-import { Box, Button } from "abreactui"
+import { Box, MButton } from "abreactui"
 import React from "react"
 import { BsSave, BsSaveFill } from "react-icons/bs"
 
 import "../styles"
 
 /**
- * `Button` component sample page.
+ * `MButton` component sample page.
  *
- * @module pages/buttons/ButtonPage
+ * @module pages/buttons/MButtonPage
  * @type {import("react").ReactElement}
  */
-const ButtonPage = () => {
-  const refButton = React.useRef()
+const MButtonPage = () => {
+  const refMButton = React.useRef()
   const [active, setActive] = React.useState(false)
 
   return (
-    <div className="Pages SamplePage ButtonPage">
+    <div className="Pages SamplePage MButtonPage">
       <section className="Title">
         <h1>
-          <code>Button</code> samples
+          <code>MButton</code>(Memoized Button) samples
         </h1>
       </section>
       <section className="Samples">
@@ -27,15 +27,15 @@ const ButtonPage = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Button } from "abreactui"
+                {`import { MButton } from "abreactui"
 
-export const ButtonSample = () => {
-  return <Button debug>Button basic sample</Button>]
+export const MButtonSample = () => {
+  return <MButton debug>MButton basic sample</MButton>]
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Button debug>Button basic sample</Button>
+              <MButton debug>MButton basic sample</MButton>
             </div>
           </div>
         </article>
@@ -46,23 +46,23 @@ export const ButtonSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Box, Button } from "abreactui"
+                {`import { Box, MButton } from "abreactui"
 
-export const ButtonSample = () => {
+export const MButtonSample = () => {
   return (
-    <Button debug>
-      <Box>Button children props sample: </Box>
+    <MButton debug>
+      <Box>MButton children props sample: </Box>
       <Box style={{ marginLeft: "1rem" }}>children</Box>
-    </Button>
+    </MButton>
   )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Button debug>
-                <Box>Button children props sample: </Box>
+              <MButton debug>
+                <Box>MButton children props sample: </Box>
                 <Box style={{ marginLeft: "1rem" }}>children</Box>
-              </Button>
+              </MButton>
             </div>
           </div>
         </article>
@@ -73,13 +73,13 @@ export const ButtonSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Button } from "abreactui"
+                {`import { MButton } from "abreactui"
 
-export const ButtonSample = () => {
+export const MButtonSample = () => {
   return (
     <>
       <style>{".myButton { padding: 1rem 3rem; }"}</style>
-      <Button className="myButton">Button className props sample</Button>
+      <MButton className="myButton">MButton className props sample</MButton>
     </>
   )
 }`}
@@ -87,9 +87,9 @@ export const ButtonSample = () => {
             </pre>
             <div className="Result">
               <style>{".myButton { padding: 1rem 3rem; }"}</style>
-              <Button className="myButton" debug>
-                Button className props sample
-              </Button>
+              <MButton className="myButton" debug>
+                MButton className props sample
+              </MButton>
             </div>
           </div>
         </article>
@@ -100,21 +100,21 @@ export const ButtonSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Button } from "abreactui"
+                {`import { MButton } from "abreactui"
 
-export const ButtonSample = () => {
+export const MButtonSample = () => {
   return (
-    <Button debug disabled>
-      Button disabled props sample
-    </Button>
+    <MButton debug disabled>
+      MButton disabled props sample
+    </MButton>
   )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Button debug disabled>
-                Button disabled props sample
-              </Button>
+              <MButton debug disabled>
+                MButton disabled props sample
+              </MButton>
             </div>
           </div>
         </article>
@@ -125,27 +125,27 @@ export const ButtonSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Box, Button } from "abreactui"
+                {`import { Box, MButton } from "abreactui"
 
-export const ButtonSample = () => {
+export const MButtonSample = () => {
   return (
     <>
-      <Button disabled>Disabled Basic</Button>
-      <Button debug disabled styled="fill">
+      <MButton disabled>Disabled Basic</MButton>
+      <MButton debug disabled styled="fill">
         Disabled Fill
-      </Button>
-      <Button disabled debug styled="outline">
+      </MButton>
+      <MButton disabled debug styled="outline">
         Disabled Outline
-      </Button>
+      </MButton>
       <Box style={{ margin: "1rem" }}>
-        <Button debug disabled styled="underline">
+        <MButton debug disabled styled="underline">
           Disabled Underline
-        </Button>
+        </MButton>
       </Box>
       <Box style={{ margin: "1rem" }}>
-        <Button debug disabled styled="text">
+        <MButton debug disabled styled="text">
           Disabled Text
-        </Button>
+        </MButton>
       </Box>
     </>
   )
@@ -153,24 +153,24 @@ export const ButtonSample = () => {
               </code>
             </pre>
             <div className="Result">
-              <Button debug disabled>
+              <MButton debug disabled>
                 Disabled Basic
-              </Button>
-              <Button debug disabled styled="fill">
+              </MButton>
+              <MButton debug disabled styled="fill">
                 Disabled Fill
-              </Button>
-              <Button debug disabled styled="outline">
+              </MButton>
+              <MButton debug disabled styled="outline">
                 Disabled Outline
-              </Button>
+              </MButton>
               <Box style={{ margin: "1rem" }}>
-                <Button debug disabled styled="underline">
+                <MButton debug disabled styled="underline">
                   Disabled Underline
-                </Button>
+                </MButton>
               </Box>
               <Box style={{ margin: "1rem" }}>
-                <Button debug disabled styled="text">
+                <MButton debug disabled styled="text">
                   Disabled Text
-                </Button>
+                </MButton>
               </Box>
             </div>
           </div>
@@ -182,21 +182,21 @@ export const ButtonSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Button } from "abreactui"
+                {`import { MButton } from "abreactui"
 
-export const ButtonSample = () => {
+export const MButtonSample = () => {
   return (
-    <Button debug href="https://google.com" target="blank">
-      Button href props sample
-    </Button>
+    <MButton debug href="https://google.com" target="blank">
+      MButton href props sample
+    </MButton>
   )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Button debug href="https://google.com" target="blank">
-                Button href props sample
-              </Button>
+              <MButton debug href="https://google.com" target="blank">
+                MButton href props sample
+              </MButton>
             </div>
           </div>
         </article>
@@ -207,22 +207,22 @@ export const ButtonSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Button } from "abreactui"
+                {`import { MButton } from "abreactui"
 import { BsSave } from "react-icons/bs"
 
-export const ButtonSample = () => {
+export const MButtonSample = () => {
   return (
-    <Button debug iconEnd={<BsSave />}>
-      Button iconEnd props sample
-    </Button>
+    <MButton debug iconEnd={<BsSave />}>
+      MButton iconEnd props sample
+    </MButton>
   )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Button debug iconEnd={<BsSave />}>
-                Button iconEnd props sample
-              </Button>
+              <MButton debug iconEnd={<BsSave />}>
+                MButton iconEnd props sample
+              </MButton>
             </div>
           </div>
         </article>
@@ -233,22 +233,22 @@ export const ButtonSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Button } from "abreactui"
+                {`import { MButton } from "abreactui"
 import { BsSaveFill } from "react-icons/bs"
 
-export const ButtonSample = () => {
+export const MButtonSample = () => {
   return (
-    <Button debug iconStart={<BsSaveFill />}>
-      Button iconStart props sample
-    </Button>
+    <MButton debug iconStart={<BsSaveFill />}>
+      MButton iconStart props sample
+    </MButton>
   )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Button debug iconStart={<BsSaveFill />}>
-                Button iconStart props sample
-              </Button>
+              <MButton debug iconStart={<BsSaveFill />}>
+                MButton iconStart props sample
+              </MButton>
             </div>
           </div>
         </article>
@@ -259,41 +259,41 @@ export const ButtonSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Button } from "abreactui"
+                {`import { MButton } from "abreactui"
 import React from "react"
 
-export const ButtonSample = () => {
-  const refButton = React.useRef()
+export const MButtonSample = () => {
+  const refMButton = React.useRef()
   const [active, setActive] = React.useState(false)
 
   return (
-    <Button
+    <MButton
       debug
       onClick={() => {
-        const button = refButton.current
+        const button = refMButton.current
         button.style.backgroundColor = !active ? "yellowgreen" : ""
         setActive(!active)
       }}
-      ref={refButton}
+      ref={refMButton}
     >
       {active ? "Inactive" : "Active"} button
-    </Button>
+    </MButton>
   )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Button
+              <MButton
                 debug
                 onClick={() => {
-                  const button = refButton.current
+                  const button = refMButton.current
                   button.style.backgroundColor = !active ? "yellowgreen" : ""
                   setActive(!active)
                 }}
-                ref={refButton}
+                ref={refMButton}
               >
                 {active ? "Inactive" : "Active"} button
-              </Button>
+              </MButton>
             </div>
           </div>
         </article>
@@ -304,26 +304,26 @@ export const ButtonSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Box, Button } from "abreactui"
+                {`import { Box, MButton } from "abreactui"
 
-export const ButtonSample = () => {
+export const MButtonSample = () => {
   return (
     <>
-      <Button debug>Basic</Button>
-      <Button debug styled="fill">
+      <MButton debug>Basic</MButton>
+      <MButton debug styled="fill">
         Fill
-      </Button>
-      <Button debug styled="outline">
+      </MButton>
+      <MButton debug styled="outline">
         Outline
-      </Button>
+      </MButton>
       <Box debug style={{ margin: "1rem" }}>
-        <Button debug styled="underline">
+        <MButton debug styled="underline">
           Underline
-        </Button>
+        </MButton>
         &nbsp;
-        <Button debug styled="text">
+        <MButton debug styled="text">
           Text
-        </Button>
+        </MButton>
       </Box>
     </>
   )
@@ -331,21 +331,21 @@ export const ButtonSample = () => {
               </code>
             </pre>
             <div className="Result">
-              <Button debug>Basic</Button>
-              <Button debug styled="fill">
+              <MButton debug>Basic</MButton>
+              <MButton debug styled="fill">
                 Fill
-              </Button>
-              <Button debug styled="outline">
+              </MButton>
+              <MButton debug styled="outline">
                 Outline
-              </Button>
+              </MButton>
               <Box debug style={{ margin: "1rem" }}>
-                <Button debug styled="underline">
+                <MButton debug styled="underline">
                   Underline
-                </Button>
+                </MButton>
                 &nbsp;
-                <Button debug styled="text">
+                <MButton debug styled="text">
                   Text
-                </Button>
+                </MButton>
               </Box>
             </div>
           </div>
@@ -357,21 +357,21 @@ export const ButtonSample = () => {
           <div className="Example">
             <pre>
               <code>
-                {`import { Button } from "abreactui"
+                {`import { MButton } from "abreactui"
 
-export const ButtonSample = () => {
+export const MButtonSample = () => {
   return (
-    <Button debug tag="a">
-      Button tag props sample
-    </Button>
+    <MButton debug tag="a">
+      MButton tag props sample
+    </MButton>
   )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Button debug tag="a">
-                Button tag props sample
-              </Button>
+              <MButton debug tag="a">
+                MButton tag props sample
+              </MButton>
             </div>
           </div>
         </article>
@@ -380,4 +380,4 @@ export const ButtonSample = () => {
   )
 }
 
-export { ButtonPage }
+export { MButtonPage }

@@ -29,12 +29,12 @@ const ContainerPage = () => {
                 {`import { Container } from "abreactui"
 
 export const ContainerSample = () => {
-  return <Container>Container basic sample</Container>
+  return <Container debug>Container basic sample</Container>
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Container>Container basic sample</Container>
+              <Container debug>Container basic sample</Container>
             </div>
           </div>
         </article>
@@ -48,12 +48,16 @@ export const ContainerSample = () => {
                 {`import { Container } from "abreactui"
 
 export const ContainerSample = () => {
-  return <Container align="center">Container align=&quot;center&quot; props sample</Container>
+  return (
+    <Container align="center" debug>
+      Container align=&quot;center&quot; props sample
+    </Container>
+  )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Container align="center">
+              <Container align="center" debug>
                 Container align=&quot;center&quot; props sample
               </Container>
             </div>
@@ -72,7 +76,7 @@ export const ContainerSample = () => {
   return (
     <>
       <style>{".myContainer { color: red; }"}</style>
-      <Container className="myContainer">
+      <Container className="myContainer" debug>
         Container className props sample
       </Container>
     </>
@@ -82,7 +86,7 @@ export const ContainerSample = () => {
             </pre>
             <div className="Result">
               <style>{".myContainer { color: red; }"}</style>
-              <Container className="myContainer">
+              <Container className="myContainer" debug>
                 Container className props sample
               </Container>
             </div>
@@ -105,6 +109,7 @@ export const ContainerSample = () => {
   return (
     <Box style={{ textAlign: "center" }}>
       <Container
+        debug
         ref={refContainer}
         style={{
           margin: "1rem",
@@ -138,6 +143,7 @@ export const ContainerSample = () => {
             <div className="Result">
               <Box style={{ textAlign: "center" }}>
                 <Container
+                  debug
                   ref={refContainer}
                   style={{
                     margin: "1rem",
@@ -177,12 +183,18 @@ export const ContainerSample = () => {
                 {`import { Container } from "abreactui"
 
 export const ContainerSample = () => {
-  return <Container tag="section">Container tag props sample</Container>
+  return (
+    <Container debug tag="section">
+      Container tag props sample
+    </Container>
+  )
 }`}
               </code>
             </pre>
             <div className="Result">
-              <Container tag="section">Container tag props sample</Container>
+              <Container debug tag="section">
+                Container tag props sample
+              </Container>
             </div>
           </div>
         </article>
