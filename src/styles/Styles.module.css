@@ -260,6 +260,10 @@
   }
 }
 
+.Center {
+  text-align: center;
+}
+
 .Container {
   margin: 0;
   padding: 0;
@@ -269,6 +273,16 @@
   display: flex;
   gap: 1em;
   flex-direction: column;
+}
+
+.H1,
+.H2,
+.H3,
+.H4,
+.H5,
+.H6 {
+  margin: 0;
+  padding: 0;
 }
 
 .InputController {
@@ -733,20 +747,33 @@
   }
 }
 
-.Page {
+.Left {
+  text-align: left;
+}
+
+.P {
   margin: 0;
   padding: 0;
+}
+
+.Page {
+  margin: 0;
+  padding: 1em;
+}
+
+.Right {
+  text-align: right;
+}
+
+.S {
+  margin: 0;
+  padding: 0;
+  font-style: normal;
 }
 
 .Section {
   margin: 0;
   padding: 0;
-}
-
-.Text {
-  margin: 0;
-  padding: 0;
-  font-style: normal;
 }
 
 @keyframes IconRipplePulse {

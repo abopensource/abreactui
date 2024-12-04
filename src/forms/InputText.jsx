@@ -2,7 +2,7 @@ import PropTypes from "prop-types"
 import React from "react"
 import { IoMdClose, IoMdEye, IoMdEyeOff } from "react-icons/io"
 
-import { Box, createElement, IconButton, style } from "../"
+import { Box, createElement, IconButton, log, style } from "../"
 
 /**
  * Returns the result that validates user input data.
@@ -153,42 +153,58 @@ const extendValidity = (type, props, validity) => {
  *
  * @module Field
  * @type {import("react").ForwardRefExoticComponent}
- * @param {import("react").ComponentProps} [props] `React.ComponentProps` passed to React component.
- * @param {String|Number} [props.defaultValue] Default value of the user input text field element.
- * @param {Boolean} [props.disabled] Whether the user input text field element is disabled.
- * @param {Boolean} [props.error] Whether the user input value is invalid.
- * @param {String} [props.helper] Help message for user input values.
- * @param {Number} [props.maxRows=20] Maximum number of lines if it is a multiline input text field.
- * @param {Boolean} [props.multiline] Whether to use the `<textarea>` element as an auto-resizeable element.
- * @param {EventListener} [props.onBlur] `EventListener` to execute when the user input text field element has lost focus.
- * @param {EventListener} [props.onChange] `EventListener` to execute when the value of the user input text field element changes.
- * @param {EventListener} [props.onFocus] `EventListener` to execute when the user input text field element has received focus.
- * @param {EventListener} [props.onKeyDown] `EventListener` to execute when keyboard input is entered into a user input text field element.
- * @param {import("react").MutableRefObject} [props.refController] Object referencing controller element for user input field element.
- * @param {import("react").MutableRefObject} [props.refHelper] Object referencing helper element for user input field element.
- * @param {Number} [props.rows=2] Number of lines if it is a multiline input text field.
- * @param {String} [props.type="text"] Field type of user input text field element.
+ * @param {import("react").ComponentProps} [Props] `React.ComponentProps` passed to React component.
+ * @param {Boolean} [Props.debug=false] Whether to enable debug logs.
+ * @param {String|Number} [Props.defaultValue] Default value of the user input text field element.
+ * @param {Boolean} [Props.disabled] Whether the user input text field element is disabled.
+ * @param {Boolean} [Props.error] Whether the user input value is invalid.
+ * @param {String} [Props.helper] Help message for user input values.
+ * @param {Number} [Props.maxRows=20] Maximum number of lines if it is a multiline input text field.
+ * @param {Boolean} [Props.multiline] Whether to use the `<textarea>` element as an auto-resizeable element.
+ * @param {EventListener} [Props.onBlur] `EventListener` to execute when the user input text field element has lost focus.
+ * @param {EventListener} [Props.onChange] `EventListener` to execute when the value of the user input text field element changes.
+ * @param {EventListener} [Props.onFocus] `EventListener` to execute when the user input text field element has received focus.
+ * @param {EventListener} [Props.onKeyDown] `EventListener` to execute when keyboard input is entered into a user input text field element.
+ * @param {import("react").MutableRefObject} [Props.refController] Object referencing controller element for user input field element.
+ * @param {import("react").MutableRefObject} [Props.refHelper] Object referencing helper element for user input field element.
+ * @param {Number} [Props.rows=2] Number of lines if it is a multiline input text field.
+ * @param {String} [Props.type="text"] Field type of user input text field element.
  * "email" | "password" | "search" | "text"(default) | "textarea"
  * @see {@link https://developer.mozilla.org/docs/Web/HTML/Element/input#input_types}
- * @param {Object} [props.validity={}] Object containing information for validating user input text field values.
- * @param {String|Number} [props.value] Value of the user input text field element.
+ * @param {Object} [Props.validity={}] Object containing information for validating user input text field values.
+ * @param {String|Number} [Props.value] Value of the user input text field element.
  * @param {import("react").ForwardedRef} [forwardedRef] Object or function for use by referencing the component that will be created from the parent component.
  * @returns {import("react").ReactElement} Returns the created user input text field element(JSX element).
  */
-const InputText = React.forwardRef((props, forwardedRef) => {
-  const { onBlur, onChange, onFocus, onKeyDown, ...propsEH } = props
-  const { refController, refHelper, ...propsER } = propsEH
-  const { maxRows = 20, multiline, ...propsEM } = propsER
-  const { type = "text", validity = {}, ...propsInput } = propsEM
+const InputText = React.forwardRef((Props, forwardedRef) => {
+  const {
+    debug = false,
+    onBlur,
+    onChange,
+    onFocus,
+    onKeyDown,
+    refController,
+    refHelper,
+    maxRows = 20,
+    multiline,
+    type = "text",
+    validity = {},
+    ...props
+  } = Props
+  const _tag = `[${log._tag}][InputText]`
+  if (debug) {
+    log.debug(`${_tag}() Props: %o`, Props)
+    forwardedRef && log.debug(`${_tag}() forwardedRef: %o`, forwardedRef)
+  }
 
-  const [rows, setRows] = React.useState(props.rows || 2)
+  const [rows, setRows] = React.useState(Props.rows || 2)
   const [showPassword, setShowPassword] = React.useState(false)
   const [value, setValue] = React.useState(
-    propsInput.value || propsInput.defaultValue || "",
+    props.value || props.defaultValue || "",
   )
   const refInput = React.useRef()
 
-  propsInput.className = multiline ? style.TextArea : style.Input
+  props.className = multiline ? style.TextArea : style.Input
   if (forwardedRef) {
     React.useImperativeHandle(forwardedRef, () => ({
       blur: () => refInput.current.blur(),
@@ -201,16 +217,16 @@ const InputText = React.forwardRef((props, forwardedRef) => {
       setValue,
     }))
   }
-  propsInput.ref = refInput
-  propsInput.value = value
+  props.ref = refInput
+  props.value = value
 
   if (type === "password") {
-    propsInput.type = showPassword ? "text" : type
+    props.type = showPassword ? "text" : type
   } else if (type === "email" || type === "search") {
-    propsInput.type = "text"
+    props.type = "text"
   }
 
-  extendValidity(type, propsInput, validity)
+  extendValidity(type, props, validity)
 
   /**
    * Apply the result after validating the value of the user input field.
@@ -219,6 +235,8 @@ const InputText = React.forwardRef((props, forwardedRef) => {
    * @param {HTMLInputElement} field User input field element.
    */
   const checkValidation = (field) => {
+    debug && log.debug(`${_tag} checkValidation field: %o`, field)
+
     const value = field?.value || refInput.current?.value
     const result = checkValidity(value, validity)
 
@@ -247,6 +265,8 @@ const InputText = React.forwardRef((props, forwardedRef) => {
    * @method focusAtEnd
    */
   const focusAtEnd = () => {
+    debug && log.debug(`${_tag} focusAtEnd field: %o`, refInput?.current)
+
     const field = refInput.current
     field.focus()
     setTimeout(() => {
@@ -256,7 +276,9 @@ const InputText = React.forwardRef((props, forwardedRef) => {
     }, 10)
   }
 
-  propsInput.onBlur = (event) => {
+  props.onBlur = (event) => {
+    debug && log.debug(`${_tag} onBlur event: %o`, event)
+
     const eleInput = event.target
     const eleController = refController?.current
     eleController && eleController.classList?.remove(style.Focus)
@@ -266,7 +288,9 @@ const InputText = React.forwardRef((props, forwardedRef) => {
     onBlur && onBlur(event)
   }
 
-  propsInput.onChange = (event) => {
+  props.onChange = (event) => {
+    debug && log.debug(`${_tag} onChange event: %o`, event)
+
     const eleInput = event.target
     const newValue = eleInput.value
     const eleController = refController?.current
@@ -286,18 +310,22 @@ const InputText = React.forwardRef((props, forwardedRef) => {
     onChange && onChange(event)
   }
 
-  propsInput.onFocus = (event) => {
+  props.onFocus = (event) => {
+    debug && log.debug(`${_tag} onFocus event: %o`, event)
+
     const eleController = refController?.current
     eleController && eleController.classList?.add(style.Focus)
 
     onFocus && onFocus(event)
   }
 
-  propsInput.onKeyDown = (event) => {
+  props.onKeyDown = (event) => {
+    debug && log.debug(`${_tag} onKeyDown event: %o`, event)
+
     onKeyDown && onKeyDown(event)
   }
 
-  let eleInput = createElement({ props: propsInput, tag: "input" })
+  let eleInput = createElement({ props, tag: "input" })
 
   if (type === "password") {
     eleInput = (
@@ -305,6 +333,7 @@ const InputText = React.forwardRef((props, forwardedRef) => {
         {eleInput}
         <IconButton
           className={style.PasswordEye}
+          debug={debug}
           onClick={(event) => {
             setShowPassword(!showPassword)
             focusAtEnd(event.target)
@@ -322,6 +351,7 @@ const InputText = React.forwardRef((props, forwardedRef) => {
         {eleInput}
         <IconButton
           className={style.Search}
+          debug={debug}
           disabled={value.length < 1}
           onClick={(event) => {
             value != "" && setValue("")
@@ -335,8 +365,10 @@ const InputText = React.forwardRef((props, forwardedRef) => {
       </React.Fragment>
     )
   } else if (multiline) {
-    propsInput.rows = rows
-    propsInput.onKeyDown = (event) => {
+    props.rows = rows
+    props.onKeyDown = (event) => {
+      debug && log.debug(`${_tag} onKeyDown event: %o`, event)
+
       setTimeout(() => {
         const field = event.target
         const value = field.value
@@ -360,8 +392,8 @@ const InputText = React.forwardRef((props, forwardedRef) => {
 
         let lines = Math.ceil(height / lineH)
         new RegExp(/[\r\n]$/).test(value) && lines++
-        !props.rows && lines < 2 && (lines = 2)
-        !isNaN(props.rows) && lines < props.rows && (lines = props.rows)
+        !Props.rows && lines < 2 && (lines = 2)
+        !isNaN(Props.rows) && lines < Props.rows && (lines = Props.rows)
         lines < 1 && (lines = 1)
         lines > maxRows && (lines = maxRows)
         rows !== lines && setRows(lines)
@@ -370,13 +402,19 @@ const InputText = React.forwardRef((props, forwardedRef) => {
       onKeyDown && onKeyDown(event)
     }
 
-    eleInput = createElement({ props: propsInput, tag: "textarea" })
+    eleInput = createElement({ props, tag: "textarea" })
   }
 
   return eleInput
 })
+const MInputText = React.memo(
+  React.forwardRef((props, forwardedRef) => (
+    <InputText {...props} ref={forwardedRef} />
+  )),
+)
 InputText.displayName = "InputText"
 InputText.propTypes = {
+  debug: PropTypes.bool,
   defaultValue: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   error: PropTypes.bool,
   helper: PropTypes.string,
@@ -394,4 +432,4 @@ InputText.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
-export { InputText }
+export { InputText, MInputText }
