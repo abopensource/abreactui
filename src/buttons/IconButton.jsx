@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 import React from "react"
 
-import { Button, style } from "../"
+import { Button, log, style } from "../"
 
 /**
  * Apply an event dependent ripple effect to the icon button element.
@@ -45,66 +45,94 @@ const effectButtonRipple = (event) => {
  *
  * @module IconButton
  * @type {import("react").ForwardRefExoticComponent}
- * @param {import("react").ComponentProps} [props] `React.ComponentProps` passed to React component.
- * @param {import("react").ReactNode} [props.children] Child nodes to include in the icon button element to be created.
- * @param {String} [props.className] Stylesheet class name to apply to the icon button element to be created.
- * @param {Boolean} [props.disabled] Whether the icon button element is disabled.
- * @param {String} [props.href] URL to link to when the button is clicked. If defined, `a`(`HTMLLinkElement`) will be used as the root node.
- * @param {EventListener} [props.onBlur] `EventListener` to execute when the icon button element has lost focus.
- * @param {EventListener} [props.onClick] `EventListener` to execute when the icon button element on click.
- * @param {EventListener} [props.onFocus] `EventListener` to execute when the icon button element has received focus.
- * @param {EventListener} [props.onMouseOut] `EventListener` to execute when the mouse(cursor) leaves at the icon button element.
- * @param {String} [props.styled="normal"] IconButton style type.
+ * @param {import("react").ComponentProps} [Props] `React.ComponentProps` passed to React component.
+ * @param {import("react").ReactNode} [Props.children] Child nodes to include in the icon button element to be created.
+ * @param {String} [Props.className] Stylesheet class name to apply to the icon button element to be created.
+ * @param {Boolean} [Props.debug=false] Whether to enable debug logs.
+ * @param {Boolean} [Props.disabled] Whether the icon button element is disabled.
+ * @param {String} [Props.href] URL to link to when the button is clicked. If defined, `a`(`HTMLLinkElement`) will be used as the root node.
+ * @param {EventListener} [Props.onBlur] `EventListener` to execute when the icon button element has lost focus.
+ * @param {EventListener} [Props.onClick] `EventListener` to execute when the icon button element on click.
+ * @param {EventListener} [Props.onFocus] `EventListener` to execute when the icon button element has received focus.
+ * @param {EventListener} [Props.onMouseOut] `EventListener` to execute when the mouse(cursor) leaves at the icon button element.
+ * @param {String} [Props.styled="normal"] IconButton style type.
  * "fill" | "outline" | "normal"(default)
- * @param {String} [props.tag="button"] HTML tag to use for the icon button element to be created.
+ * @param {String} [Props.tag="button"] HTML tag to use for the icon button element to be created.
  * "a" | "button"(default)
- * @param {String} [props.type="button"] IconButton element type.
+ * @param {String} [Props.type="button"] IconButton element type.
  * "button"(default) | "reset" | "submit"
  * @param {import("react").ForwardedRef} [forwardedRef] Object or function for use by referencing a component that will be created from a parent component.
  * @returns {import("react").ReactElement} Returns the created icon button element(JSX element).
  */
-const IconButton = React.forwardRef((props, forwardedRef) => {
-  const { className, styled, ...propsES } = props
-  const { onBlur, onClick, onFocus, onMouseOut, ...propsOther } = propsES
+const IconButton = React.forwardRef((Props, forwardedRef) => {
+  const {
+    className,
+    debug = false,
+    onBlur,
+    onClick,
+    onFocus,
+    onMouseOut,
+    styled,
+    ...propsOther
+  } = Props
+  const _tag = `[${log._tag}][IconButton]`
+  if (debug) {
+    log.debug(`${_tag}() Props: %o`, Props)
+    forwardedRef && log.debug(`${_tag}() forwardedRef: %o`, forwardedRef)
+  }
 
   const styles = [style.IconButton]
   className && styles.push(className)
 
-  const propsButton = { ...propsOther, className: styles.join(" ") }
-  forwardedRef && (propsButton.ref = forwardedRef)
+  const props = { ...propsOther, className: styles.join(" ") }
+  forwardedRef && (props.ref = forwardedRef)
 
   if (!styled || styled === "normal" || styled === "underline") {
-    propsButton.styled = "text"
+    props.styled = "text"
   } else {
-    propsButton.styled = styled
+    props.styled = styled
   }
 
-  propsButton.onBlur = (event) => {
+  props.onBlur = (event) => {
+    debug && log.debug(`${_tag} onBlur event: %o`, event)
+
     effectButtonRipple(event)
     onBlur && onBlur(event)
   }
 
-  propsButton.onClick = (event) => {
+  props.onClick = (event) => {
+    debug && log.debug(`${_tag} onClick event: %o`, event)
+
     effectButtonRipple(event)
     onClick && onClick(event)
   }
 
-  propsButton.onFocus = (event) => {
+  props.onFocus = (event) => {
+    debug && log.debug(`${_tag} onFocus event: %o`, event)
+
     effectButtonRipple(event)
     onFocus && onFocus(event)
   }
 
-  propsButton.onMouseOut = (event) => {
+  props.onMouseOut = (event) => {
+    debug && log.debug(`${_tag} onMouseOut event: %o`, event)
+
     effectButtonRipple(event)
     onMouseOut && onMouseOut(event)
   }
 
-  return <Button {...propsButton} />
+  return <Button {...props} />
 })
+const MIconButton = React.memo(
+  React.forwardRef((props, forwardedRef) => (
+    <IconButton {...props} ref={forwardedRef} />
+  )),
+)
 IconButton.displayName = "IconButton"
 IconButton.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string,
+  debug: PropTypes.bool,
   disabled: PropTypes.bool,
   href: PropTypes.string,
   onBlur: PropTypes.func,
@@ -116,4 +144,4 @@ IconButton.propTypes = {
   type: PropTypes.oneOf(["button", "reset", "submit"]),
 }
 
-export { IconButton }
+export { IconButton, MIconButton }
