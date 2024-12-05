@@ -22,18 +22,8 @@ const ButtonsPage = () => {
             </a>
           </li>
           <li>
-            <a href="/buttons/mbutton">
-              <code>MButton(Memoized Button)</code>
-            </a>
-          </li>
-          <li>
             <a href="/buttons/iconbutton">
               <code>IconButton</code>
-            </a>
-          </li>
-          <li>
-            <a href="/buttons/miconbutton">
-              <code>MIconButton(Memoized IconButton)</code>
             </a>
           </li>
         </ul>
