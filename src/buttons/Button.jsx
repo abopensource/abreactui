@@ -167,11 +167,6 @@ const Button = React.forwardRef((Props, forwardedRef) => {
     tag: href ? "a" : tag,
   })
 })
-const MButton = React.memo(
-  React.forwardRef((props, forwardedRef) => (
-    <Button {...props} ref={forwardedRef} />
-  )),
-)
 Button.displayName = "Button"
 Button.propTypes = {
   children: PropTypes.node,
@@ -190,4 +185,4 @@ Button.propTypes = {
   type: PropTypes.oneOf(["button", "reset", "submit"]),
 }
 
-export { Button, MButton }
+export { Button }

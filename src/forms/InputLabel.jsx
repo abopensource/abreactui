@@ -33,15 +33,10 @@ const InputLabel = (Props) => {
     return <React.Fragment />
   }
 }
-const MInputLabel = React.memo(
-  React.forwardRef((props, forwardedRef) => (
-    <InputLabel {...props} ref={forwardedRef} />
-  )),
-)
 InputLabel.propTypes = {
   debug: PropTypes.bool,
   label: PropTypes.string,
   id: PropTypes.string,
 }
 
-export { InputLabel, MInputLabel }
+export { InputLabel }

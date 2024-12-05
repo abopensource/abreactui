@@ -42,11 +42,6 @@ const Box = React.forwardRef((Props, forwardedRef) => {
 
   return createElement({ children, props, tag })
 })
-const MBox = React.memo(
-  React.forwardRef((props, forwardedRef) => (
-    <Box {...props} ref={forwardedRef} />
-  )),
-)
 Box.displayName = "Box"
 Box.propTypes = {
   align: PropTypes.oneOf(["center", "left", "right"]),
@@ -56,4 +51,4 @@ Box.propTypes = {
   tag: PropTypes.string,
 }
 
-export { Box, MBox }
+export { Box }
