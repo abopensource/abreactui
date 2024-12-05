@@ -22,18 +22,8 @@ const FormsPage = () => {
             </a>
           </li>
           <li>
-            <a href="/forms/mform">
-              <code>MForm(Memoized Form)</code>
-            </a>
-          </li>
-          <li>
             <a href="/forms/input">
               <code>Input</code>
-            </a>
-          </li>
-          <li>
-            <a href="/forms/minput">
-              <code>MInput(Memoized Input)</code>
             </a>
           </li>
         </ul>
