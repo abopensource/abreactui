@@ -1,0 +1,32 @@
+{
+  "short_name": "ABReactUI Samples",
+  "name": "ABReactUI Samples",
+  "icons": [
+    {
+      "sizes": "any",
+      "src": "/images/react.svg",
+      "type": "image/svg+xml"
+    }
+  ],
+  "id": "/?source=pwa",
+  "start_url": "/?source=pwa",
+  "background_color": "#ffffff",
+  "description": "ABReactUI Samples",
+  "display": "fullscreen",
+  "scope": "/",
+  "screenshots": [
+    {
+      "form_factor": "narrow",
+      "sizes": "800x800",
+      "src": "/images/react.svg",
+      "type": "image/svg+xml"
+    },
+    {
+      "form_factor": "wide",
+      "sizes": "800x800",
+      "src": "/images/react.svg",
+      "type": "image/svg+xml"
+    }
+  ],
+  "theme_color": "#000000"
+}

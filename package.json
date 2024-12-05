@@ -1,0 +1,62 @@
+{
+  "name": "abreactui",
+  "version": "0.1.0",
+  "description": "ABReactUI is a library that provides the components needed to build UI/UX for React projects.",
+  "keywords": [
+    "component",
+    "front-end",
+    "frontend",
+    "react.js",
+    "react",
+    "ui",
+    "ux"
+  ],
+  "homepage": "",
+  "bugs": {
+    "url": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Aiden <bokjaeoh@gmail.com>",
+  "license": "ISC",
+  "engines": {
+    "node": ">= 20.18.0"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.25.9",
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.25.9",
+    "@eslint/js": "^9.14.0",
+    "@types/eslint__js": "^8.42.3",
+    "eslint": "^9.14.0",
+    "eslint-plugin-react": "^7.37.2",
+    "globals": "^15.12.0",
+    "prettier": "^3.3.3",
+    "prop-types": "^15.8.1"
+  },
+  "peerDependencies": {},
+  "scripts": {
+    "dist": "rm -rf dist && mkdir dist && babel src --out-dir dist --copy-files",
+    "format:check": "prettier --check .",
+    "format": "prettier --write .",
+    "lint": "eslint .",
+    "samples": "npm run dist && cd samples && npm start"
+  }
+}
