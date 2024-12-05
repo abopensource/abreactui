@@ -42,11 +42,6 @@ const Section = React.forwardRef((Props, forwardedRef) => {
 
   return createElement({ children, props, tag })
 })
-const MSection = React.memo(
-  React.forwardRef((props, forwardedRef) => (
-    <Section {...props} ref={forwardedRef} />
-  )),
-)
 Section.displayName = "Section"
 Section.propTypes = {
   align: PropTypes.oneOf(["center", "left", "right"]),
@@ -56,4 +51,4 @@ Section.propTypes = {
   tag: PropTypes.string,
 }
 
-export { Section, MSection }
+export { Section }

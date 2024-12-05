@@ -123,11 +123,6 @@ const IconButton = React.forwardRef((Props, forwardedRef) => {
 
   return <Button {...props} />
 })
-const MIconButton = React.memo(
-  React.forwardRef((props, forwardedRef) => (
-    <IconButton {...props} ref={forwardedRef} />
-  )),
-)
 IconButton.displayName = "IconButton"
 IconButton.propTypes = {
   children: PropTypes.node,
@@ -144,4 +139,4 @@ IconButton.propTypes = {
   type: PropTypes.oneOf(["button", "reset", "submit"]),
 }
 
-export { IconButton, MIconButton }
+export { IconButton }

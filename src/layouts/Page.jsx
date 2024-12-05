@@ -42,11 +42,6 @@ const Page = React.forwardRef((Props, forwardedRef) => {
 
   return createElement({ children, props, tag })
 })
-const MPage = React.memo(
-  React.forwardRef((props, forwardedRef) => (
-    <Page {...props} ref={forwardedRef} />
-  )),
-)
 Page.displayName = "Page"
 Page.propTypes = {
   align: PropTypes.oneOf(["center", "left", "right"]),
@@ -56,4 +51,4 @@ Page.propTypes = {
   tag: PropTypes.string,
 }
 
-export { Page, MPage }
+export { Page }

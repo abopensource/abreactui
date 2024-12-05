@@ -407,11 +407,6 @@ const InputText = React.forwardRef((Props, forwardedRef) => {
 
   return eleInput
 })
-const MInputText = React.memo(
-  React.forwardRef((props, forwardedRef) => (
-    <InputText {...props} ref={forwardedRef} />
-  )),
-)
 InputText.displayName = "InputText"
 InputText.propTypes = {
   debug: PropTypes.bool,
@@ -432,4 +427,4 @@ InputText.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
-export { InputText, MInputText }
+export { InputText }
