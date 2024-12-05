@@ -34,11 +34,6 @@ const H = React.forwardRef((Props, forwardedRef) => {
 
   return createElement({ children, props, tag })
 })
-const MH = React.memo(
-  React.forwardRef((props, forwardedRef) => (
-    <H {...props} ref={forwardedRef} />
-  )),
-)
 H.displayName = "H"
 H.propTypes = {
   children: PropTypes.node,
@@ -75,11 +70,6 @@ const P = React.forwardRef((Props, forwardedRef) => {
 
   return createElement({ children, props, tag: "p" })
 })
-const MP = React.memo(
-  React.forwardRef((props, forwardedRef) => (
-    <P {...props} ref={forwardedRef} />
-  )),
-)
 P.displayName = "P"
 P.propTypes = {
   children: PropTypes.node,
@@ -122,11 +112,6 @@ const S = React.forwardRef((Props, forwardedRef) => {
 
   return createElement({ children, props, tag })
 })
-const MS = React.memo(
-  React.forwardRef((props, forwardedRef) => (
-    <S {...props} ref={forwardedRef} />
-  )),
-)
 S.displayName = "S"
 S.propTypes = {
   children: PropTypes.node,
@@ -135,4 +120,4 @@ S.propTypes = {
   tag: PropTypes.string,
 }
 
-export { H, MH, MP, MS, P, S }
+export { H, P, S }

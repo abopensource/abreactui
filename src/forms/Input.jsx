@@ -143,11 +143,6 @@ const Input = React.forwardRef((Props, forwardedRef) => {
 
   return <InputController {...propsController} />
 })
-const MInput = React.memo(
-  React.forwardRef((props, forwardedRef) => (
-    <Input {...props} ref={forwardedRef} />
-  )),
-)
 Input.displayName = "Input"
 Input.propTypes = {
   children: PropTypes.node,
@@ -182,4 +177,4 @@ Input.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 }
 
-export { Input, MInput }
+export { Input }

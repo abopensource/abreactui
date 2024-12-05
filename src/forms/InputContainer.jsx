@@ -1,5 +1,4 @@
 import PropTypes from "prop-types"
-import React from "react"
 
 import { createElement, log, style } from "../"
 
@@ -24,11 +23,6 @@ const InputContainer = (Props) => {
 
   return createElement({ children, props })
 }
-const MInputContainer = React.memo(
-  React.forwardRef((props, forwardedRef) => (
-    <InputContainer {...props} ref={forwardedRef} />
-  )),
-)
 InputContainer.propTypes = { children: PropTypes.node, debug: PropTypes.bool }
 
-export { InputContainer, MInputContainer }
+export { InputContainer }

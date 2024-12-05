@@ -1,5 +1,4 @@
 import PropTypes from "prop-types"
-import React from "react"
 
 import { createElement, log, style } from "../"
 
@@ -34,11 +33,6 @@ const InputFieldSet = (Props) => {
     tag: "fieldset",
   })
 }
-const MInputFieldSet = React.memo(
-  React.forwardRef((props, forwardedRef) => (
-    <InputFieldSet {...props} ref={forwardedRef} />
-  )),
-)
 InputFieldSet.propTypes = { debug: PropTypes.bool, label: PropTypes.string }
 
-export { InputFieldSet, MInputFieldSet }
+export { InputFieldSet }

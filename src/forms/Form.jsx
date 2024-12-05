@@ -124,11 +124,6 @@ const Form = React.forwardRef((Props, forwardedRef) => {
 
   return createElement({ children: childrenForm, props, tag: "form" })
 })
-const MForm = React.memo(
-  React.forwardRef((props, forwardedRef) => (
-    <Form {...props} ref={forwardedRef} />
-  )),
-)
 Form.displayName = "Form"
 Form.propTypes = {
   children: PropTypes.node,
@@ -138,4 +133,4 @@ Form.propTypes = {
   onSubmit: PropTypes.func,
 }
 
-export { Form, MForm }
+export { Form }

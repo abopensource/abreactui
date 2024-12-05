@@ -40,11 +40,6 @@ const InputHelper = React.forwardRef((Props, forwardedRef) => {
     return <React.Fragment />
   }
 })
-const MInputHelper = React.memo(
-  React.forwardRef((props, forwardedRef) => (
-    <InputHelper {...props} ref={forwardedRef} />
-  )),
-)
 InputHelper.displayName = "InputHelper"
 InputHelper.propTypes = {
   children: PropTypes.node,
@@ -52,4 +47,4 @@ InputHelper.propTypes = {
   tag: PropTypes.string,
 }
 
-export { InputHelper, MInputHelper }
+export { InputHelper }

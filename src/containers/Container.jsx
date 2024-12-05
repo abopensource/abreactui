@@ -42,11 +42,6 @@ const Container = React.forwardRef((Props, forwardedRef) => {
 
   return createElement({ children, props, tag })
 })
-const MContainer = React.memo(
-  React.forwardRef((props, forwardedRef) => (
-    <Container {...props} ref={forwardedRef} />
-  )),
-)
 Container.displayName = "Container"
 Container.propTypes = {
   align: PropTypes.oneOf(["center", "left", "right"]),
@@ -56,4 +51,4 @@ Container.propTypes = {
   tag: PropTypes.string,
 }
 
-export { Container, MContainer }
+export { Container }

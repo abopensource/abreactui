@@ -42,11 +42,6 @@ const Article = React.forwardRef((Props, forwardedRef) => {
 
   return createElement({ children, props, tag })
 })
-const MArticle = React.memo(
-  React.forwardRef((props, forwardedRef) => (
-    <Article {...props} ref={forwardedRef} />
-  )),
-)
 Article.displayName = "Article"
 Article.propTypes = {
   align: PropTypes.oneOf(["center", "left", "right"]),
@@ -56,4 +51,4 @@ Article.propTypes = {
   tag: PropTypes.string,
 }
 
-export { Article, MArticle }
+export { Article }
