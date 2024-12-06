@@ -39,9 +39,7 @@ const Form = React.forwardRef((Props, forwardedRef) => {
   if (fields) {
     Object.keys(fields).forEach((field, f) => {
       const refField = React.useRef()
-      childrenForm.push(
-        <Input {...fields[field]} debug={debug} key={f} ref={refField} />,
-      )
+      childrenForm.push(<Input {...fields[field]} key={f} ref={refField} />)
 
       if (fields[field].type !== "reset" && fields[field].type !== "submit") {
         refFields[field] = refField

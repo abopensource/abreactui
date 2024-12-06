@@ -11,8 +11,18 @@ import { Box, createElement, IconButton, log, style } from "../"
  * @param {String} value User input data to be validation.
  * @param {Object} validity Object containing information for validating user input field values.
  * @returns {Object} Validation result object.
+ * @param {Boolean} [debug=false] Whether to enable debug logs.
  */
-const checkValidity = (value, validity) => {
+const checkValidity = (value, validity, debug = false) => {
+  const _tag = `[${log._tag}][InputText] checkValidity`
+  debug &&
+    log.debug(
+      `${_tag}(value: %o, validity: %o, debug: %o)`,
+      value,
+      validity,
+      debug,
+    )
+
   let result = { code: "OK", error: false, message: "" }
 
   if (!validity) return result
@@ -20,7 +30,7 @@ const checkValidity = (value, validity) => {
   if (validity.required && !value) {
     result.code = "REQUIRED"
     result.error = true
-    result.message = "This field is required."
+    result.message = validity.helpers?.required || "This field is required."
     return result
   }
 
@@ -28,7 +38,7 @@ const checkValidity = (value, validity) => {
     if (validity.type === "email") {
       result.code = "INVALID_EMAIL"
       result.error = true
-      result.message = "Email address is invalid."
+      result.message = validity.helpers?.invalid || "Email address is invalid."
       return result
     } else if (validity.type === "password") {
       const pattern = validity.pattern.source
@@ -37,7 +47,9 @@ const checkValidity = (value, validity) => {
       if (pattern.includes(exp) && !new RegExp(exp).test(value)) {
         result.code = "MUST_ALPHABET"
         result.error = true
-        result.message = "Please include at least one alphabetical character."
+        result.message =
+          validity.helpers?.mustAlphabet ||
+          "Please include at least one alphabetical character."
         return result
       }
 
@@ -45,7 +57,9 @@ const checkValidity = (value, validity) => {
       if (pattern.includes(exp) && !new RegExp(exp).test(value)) {
         result.code = "MUST_NUMBERIC"
         result.error = true
-        result.message = "Please include at least one numberic."
+        result.message =
+          validity.helpers?.mustNumberic ||
+          "Please include at least one numberic."
         return result
       }
 
@@ -53,7 +67,9 @@ const checkValidity = (value, validity) => {
       if (pattern.includes(exp) && !new RegExp(exp).test(value)) {
         result.code = "MUST_SPECIAL"
         result.error = true
-        result.message = "Please include at least one special character."
+        result.message =
+          validity.helpers?.mustSpecial ||
+          "Please include at least one special character."
         return result
       }
 
@@ -62,20 +78,24 @@ const checkValidity = (value, validity) => {
       if (!isNaN(min) && value.length < min) {
         result.code = "MIN_LENGTH"
         result.error = true
-        result.message = `Should be at least ${min} characters long.`
+        result.message =
+          (validity.helpers?.minLength && validity.helpers.minLength(min)) ||
+          `Should be at least ${min} characters long.`
         result.min = min
         return result
       } else if (!isNaN(max) && value.length > max) {
         result.code = "MAX_LENGTH"
         result.error = true
-        result.message = `Should be no more ${max} characters long.`
+        result.message =
+          (validity.helpers?.maxLength && validity.helpers.maxLength(max)) ||
+          `Should be no more ${max} characters long.`
         result.max = max
         return result
       }
 
       result.code = "INVALID_PASSWORD"
       result.error = true
-      result.message = "Password is invalid."
+      result.message = validity.helpers?.invalid || "Password is invalid."
       return result
     }
   }
@@ -90,8 +110,19 @@ const checkValidity = (value, validity) => {
  * @param {String} type Field type of user input text field element.
  * @param {import("react").ComponentProps} props `React.ComponentProps` passed to React component.
  * @param {Object} validity Object containing information for validating user input text field values.
+ * @param {Boolean} [debug=false] Whether to enable debug logs.
  */
-const extendValidity = (type, props, validity) => {
+const extendValidity = (type, props, validity, debug = false) => {
+  const _tag = `[${log._tag}][InputText] extendValidity`
+  debug &&
+    log.debug(
+      `${_tag}(type: %o, props: %o, validity: %o, debug: %o)`,
+      type,
+      props,
+      validity,
+      debug,
+    )
+
   if (props.defaultValue) {
     !validity.defaultValue && (validity.defaultValue = props.defaultValue)
     delete props.defaultValue
@@ -106,6 +137,12 @@ const extendValidity = (type, props, validity) => {
     !validity.helper && (validity.helper = props.helper)
     delete props.helper
   }
+
+  if (props.helpers) {
+    !validity.helpers && (validity.helpers = props.helpers)
+    delete props.helpers
+  }
+  !validity.helpers && (validity.helpers = {})
 
   if (props.max) {
     !validity.max && (validity.max = props.max)
@@ -146,6 +183,9 @@ const extendValidity = (type, props, validity) => {
   }
 
   !validity.type && (validity.type = type)
+
+  debug && log.debug("props: %o", props)
+  debug && log.debug("validity: %o", validity)
 }
 
 /**
@@ -226,7 +266,7 @@ const InputText = React.forwardRef((Props, forwardedRef) => {
     props.type = "text"
   }
 
-  extendValidity(type, props, validity)
+  extendValidity(type, props, validity, debug)
 
   /**
    * Apply the result after validating the value of the user input field.
@@ -238,7 +278,7 @@ const InputText = React.forwardRef((Props, forwardedRef) => {
     debug && log.debug(`${_tag} checkValidation field: %o`, field)
 
     const value = field?.value || refInput.current?.value
-    const result = checkValidity(value, validity)
+    const result = checkValidity(value, validity, debug)
 
     if (result.error) {
       refController?.current?.classList?.add(style.Error)
