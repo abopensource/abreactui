@@ -1,7 +1,4 @@
 export * from "./H.page"
-export * from "./MH.page"
-export * from "./MP.page"
-export * from "./MS.page"
 export * from "./P.page"
 export * from "./S.page"
 export * from "./Texts.page"

@@ -1,5 +1,3 @@
 export * from "./Button.page"
 export * from "./Buttons.page"
 export * from "./IconButton.page"
-export * from "./MButton.page"
-export * from "./MIconButton.page"

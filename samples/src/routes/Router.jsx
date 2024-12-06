@@ -14,18 +14,6 @@ import {
   IconButtonPage,
   InputPage,
   LayoutsPage,
-  MArticlePage,
-  MBoxPage,
-  MButtonPage,
-  MContainerPage,
-  MFormPage,
-  MHPage,
-  MIconButtonPage,
-  MInputPage,
-  MPagePage,
-  MPPage,
-  MSectionPage,
-  MSPage,
   PagePage,
   PPage,
   SamplePage,
@@ -65,16 +53,8 @@ const routes = [
             element: <ButtonPage />,
           },
           {
-            path: "mbutton",
-            element: <MButtonPage />,
-          },
-          {
             path: "iconbutton",
             element: <IconButtonPage />,
-          },
-          {
-            path: "miconbutton",
-            element: <MIconButtonPage />,
           },
         ],
       },
@@ -90,32 +70,16 @@ const routes = [
             element: <ArticlePage />,
           },
           {
-            path: "marticle",
-            element: <MArticlePage />,
-          },
-          {
             path: "box",
             element: <BoxPage />,
-          },
-          {
-            path: "mbox",
-            element: <MBoxPage />,
           },
           {
             path: "container",
             element: <ContainerPage />,
           },
           {
-            path: "mcontainer",
-            element: <MContainerPage />,
-          },
-          {
             path: "section",
             element: <SectionPage />,
-          },
-          {
-            path: "msection",
-            element: <MSectionPage />,
           },
         ],
       },
@@ -131,16 +95,8 @@ const routes = [
             element: <FormPage />,
           },
           {
-            path: "mform",
-            element: <MFormPage />,
-          },
-          {
             path: "input",
             element: <InputPage />,
-          },
-          {
-            path: "minput",
-            element: <MInputPage />,
           },
         ],
       },
@@ -155,10 +111,6 @@ const routes = [
             path: "page",
             element: <PagePage />,
           },
-          {
-            path: "mpage",
-            element: <MPagePage />,
-          },
         ],
       },
       {
@@ -171,18 +123,6 @@ const routes = [
           {
             path: "h",
             element: <HPage />,
-          },
-          {
-            path: "mh",
-            element: <MHPage />,
-          },
-          {
-            path: "mp",
-            element: <MPPage />,
-          },
-          {
-            path: "ms",
-            element: <MSPage />,
           },
           {
             path: "p",
