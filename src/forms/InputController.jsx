@@ -52,7 +52,7 @@ const InputController = React.forwardRef((Props, forwardedRef) => {
   className && styles.push(className)
 
   const props = { className: styles.join(" "), ...propsOther }
-  forwardedRef && (propsOther.ref = forwardedRef)
+  forwardedRef && (props.ref = forwardedRef)
 
   return createElement({ children, props })
 })
