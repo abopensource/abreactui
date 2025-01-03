@@ -1,3 +1,3 @@
-import styleBox from "./Box.module.css"
+import style from "./Styles.module.css"
 
-export { styleBox }
+export { style }
