@@ -11,13 +11,14 @@
     "ui",
     "ux"
   ],
-  "homepage": "",
+  "homepage": "https://github.com/abopensource/abreactui",
   "bugs": {
-    "url": ""
+    "url": "https://github.com/abopensource/abreactui/issues",
+    "email": "bokjaeoh@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/abopensource/abreactui"
   },
   "author": "Aiden <bokjaeoh@gmail.com>",
   "license": "ISC",
