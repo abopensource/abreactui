@@ -132,9 +132,8 @@ const Input = React.forwardRef((Props, forwardedRef) => {
     }
   }
 
-  const propsController = { className, error, styled }
+  const propsController = { className, debug, error, styled }
   propsController.children = childrenController
-  propsController.debug = debug
   propsController.defaultValue = propsField.defaultValue
   propsController.disabled = propsField.disabled
   propsController.readOnly = propsField.readOnly
